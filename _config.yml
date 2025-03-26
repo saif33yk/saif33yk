@@ -28,9 +28,19 @@ include:
   - _includes
   - _layouts
   - assets
+  - assets/css
 
 # Collections
 collections:
   pages:
     output: true
     permalink: /:path/
+    sort_by: title
+    sort_order: ascending
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE.txt
