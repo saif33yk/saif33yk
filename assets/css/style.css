@@ -1,4 +1,60 @@
-/* Remove the overly aggressive hiding rule */
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header Styles */
+.site-header {
+    background: #333;
+    color: white;
+    padding: 1rem 0;
+}
+
+.site-title {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.site-nav .page-link {
+    color: white;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+/* Main Content */
+.page-content {
+    padding: 2rem 0;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Footer */
 .site-footer {
-    /* Add your footer styling here */
+    background: #333;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* Page Specific */
+.post-title {
+    margin-bottom: 1rem;
+}
+
+.post-content {
+    margin-top: 2rem;
 }
