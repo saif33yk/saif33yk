@@ -1,15 +1,26 @@
 <header class="site-header">
-    <div class="wrapper">
-        <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-
-        <nav class="site-nav">
-            <div class="trigger">
-                {% for page in site.pages %}
-                    {% if page.title %}
-                    <a class="page-link" href="{{ page.url | relative_url }}">{{ page.title }}</a>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </nav>
-    </div>
+  <div class="wrapper">
+    <a class="site-title" href="/">{{ site.title }}</a>
+    
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      {% for page in site.pages %}
+        {% if page.show_in_nav %}
+          <a href="{{ page.url }}">{{ page.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-button" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav" id="mobileNav">
+  {% include mobile-nav.html %}
+</div>
