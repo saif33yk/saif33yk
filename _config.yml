@@ -2,7 +2,7 @@ title: Paradise Roleplay Pakistan
 author: Desi Gabru
 email: support@forestry.io
 description: "Welcome to our roleplay server!"
-
+github: false
 baseurl: ""  # Fix: Removed /ubuild-jekyll
 url: "https://saif33yk.github.io"  # Fix: Set correct GitHub Pages URL
 
