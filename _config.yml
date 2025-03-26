@@ -1,32 +1,33 @@
 title: Paradise Roleplay Pakistan
 author: Desi Gabru
-email: your-email@example.com  # Changed from support@forestry.io
-description: "Welcome to our roleplay server!"
-github: false
-baseurl: ""  
-url: "https://saif33yk.github.io"  
+email: your-email@example.com
+description: "The best GTA V Roleplay server in Pakistan!"
+baseurl: ""
+url: "https://saif33yk.github.io"
 
 # Build settings
 defaults:
   - scope:
-      path: ""  
+      path: ""
     values:
       layout: "default"
+  - scope:
+      path: "_pages"
+    values:
+      layout: "page"
 
 plugins:
   - jekyll-feed
   - jekyll-menus
+
 sass:
   style: compressed
+
 include:
   - _pages
   - _includes
   - _layouts
-  - _data
-  - assets/css
-
-# Theme settings
-theme: jekyll-theme-ubuild  # Added theme specification
+  - assets
 
 # Collections
 collections:
