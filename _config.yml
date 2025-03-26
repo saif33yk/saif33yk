@@ -16,3 +16,8 @@ defaults:
 plugins:
   - jekyll-feed
   - jekyll-menus
+sass:
+  style: compressed
+include:
+  - assets/css
+
