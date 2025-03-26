@@ -1,22 +1,19 @@
 title: Paradise Roleplay Pakistan
 author: Desi Gabru
 email: support@forestry.io
-url : "https://saif33yk.github.io"
-description: >- Hi
-  ubuild-jekyll is a Jekyll theme desgined to work with Forestry's Blocks feature.
-  This theme provides a set of page-level components and a pre-configured Forestry Blocks UI
-  that will empower content editors to construct their own webpages.
-baseurl: "/ubuild-jekyll" # the subpath of your site, e.g. /blog
-url: "" # your site's origin, e.g. https://forestry.io
+url: "https://saif33yk.github.io"
+description: "Hi"
+
+theme: jekyll-theme-minimal
 
 # Build settings
+baseurl: ""  # Fix: Removed /ubuild-jekyll
 defaults:
   - scope:
-      path: "" # an empty string here means all files in the project
+      path: ""  # an empty string here means all files in the project
     values:
-      layout: "default" # this ensures all content renders with layouts/default.html
+      layout: "default"  # This ensures all content renders with layouts/default.html
 
 plugins:
   - jekyll-feed
   - jekyll-menus
-
