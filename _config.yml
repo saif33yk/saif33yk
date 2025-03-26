@@ -1,18 +1,17 @@
 title: Paradise Roleplay Pakistan
 author: Desi Gabru
 email: support@forestry.io
-url: "https://saif33yk.github.io"
-description: "Hi"
+description: "Welcome to our roleplay server!"
 
-theme: jekyll-theme-minimal
+baseurl: ""  # Fix: Removed /ubuild-jekyll
+url: "https://saif33yk.github.io"  # Fix: Set correct GitHub Pages URL
 
 # Build settings
-baseurl: ""  # Fix: Removed /ubuild-jekyll
 defaults:
   - scope:
-      path: ""  # an empty string here means all files in the project
+      path: ""  # Applies to all files
     values:
-      layout: "default"  # This ensures all content renders with layouts/default.html
+      layout: "default"
 
 plugins:
   - jekyll-feed
