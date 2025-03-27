@@ -1,14 +1,22 @@
 ---
 layout: page
 title: Server Rules
+show_in_nav: true
+order: 2
 ---
 
-## Server Rules
+## General Rules
+1. Respect all players and staff members
+2. No cheating, hacking or exploiting
+3. Roleplay realistically at all times
 
-1. Respect all players and staff
-2. No cheating or exploiting
-3. Roleplay realistically
-4. No racism or discrimination
-5. Follow all server guidelines
+## Roleplay Guidelines
+- Stay in character at all times
+- No random violence (RDM)
+- No vehicle deathmatching (VDM)
 
-Breaking rules will result in bans.
+## Consequences
+Breaking rules will result in:
+- First offense: Warning
+- Second offense: Temporary ban
+- Severe offenses: Permanent ban
