@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff - Paradise RP Pakistan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,29 +14,91 @@
             --glass: rgba(18, 18, 18, 0.85);
         }
         
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             background: var(--black) url('../img/bg-pattern.png');
             color: white;
             font-family: 'Poppins', sans-serif;
-            margin: 0;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
+        /* Header with Banner */
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('../img/banner.jpg') center/cover;
             text-align: center;
-            padding: 80px 0;
+            padding: 60px 20px;
             border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
+        .logo {
+            height: clamp(60px, 15vw, 100px);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 10px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Staff Container */
         .staff-container {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 30px;
         }
         
         .staff-tier {
@@ -48,7 +112,7 @@
             width: 100%;
             text-align: center;
             color: var(--gold);
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
             margin-bottom: 20px;
             position: relative;
         }
@@ -56,7 +120,7 @@
         .tier-label:after {
             content: '';
             position: absolute;
-            width: 200px;
+            width: clamp(100px, 50%, 200px);
             height: 3px;
             background: var(--gold);
             bottom: -8px;
@@ -68,11 +132,12 @@
             background: var(--glass);
             border: 2px solid var(--gold);
             border-radius: 8px;
-            width: 220px;
-            padding: 20px;
+            width: clamp(150px, 40vw, 220px);
+            padding: 15px;
             text-align: center;
             transition: all 0.3s;
             backdrop-filter: blur(5px);
+            margin-bottom: 15px;
         }
         
         .staff-card:hover {
@@ -81,47 +146,113 @@
         }
         
         .staff-card img {
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
             object-fit: cover;
             border-radius: 8px;
             border: 2px solid var(--gold);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
         .staff-role {
             color: var(--gold);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             margin-bottom: 5px;
         }
         
         .staff-name {
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
         }
         
-        /* Special card for Server Owner */
+        /* Owner Card */
         .owner-card {
-            width: 300px;
-            margin: 0 auto 40px;
+            width: clamp(200px, 70vw, 300px);
             border-width: 3px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
         }
         
         .owner-card img {
-            width: 150px;
-            height: 150px;
+            width: clamp(100px, 25vw, 150px);
+            height: clamp(100px, 25vw, 150px);
+        }
+        
+        /* Return Home Button */
+        .return-home {
+            display: block;
+            width: max-content;
+            margin: 20px auto 40px;
+            padding: 10px 25px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .return-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 15px;
+                min-height: 250px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.65rem;
+                margin: 3px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .nav {
+                padding: 8px 2px;
+            }
+            
+            .nav-btn {
+                padding: 5px 8px;
+                font-size: 0.6rem;
+            }
+            
+            .staff-card {
+                width: 140px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header with Banner -->
     <header class="header">
-        <img src="../img/logo.png" alt="Paradise RP" class="logo">
-        <h1>STAFF HIERARCHY</h1>
+        <div>
+            <img src="../img/logo.png" alt="Paradise RP" class="logo">
+            <h1>STAFF HIERARCHY</h1>
+        </div>
     </header>
     
-    <nav class="nav"><!-- Same navigation as before --></nav>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
+        <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
+        <a href="staff.html" class="nav-btn active"><i class="fas fa-users"></i> Staff</a>
+        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
+        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
+        <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
     
+    <!-- Staff Container -->
     <div class="staff-container">
         <!-- Tier 1: Server Owner (Alone) -->
         <div class="staff-tier">
@@ -240,5 +371,10 @@
             </div>
         </div>
     </div>
+    
+    <!-- Return Home Button -->
+    <a href="../index.html" class="return-home">
+        <i class="fas fa-arrow-left"></i> Return to Home
+    </a>
 </body>
 </html>
