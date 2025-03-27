@@ -174,6 +174,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            background: rgba(10, 10, 10, 0.7);
         }
         
         .ban-table th, .ban-table td {
@@ -185,6 +186,16 @@
         .ban-table th {
             background-color: rgba(255, 215, 0, 0.1);
             color: var(--gold);
+        }
+        
+        .ban-table tr:nth-child(even) {
+            background-color: rgba(255, 215, 0, 0.05);
+        }
+        
+        /* Permanent Ban Highlight */
+        .permanent-ban {
+            color: #ff5555;
+            font-weight: bold;
         }
         
         /* Return Home Button */
@@ -237,6 +248,12 @@
             .rules-container {
                 padding: 15px;
                 margin: 20px 15px;
+            }
+            
+            .ban-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
             }
         }
         
@@ -322,6 +339,26 @@
                 <h3>4. Combat Logging</h3>
                 <p>Disconnecting during active roleplay scenarios (especially combat) is strictly prohibited.</p>
             </div>
+            
+            <div class="rule-item">
+                <h3>5. Event Disturbing</h3>
+                <p>Intentionally disrupting official server events is not allowed without proper RP reason.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>6. Cop Baiting</h3>
+                <p>Purposely attracting police attention without legitimate RP reason is prohibited.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>7. Disrespecting Body</h3>
+                <p>Unrealistic behavior around dead bodies (teabagging, excessive shooting) is not allowed.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>8. Fail Roleplay</h3>
+                <p>All roleplay must be realistic and follow server standards. Low effort RP will be penalized.</p>
+            </div>
         </div>
         
         <!-- Major Rules -->
@@ -329,23 +366,51 @@
             <h2 class="section-title">MAJOR SERVER RULES</h2>
             
             <div class="rule-item">
-                <h3>1. No RDM/VDM</h3>
-                <p>Random Deathmatch (killing without RP reason) and Vehicle Deathmatch (using vehicles as weapons) are strictly prohibited.</p>
+                <h3>1. Random Death Match (RDM)</h3>
+                <p>Killing players without proper RP reason or initiation is strictly prohibited.</p>
             </div>
             
             <div class="rule-item">
-                <h3>2. Fear RP</h3>
+                <h3>2. Vehicle Death Match (VDM)</h3>
+                <p>Using vehicles as weapons without proper RP reason is not allowed.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. Fear RP</h3>
                 <p>You must value your character's life in dangerous situations. No unrealistic heroics when outnumbered or at gunpoint.</p>
             </div>
             
             <div class="rule-item">
-                <h3>3. Metagaming</h3>
+                <h3>4. Metagaming</h3>
                 <p>Using out-of-character information in-character is strictly forbidden. This includes stream sniping.</p>
             </div>
             
             <div class="rule-item">
-                <h3>4. Powergaming</h3>
+                <h3>5. Powergaming</h3>
                 <p>You cannot force actions on other players (e.g., "I shoot you in the head"). All actions require consent.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>6. Combat Storing</h3>
+                <p>Storing vehicles or items during active combat to prevent them from being stolen is prohibited.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>7. Killing Out of Zone</h3>
+                <p>Engaging in combat or killing players outside designated PVP zones without proper RP is not allowed.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>8. Permanent Ban Rules</h3>
+                <ul>
+                    <li>Threatening other players or staff</li>
+                    <li>Harassment of any kind</li>
+                    <li>Scamming other players</li>
+                    <li>Hacking or cheating</li>
+                    <li>Bug abuse</li>
+                    <li>Using third party software</li>
+                    <li>Repeated abuse of rules</li>
+                </ul>
             </div>
         </div>
         
@@ -376,6 +441,21 @@
                     <li>Hostages must be released when safe</li>
                 </ul>
             </div>
+            
+            <div class="rule-item">
+                <h3>5. Fail Initiation</h3>
+                <p>All criminal initiations must be clear and unambiguous. Vague threats don't count as proper initiation.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>6. Exceeding Limits</h3>
+                <p>During robberies, you cannot demand more than the established limits (e.g., $25,000 maximum from players).</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>7. Safe Zone Violation</h3>
+                <p>No robberies or criminal activity in designated safe zones (spawn, admin areas, etc.).</p>
+            </div>
         </div>
         
         <!-- Gang Turf Rules -->
@@ -393,12 +473,18 @@
                     <li>Must be declared 24 hours in advance</li>
                     <li>Maximum 2 wars per week per gang</li>
                     <li>No attacking during cool-down periods</li>
+                    <li>Proper RP must accompany all turf actions</li>
                 </ul>
             </div>
             
             <div class="rule-item">
                 <h3>3. Neutral Zones</h3>
                 <p>Certain areas (hospital, police stations, admin buildings) are always neutral with no gang activity allowed.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>4. Combat Reviving</h3>
+                <p>Reviving fallen gang members during active combat is prohibited unless done by EMS with proper RP.</p>
             </div>
         </div>
         
@@ -417,12 +503,18 @@
                     <li>Maximum 2 hits per day on rival gang members</li>
                     <li>No hits on unarmed or passive members</li>
                     <li>Must provide RP reason for each hit</li>
+                    <li>No revenge killing outside of proper RP scenarios</li>
                 </ul>
             </div>
             
             <div class="rule-item">
                 <h3>3. Gang Alliances</h3>
                 <p>Alliances must be roleplayed properly with documentation. No OOC alliances affecting IC decisions.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>4. Taunting Rules</h3>
+                <p>While some taunting is allowed for RP, excessive OOC taunting or harassment will be penalized.</p>
             </div>
         </div>
         
@@ -436,6 +528,7 @@
                     <li>No corrupt cops without admin approval</li>
                     <li>Follow proper escalation procedures</li>
                     <li>Realistic response times and numbers</li>
+                    <li>No baiting criminals into illegal actions</li>
                 </ul>
             </div>
             
@@ -448,6 +541,16 @@
                 <h3>3. Government Factions</h3>
                 <p>All government roles require application and training. No abuse of authority.</p>
             </div>
+            
+            <div class="rule-item">
+                <h3>4. Faction Requirements</h3>
+                <ul>
+                    <li>Must maintain realistic RP at all times</li>
+                    <li>Minimum activity requirements must be met</li>
+                    <li>Proper uniform and vehicle usage</li>
+                    <li>No mixing faction and criminal activities</li>
+                </ul>
+            </div>
         </div>
         
         <!-- Ban Durations -->
@@ -455,48 +558,173 @@
             <h2 class="section-title">COMPENSATIONS & BAN DURATIONS</h2>
             
             <div class="rule-item">
-                <h3>Standard Ban Durations</h3>
+                <h3>Ban Durations with Compensations</h3>
                 <table class="ban-table">
                     <tr>
-                        <th>Violation</th>
-                        <th>First Offense</th>
-                        <th>Repeat Offense</th>
+                        <th>Rule Name</th>
+                        <th>Duration</th>
+                        <th>Compensation</th>
                     </tr>
                     <tr>
-                        <td>RDM/VDM</td>
-                        <td>3 days</td>
-                        <td>Permanent</td>
+                        <td>Event Disturbing</td>
+                        <td>6 Hours</td>
+                        <td>10,000</td>
+                    </tr>
+                    <tr>
+                        <td>Cop Baiting</td>
+                        <td>12 Hours</td>
+                        <td>15,000</td>
+                    </tr>
+                    <tr>
+                        <td>Disrespecting Body</td>
+                        <td>16 Hours</td>
+                        <td>17,000</td>
+                    </tr>
+                    <tr>
+                        <td>Fail Roleplay</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Erotic Roleplay</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Death Match & intentionally pitting</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Fail Initiation</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>New Life Rule</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Exceeding Limit In A Robbery</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Safe Zone Violation</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Unrealistic Name</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Taunting</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>High Packet Loss</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>No POV</td>
+                        <td>24 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Revenge Roleplay</td>
+                        <td>32 Hours</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <td>Meta Gaming</td>
+                        <td>32 Hours</td>
+                        <td>28,000</td>
+                    </tr>
+                    <tr>
+                        <td>Combat Reviving</td>
+                        <td>36 Hours</td>
+                        <td>30,000</td>
                     </tr>
                     <tr>
                         <td>Combat Logging</td>
-                        <td>1 day</td>
-                        <td>7 days</td>
+                        <td>48 Hours</td>
+                        <td>35,000</td>
                     </tr>
                     <tr>
-                        <td>Metagaming</td>
-                        <td>3 days</td>
-                        <td>14 days</td>
+                        <td>Combat Storing</td>
+                        <td>48 Hours</td>
+                        <td>35,000</td>
                     </tr>
                     <tr>
-                        <td>Powergaming</td>
-                        <td>1 day</td>
-                        <td>7 days</td>
+                        <td>Killing out of Zone</td>
+                        <td>48 Hours</td>
+                        <td>35,000</td>
                     </tr>
                     <tr>
-                        <td>NLR Violation</td>
-                        <td>12 hours</td>
-                        <td>3 days</td>
+                        <td>Low Effort Roleplay</td>
+                        <td>72 Hours</td>
+                        <td>45,000</td>
                     </tr>
                     <tr>
-                        <td>Exploiting</td>
-                        <td>7 days</td>
-                        <td>Permanent</td>
+                        <td>Power Gaming</td>
+                        <td>72 Hours</td>
+                        <td>45,000</td>
+                    </tr>
+                    <tr>
+                        <td>Abusing Behavior</td>
+                        <td>72 Hours</td>
+                        <td>45,000</td>
+                    </tr>
+                    <tr>
+                        <td>Fear Roleplay</td>
+                        <td>72 Hours</td>
+                        <td>45,000</td>
+                    </tr>
+                    <tr>
+                        <td>Random Death Match</td>
+                        <td>96 Hours</td>
+                        <td>55,000</td>
+                    </tr>
+                    <tr>
+                        <td>Threatening</td>
+                        <td class="permanent-ban">Permanent Ban</td>
+                        <td>No Compensation</td>
+                    </tr>
+                    <tr>
+                        <td>Harassments</td>
+                        <td class="permanent-ban">Permanent Ban</td>
+                        <td>No Compensation</td>
+                    </tr>
+                    <tr>
+                        <td>Scamming</td>
+                        <td class="permanent-ban">Permanent Ban</td>
+                        <td>No Compensation</td>
+                    </tr>
+                    <tr>
+                        <td>Hacking</td>
+                        <td class="permanent-ban">Permanent Ban</td>
+                        <td>No Compensation</td>
+                    </tr>
+                    <tr>
+                        <td>Bug Abuse</td>
+                        <td class="permanent-ban">Permanent Ban</td>
+                        <td>No Compensation</td>
+                    </tr>
+                    <tr>
+                        <td>Third Party Software's</td>
+                        <td class="permanent-ban">Permanent Ban</td>
+                        <td>No Compensation</td>
                     </tr>
                 </table>
             </div>
             
             <div class="rule-item">
-                <h3>Compensation Guidelines</h3>
+                <h3>Additional Compensation Guidelines</h3>
                 <ul>
                     <li>Stolen vehicles: $15,000-$50,000 based on vehicle</li>
                     <li>Robbery losses: Up to $25,000 maximum claim</li>
@@ -529,6 +757,9 @@
             
             // Activate clicked button
             event.currentTarget.classList.add('active');
+            
+            // Scroll to top of section
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </body>
