@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules - Paradise RP Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.85);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: var(--black) url('img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header with Banner */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/banner.jpg') center/cover;
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header h1 {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 10px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Rules Container */
+        .rules-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Rules Navigation */
+        .rules-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .rule-category-btn {
+            background: rgba(10, 10, 10, 0.7);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .rule-category-btn:hover, .rule-category-btn.active {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Rules Sections */
+        .rules-section {
+            background: var(--glass);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 25px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .rules-section.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+        }
+        
+        .rule-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .rule-item h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .rule-item p, .rule-item ul {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .rule-item ul {
+            padding-left: 20px;
+        }
+        
+        .rule-item li {
+            margin-bottom: 8px;
+        }
+        
+        /* Ban Table */
+        .ban-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .ban-table th, .ban-table td {
+            border: 1px solid var(--gold);
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .ban-table th {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+        }
+        
+        /* Return Home Button */
+        .return-home {
+            display: block;
+            width: max-content;
+            margin: 40px auto;
+            padding: 12px 30px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .return-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 15px;
+                min-height: 250px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.65rem;
+                margin: 3px;
+            }
+            
+            .rules-nav {
+                gap: 8px;
+            }
+            
+            .rule-category-btn {
+                padding: 8px 15px;
+                font-size: 0.7rem;
+            }
+            
+            .rules-container {
+                padding: 15px;
+                margin: 20px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .nav {
+                padding: 8px 2px;
+            }
+            
+            .nav-btn {
+                padding: 5px 8px;
+                font-size: 0.6rem;
+            }
+            
+            .rules-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ban-table {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Banner -->
+    <header class="header">
+        <div>
+            <h1>SERVER RULES</h1>
+            <p>Read and follow all rules to ensure fair gameplay</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
+        <a href="rules.html" class="nav-btn active"><i class="fas fa-book"></i> Rules</a>
+        <a href="staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
+        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
+        <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
+    
+    <!-- Rules Container -->
+    <div class="rules-container">
+        <!-- Rules Navigation -->
+        <div class="rules-nav">
+            <button class="rule-category-btn active" onclick="showRules('paradise')">Paradise Rules</button>
+            <button class="rule-category-btn" onclick="showRules('major')">Major Rules</button>
+            <button class="rule-category-btn" onclick="showRules('robbery')">Robbery Rules</button>
+            <button class="rule-category-btn" onclick="showRules('turf')">Gang Turf Rules</button>
+            <button class="rule-category-btn" onclick="showRules('rivalry')">Gang Rivalry</button>
+            <button class="rule-category-btn" onclick="showRules('faction')">Faction Rules</button>
+            <button class="rule-category-btn" onclick="showRules('bans')">Ban Durations</button>
+        </div>
+        
+        <!-- Paradise Rules -->
+        <div id="paradise" class="rules-section active">
+            <h2 class="section-title">PARADISE RP GENERAL RULES</h2>
+            
+            <div class="rule-item">
+                <h3>1. Roleplay Standards</h3>
+                <p>All players must maintain realistic roleplay at all times. No trolling, meme characters, or unrealistic behavior.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>2. Character Consistency</h3>
+                <p>Maintain the same character identity, backstory, and relationships throughout your playtime.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. New Life Rule (NLR)</h3>
+                <p>After death, you cannot remember events leading to your death or return to the area for 30 minutes.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>4. Combat Logging</h3>
+                <p>Disconnecting during active roleplay scenarios (especially combat) is strictly prohibited.</p>
+            </div>
+        </div>
+        
+        <!-- Major Rules -->
+        <div id="major" class="rules-section">
+            <h2 class="section-title">MAJOR SERVER RULES</h2>
+            
+            <div class="rule-item">
+                <h3>1. No RDM/VDM</h3>
+                <p>Random Deathmatch (killing without RP reason) and Vehicle Deathmatch (using vehicles as weapons) are strictly prohibited.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>2. Fear RP</h3>
+                <p>You must value your character's life in dangerous situations. No unrealistic heroics when outnumbered or at gunpoint.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. Metagaming</h3>
+                <p>Using out-of-character information in-character is strictly forbidden. This includes stream sniping.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>4. Powergaming</h3>
+                <p>You cannot force actions on other players (e.g., "I shoot you in the head"). All actions require consent.</p>
+            </div>
+        </div>
+        
+        <!-- Robbery Rules -->
+        <div id="robbery" class="rules-section">
+            <h2 class="section-title">ROBBERY RULES</h2>
+            
+            <div class="rule-item">
+                <h3>1. Value for Value</h3>
+                <p>All robberies must provide RP value for both parties. No robbing just for items/money.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>2. Minimum Participants</h3>
+                <p>Store robberies require 3+ criminals. Bank robberies require 5+ with proper planning and RP.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. Police Response</h3>
+                <p>You must allow reasonable time for police response (minimum 5 minutes for stores, 10 for banks).</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>4. Hostage Rules</h3>
+                <ul>
+                    <li>Hostages must be treated realistically</li>
+                    <li>No killing hostages unless extreme circumstances</li>
+                    <li>Hostages must be released when safe</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Gang Turf Rules -->
+        <div id="turf" class="rules-section">
+            <h2 class="section-title">GANG TURF & TERRITORY RULES</h2>
+            
+            <div class="rule-item">
+                <h3>1. Turf Claiming</h3>
+                <p>Turfs can only be claimed by registered gangs with minimum 5 active members. Documentation required.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>2. Turf Wars</h3>
+                <ul>
+                    <li>Must be declared 24 hours in advance</li>
+                    <li>Maximum 2 wars per week per gang</li>
+                    <li>No attacking during cool-down periods</li>
+                </ul>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. Neutral Zones</h3>
+                <p>Certain areas (hospital, police stations, admin buildings) are always neutral with no gang activity allowed.</p>
+            </div>
+        </div>
+        
+        <!-- Gang Rivalry -->
+        <div id="rivalry" class="rules-section">
+            <h2 class="section-title">GANG RIVALRY RULES</h2>
+            
+            <div class="rule-item">
+                <h3>1. Rivalry Declaration</h3>
+                <p>Official rivalries must be registered with staff. Minimum 3-day notice before any hostile actions.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>2. Hit Rules</h3>
+                <ul>
+                    <li>Maximum 2 hits per day on rival gang members</li>
+                    <li>No hits on unarmed or passive members</li>
+                    <li>Must provide RP reason for each hit</li>
+                </ul>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. Gang Alliances</h3>
+                <p>Alliances must be roleplayed properly with documentation. No OOC alliances affecting IC decisions.</p>
+            </div>
+        </div>
+        
+        <!-- Faction Rules -->
+        <div id="faction" class="rules-section">
+            <h2 class="section-title">FACTION RULES</h2>
+            
+            <div class="rule-item">
+                <h3>1. LSPD Protocols</h3>
+                <ul>
+                    <li>No corrupt cops without admin approval</li>
+                    <li>Follow proper escalation procedures</li>
+                    <li>Realistic response times and numbers</li>
+                </ul>
+            </div>
+            
+            <div class="rule-item">
+                <h3>2. EMS Procedures</h3>
+                <p>EMS must prioritize RP over quick revives. Proper medical RP required for all treatments.</p>
+            </div>
+            
+            <div class="rule-item">
+                <h3>3. Government Factions</h3>
+                <p>All government roles require application and training. No abuse of authority.</p>
+            </div>
+        </div>
+        
+        <!-- Ban Durations -->
+        <div id="bans" class="rules-section">
+            <h2 class="section-title">COMPENSATIONS & BAN DURATIONS</h2>
+            
+            <div class="rule-item">
+                <h3>Standard Ban Durations</h3>
+                <table class="ban-table">
+                    <tr>
+                        <th>Violation</th>
+                        <th>First Offense</th>
+                        <th>Repeat Offense</th>
+                    </tr>
+                    <tr>
+                        <td>RDM/VDM</td>
+                        <td>3 days</td>
+                        <td>Permanent</td>
+                    </tr>
+                    <tr>
+                        <td>Combat Logging</td>
+                        <td>1 day</td>
+                        <td>7 days</td>
+                    </tr>
+                    <tr>
+                        <td>Metagaming</td>
+                        <td>3 days</td>
+                        <td>14 days</td>
+                    </tr>
+                    <tr>
+                        <td>Powergaming</td>
+                        <td>1 day</td>
+                        <td>7 days</td>
+                    </tr>
+                    <tr>
+                        <td>NLR Violation</td>
+                        <td>12 hours</td>
+                        <td>3 days</td>
+                    </tr>
+                    <tr>
+                        <td>Exploiting</td>
+                        <td>7 days</td>
+                        <td>Permanent</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="rule-item">
+                <h3>Compensation Guidelines</h3>
+                <ul>
+                    <li>Stolen vehicles: $15,000-$50,000 based on vehicle</li>
+                    <li>Robbery losses: Up to $25,000 maximum claim</li>
+                    <li>Improper arrests: $10,000 per hour detained</li>
+                    <li>Character kills: Case-by-case evaluation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Return Home Button -->
+    <a href="index.html" class="return-home">
+        <i class="fas fa-arrow-left"></i> Return to Home
+    </a>
+
+    <script>
+        function showRules(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.rules-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.rule-category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activate clicked button
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
