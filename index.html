@@ -14,11 +14,16 @@
             --glass: rgba(18, 18, 18, 0.85);
         }
         
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            background: var(--black) url('https://raw.githubusercontent.com/saif33yk/paradise-rp/main/img/bg-pattern.png');
+            background: var(--black) url('img/bg-pattern.png');
             color: white;
             font-family: 'Poppins', sans-serif;
-            margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -29,19 +34,26 @@
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('img/banner.jpg') center/cover;
             text-align: center;
-            padding: 100px 0;
-            position: relative;
+            padding: 60px 20px;
             border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .logo-main {
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 700;
             color: var(--gold);
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
@@ -50,7 +62,7 @@
         }
         
         .logo-sub {
-            font-size: 1.8rem;
+            font-size: clamp(1rem, 3vw, 1.8rem);
             color: white;
             margin-top: 10px;
             text-shadow: 0 0 10px rgba(255,255,255,0.3);
@@ -60,23 +72,25 @@
         .logo-lines {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin: 15px 0;
+            width: 100%;
         }
         
         .logo-line {
             height: 3px;
-            width: 60px;
+            width: 40px;
             background: var(--gold);
-            margin: 0 10px;
+            margin: 0 8px;
         }
         
         /* Navigation */
         .nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             background: var(--glass);
             backdrop-filter: blur(10px);
-            padding: 15px;
+            padding: 10px 5px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -86,14 +100,15 @@
         .nav-btn {
             color: white;
             text-decoration: none;
-            margin: 0 12px;
+            margin: 5px;
             font-weight: 600;
-            padding: 10px 20px;
+            padding: 8px 12px;
             border-radius: 5px;
             transition: all 0.3s;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
         
         .nav-btn:hover {
@@ -107,9 +122,10 @@
         .main-content {
             flex: 1;
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
             text-align: center;
+            width: 100%;
         }
         
         /* Buttons */
@@ -117,13 +133,14 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             color: var(--black);
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 30px;
             font-weight: 700;
             text-decoration: none;
-            margin: 15px 10px;
+            margin: 10px;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            font-size: 1rem;
         }
         
         .btn:hover {
@@ -134,6 +151,55 @@
         .btn-discord {
             background: linear-gradient(135deg, #5865F2, #4752C4);
             color: white;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 15px;
+                min-height: 250px;
+            }
+            
+            .logo-line {
+                width: 30px;
+                margin: 0 5px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.65rem;
+                margin: 3px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 8px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-main {
+                font-size: 2rem;
+            }
+            
+            .logo-sub {
+                font-size: 0.9rem;
+            }
+            
+            .logo-line {
+                width: 20px;
+                height: 2px;
+            }
+            
+            .nav {
+                padding: 8px 2px;
+            }
+            
+            .nav-btn {
+                padding: 5px 8px;
+                font-size: 0.6rem;
+            }
         }
     </style>
 </head>
@@ -151,27 +217,15 @@
             <p class="logo-sub">PAKISTAN'S #1 GTA ROLEPLAY SERVER</p>
         </div>
     </header>
-   
- <!-- Banner -->
-<header style="background-image: url('img/banner.jpg')">
-
-<!-- For logo -->
-<img src="img/logo.png" alt="Paradise Roleplay Logo" class="logo">
-
-<!-- For staff photos -->
-<img src="img/staff/desi_gabru.jpg" alt="Desi Gabru">
-
-<!-- For gang images -->
-<img src="img/gangs/gang1.jpg" alt="Street Kings Gang">
-
-    <!-- Navigation with New Buttons -->
+    
+    <!-- Navigation -->
     <nav class="nav">
         <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
         <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
         <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
         <a href="staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
-        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Top Gangs</a>
-        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Wall of Fame</a>
+        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
+        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
         <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
         <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </nav>
@@ -181,7 +235,7 @@
         <h2>Welcome to Paradise</h2>
         <p>Experience the ultimate Pakistani GTA RP server with custom JDM cars, gangs, and realistic roleplay.</p>
         
-        <div>
+        <div style="margin-top: 30px;">
             <a href="join.html" class="btn">Join Now</a>
             <a href="https://discord.gg.prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
         </div>
