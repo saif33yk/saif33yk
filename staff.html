@@ -29,12 +29,12 @@
         }
         
         .staff-container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 40px auto;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 40px;
         }
         
         .staff-tier {
@@ -48,18 +48,28 @@
             width: 100%;
             text-align: center;
             color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 5px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .tier-label:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 3px;
+            background: var(--gold);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .staff-card {
             background: var(--glass);
             border: 2px solid var(--gold);
             border-radius: 8px;
-            width: 200px;
-            padding: 15px;
+            width: 220px;
+            padding: 20px;
             text-align: center;
             transition: all 0.3s;
             backdrop-filter: blur(5px);
@@ -67,32 +77,40 @@
         
         .staff-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
         }
         
         .staff-card img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             object-fit: cover;
             border-radius: 8px;
             border: 2px solid var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .staff-role {
             color: var(--gold);
             font-weight: 700;
+            font-size: 1.1rem;
             margin-bottom: 5px;
         }
         
         .staff-name {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
-        /* Special highlight for focus roles */
-        .focus-tier .staff-card {
+        /* Special card for Server Owner */
+        .owner-card {
+            width: 300px;
+            margin: 0 auto 40px;
             border-width: 3px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .owner-card img {
+            width: 150px;
+            height: 150px;
         }
     </style>
 </head>
@@ -105,42 +123,25 @@
     <nav class="nav"><!-- Same navigation as before --></nav>
     
     <div class="staff-container">
-        <!-- Focus Tier (Owner/Dev) -->
-        <div class="focus-tier">
-            <div class="tier-label">LEADERSHIP</div>
-            <div class="staff-tier">
-                <!-- Server Owner -->
-                <div class="staff-card">
-                    <img src="../img/staff/desi_gabru.jpg" alt="Desi Gabru">
-                    <div class="staff-role">SERVER OWNER</div>
-                    <div class="staff-name">Desi Gabru</div>
-                </div>
-                
-                <!-- Developer -->
-                <div class="staff-card">
-                    <img src="../img/staff/onni_uh.jpg" alt="Onni Uh">
-                    <div class="staff-role">DEVELOPER</div>
-                    <div class="staff-name">Onni Uh</div>
-                </div>
+        <!-- Tier 1: Server Owner (Alone) -->
+        <div class="staff-tier">
+            <div class="staff-card owner-card">
+                <img src="../img/staff/desi_gabru.jpg" alt="Desi Gabru">
+                <div class="staff-role">SERVER OWNER</div>
+                <div class="staff-name">Desi Gabru</div>
             </div>
         </div>
         
-        <!-- Project Management -->
+        <!-- Tier 2: Project Management + Special Roles -->
         <div>
-            <div class="tier-label">PROJECT MANAGEMENT</div>
+            <div class="tier-label">PROJECT TEAM</div>
             <div class="staff-tier">
                 <div class="staff-card">
                     <img src="../img/staff/ali_ahmad.jpg" alt="Ali Ahmad">
                     <div class="staff-role">PROJECT MANAGEMENT</div>
                     <div class="staff-name">Ali Ahmad</div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Special Roles -->
-        <div>
-            <div class="tier-label">SPECIAL ROLES</div>
-            <div class="staff-tier">
+                
                 <div class="staff-card">
                     <img src="../img/staff/mrjayplays.jpg" alt="MrJayPlays">
                     <div class="staff-role">MRJAYPLAYS</div>
@@ -152,18 +153,12 @@
                     <div class="staff-role">JANI</div>
                     <div class="staff-name">Jani</div>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="../img/staff/king.jpg" alt="King">
-                    <div class="staff-role">DDOS PROTECTION</div>
-                    <div class="staff-name">King</div>
-                </div>
             </div>
         </div>
         
-        <!-- Server Management -->
+        <!-- Tier 3: Server Managers -->
         <div>
-            <div class="tier-label">SERVER MANAGEMENT</div>
+            <div class="tier-label">SERVER MANAGERS</div>
             <div class="staff-tier">
                 <div class="staff-card">
                     <img src="../img/staff/pan.jpg" alt="Pan">
@@ -179,11 +174,34 @@
             </div>
         </div>
         
-        <!-- Administration -->
+        <!-- Tier 4: Technical Team -->
+        <div>
+            <div class="tier-label">TECHNICAL TEAM</div>
+            <div class="staff-tier">
+                <div class="staff-card">
+                    <img src="../img/staff/onni_uh.jpg" alt="Onni Uh">
+                    <div class="staff-role">DEVELOPER</div>
+                    <div class="staff-name">Onni Uh</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="../img/staff/king.jpg" alt="King">
+                    <div class="staff-role">DDOS PROTECTION</div>
+                    <div class="staff-name">King</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="../img/staff/smiley.jpg" alt="Smiley">
+                    <div class="staff-role">TECHNICAL ADMIN</div>
+                    <div class="staff-name">Smiley</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tier 5: Administration -->
         <div>
             <div class="tier-label">ADMINISTRATION</div>
             <div class="staff-tier">
-                <!-- Chief Admins -->
                 <div class="staff-card">
                     <img src="../img/staff/rt.jpg" alt="RT">
                     <div class="staff-role">CHIEF ADMIN</div>
@@ -202,14 +220,12 @@
                     <div class="staff-name">Veshi</div>
                 </div>
                 
-                <!-- Head Admin -->
                 <div class="staff-card">
                     <img src="../img/staff/rock.jpg" alt="Rock">
                     <div class="staff-role">HEAD ADMIN</div>
                     <div class="staff-name">Rock</div>
                 </div>
                 
-                <!-- Admins -->
                 <div class="staff-card">
                     <img src="../img/staff/saif.jpg" alt="Saif">
                     <div class="staff-role">ADMIN</div>
