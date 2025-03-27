@@ -2,38 +2,174 @@
 <html>
 <head>
     <title>Staff - Paradise RP Pakistan</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.85);
+        }
+        
+        body {
+            background: var(--black) url('../img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../img/banner.jpg') center/cover;
+            text-align: center;
+            padding: 80px 0;
+            border-bottom: 4px solid var(--gold);
+        }
+        
+        .logo {
+            height: 120px;
+            filter: drop-shadow(0 0 10px var(--gold));
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .staff-card {
+            background: var(--glass);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        }
+        
+        .staff-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .staff-card h3 {
+            color: var(--gold);
+            margin: 10px 0 5px;
+        }
+        
+        .staff-card p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="img/logo.png" alt="Paradise RP" class="logo">
+    <!-- Header with Banner Background -->
+    <header class="header">
+        <img src="../img/logo.png" alt="Paradise RP" class="logo">
         <h1>OUR TEAM</h1>
     </header>
-
-    <nav><!-- Same as index.html --></nav>
-
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
+        <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
+        <a href="staff.html" class="nav-btn active"><i class="fas fa-users"></i> Staff</a>
+        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Top Gangs</a>
+        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Wall of Fame</a>
+        <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
+    
+    <!-- Staff Grid -->
     <div class="staff-grid">
         <!-- Server Owner -->
         <div class="staff-card">
-            <img src="img/staff/desi_gabru.jpg" alt="Desi Gabru">
+            <img src="../img/staff/desi_gabru.jpg" alt="Desi Gabru">
             <h3>Desi Gabru</h3>
             <p>Server Owner</p>
         </div>
 
         <!-- Server Managers -->
         <div class="staff-card">
-            <img src="img/staff/pan.jpg" alt="Pan">
+            <img src="../img/staff/pan.jpg" alt="Pan">
             <h3>Pan</h3>
             <p>Server Manager</p>
         </div>
 
         <div class="staff-card">
-            <img src="img/staff/zigana.jpg" alt="Zigana">
+            <img src="../img/staff/zigana.jpg" alt="Zigana">
             <h3>Zigana</h3>
             <p>Server Manager</p>
         </div>
 
-        <!-- Add more staff as needed -->
+        <!-- Server Developer -->
+        <div class="staff-card">
+            <img src="../img/staff/onni_uh.jpg" alt="Onni Uh">
+            <h3>Onni Uh</h3>
+            <p>Server Developer</p>
+        </div>
+
+        <!-- Project Management -->
+        <div class="staff-card">
+            <img src="../img/staff/jani.jpg" alt="Jani">
+            <h3>Jani</h3>
+            <p>Project Management</p>
+        </div>
+
+        <div class="staff-card">
+            <img src="../img/staff/ali_ahmad.jpg" alt="Ali Ahmad">
+            <h3>Ali Ahmad</h3>
+            <p>Project Management</p>
+        </div>
+
+        <!-- Add remaining staff members -->
     </div>
 </body>
 </html>
