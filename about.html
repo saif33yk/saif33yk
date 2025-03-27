@@ -31,12 +31,6 @@
             position: relative;
         }
         
-        .logo {
-            width: clamp(120px, 25vw, 200px);
-            height: auto;
-            margin-bottom: 20px;
-        }
-        
         .header h1 {
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin: 0;
@@ -130,6 +124,26 @@
             border-color: var(--gold);
             transform: translateY(-2px);
         }
+
+        .join-btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background: linear-gradient(to right, var(--gold), var(--dark-gold));
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            text-align: center;
+        }
+        
+        .join-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
         
         @media (max-width: 768px) {
             .feature-grid {
@@ -148,7 +162,6 @@
 </head>
 <body>
     <header class="header">
-        <img src="img/logo.png" alt="Paradise RP" class="logo">
         <h1>ABOUT PARADISE RP</h1>
         <p>Asia's #1 GTA Roleplay Server</p>
     </header>
@@ -260,6 +273,10 @@
                 <strong>Paradise Roleplay Management</strong>
             </p>
         </div>
+
+        <a href="join.html" class="join-btn">
+            <i class="fas fa-gamepad"></i> Learn How to Join
+        </a>
 
         <a href="index.html" class="return-home">
             <i class="fas fa-arrow-left"></i> Return Home
