@@ -21,7 +21,8 @@
         }
         
         body {
-            background: var(--black);
+            background: var(--black) url('img/background.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
@@ -30,7 +31,7 @@
         }
         
         .header {
-            background: var(--black);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
             text-align: center;
             padding: 60px 20px;
             border-bottom: 4px solid var(--gold);
@@ -41,8 +42,13 @@
             justify-content: center;
         }
         
+        .logo {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        
         .header h1 {
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            font-size: 2.5rem;
             color: var(--gold);
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             margin-bottom: 10px;
@@ -86,9 +92,9 @@
             max-width: 1000px;
             margin: 30px auto;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+            background: var(--glass);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
         
         .staff-tier {
@@ -96,38 +102,26 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            margin-bottom: 30px;
         }
         
         .tier-label {
             width: 100%;
             text-align: center;
             color: var(--gold);
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin: 30px 0 20px;
             position: relative;
         }
         
-        .tier-label:after {
-            content: '';
-            position: absolute;
-            width: clamp(100px, 50%, 200px);
-            height: 3px;
-            background: var(--gold);
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
         .staff-card {
-            background: var(--glass);
+            background: rgba(10, 10, 10, 0.8);
             border: 2px solid var(--gold);
             border-radius: 8px;
-            width: clamp(150px, 40vw, 220px);
+            width: 220px;
             padding: 15px;
             text-align: center;
             transition: all 0.3s;
-            backdrop-filter: blur(5px);
-            margin-bottom: 15px;
         }
         
         .staff-card:hover {
@@ -135,35 +129,48 @@
             box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
         }
         
+        .staff-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            margin-bottom: 15px;
+        }
+        
         .staff-role {
             color: var(--gold);
             font-weight: 700;
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            font-size: 1.1rem;
             margin-bottom: 5px;
         }
         
         .staff-name {
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            font-size: 1rem;
         }
         
         .owner-card {
-            width: clamp(200px, 70vw, 300px);
+            width: 300px;
             border-width: 3px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .owner-card img {
+            width: 150px;
+            height: 150px;
         }
         
         .return-home {
             display: block;
             width: max-content;
-            margin: 20px auto 40px;
-            padding: 10px 25px;
+            margin: 40px auto 20px;
+            padding: 12px 30px;
             background: var(--gold);
             color: var(--black);
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
         .return-home:hover {
@@ -172,34 +179,11 @@
         }
         
         @media (max-width: 768px) {
-            .header {
-                padding: 40px 15px;
-                min-height: 250px;
-            }
-            
-            .nav-btn {
-                padding: 6px 10px;
-                font-size: 0.65rem;
-                margin: 3px;
-            }
-        }
-        
-        @media (max-width: 480px) {
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
-            
-            .nav {
-                padding: 8px 2px;
-            }
-            
-            .nav-btn {
-                padding: 5px 8px;
-                font-size: 0.6rem;
-            }
-            
             .staff-card {
-                width: 140px;
+                width: 180px;
             }
         }
     </style>
@@ -207,6 +191,7 @@
 <body>
     <header class="header">
         <div>
+            <img src="img/logo.png" alt="Server Logo" class="logo">
             <h1>STAFF HIERARCHY</h1>
         </div>
     </header>
@@ -217,38 +202,44 @@
         <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
         <a href="staff.html" class="nav-btn active"><i class="fas fa-users"></i> Staff</a>
         <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
-        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
+        <a href="hall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
         <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
-        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        <a href="https://discord.gg/yourlink" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </nav>
     
     <div class="staff-container">
+        <!-- Server Owner -->
         <div class="staff-tier">
             <div class="staff-card owner-card">
+                <img src="img/staff/owner.jpg" alt="Server Owner">
                 <div class="staff-role">SERVER OWNER</div>
                 <div class="staff-name">Desi Gabru</div>
             </div>
         </div>
         
-        <div>
-            <div class="tier-label">PROJECT TEAM</div>
-            <div class="staff-tier">
-                <div class="staff-card">
-                    <div class="staff-role">PROJECT MANAGEMENT</div>
-                    <div class="staff-name">Ali Ahmad</div>
-                </div>
-                
-                <div class="staff-card">
-                    <div class="staff-role">MRJAYPLAYS</div>
-                    <div class="staff-name">MrJayPlays</div>
-                </div>
-                
-                <div class="staff-card">
-                    <div class="staff-role">JANI</div>
-                    <div class="staff-name">Jani</div>
-                </div>
+        <!-- Project Team -->
+        <div class="tier-label">PROJECT TEAM</div>
+        <div class="staff-tier">
+            <div class="staff-card">
+                <img src="img/staff/ali_ahmed.jpg" alt="Project Management">
+                <div class="staff-role">PROJECT MANAGEMENT</div>
+                <div class="staff-name">Ali Ahmed</div>
+            </div>
+            
+            <div class="staff-card">
+                <img src="img/staff/mrjay.jpg" alt="MrJayPlays">
+                <div class="staff-role">MRJAYPLAYS</div>
+                <div class="staff-name">MrJayPlays</div>
+            </div>
+            
+            <div class="staff-card">
+                <img src="img/staff/jani.jpg" alt="Jani">
+                <div class="staff-role">JANI</div>
+                <div class="staff-name">Jani</div>
             </div>
         </div>
+        
+        <!-- Add more staff tiers as needed -->
     </div>
     
     <a href="index.html" class="return-home">
