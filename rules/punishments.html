@@ -1,95 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Same head content -->
-    <title>Ban Durations - Paradise RP Pakistan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punishments - Paradise Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .ban-table {
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.9);
+            --red: #ff4444;
+            --green: #00C851;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: var(--black) url('../assets/img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../assets/img/banner.jpg') center/cover;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 15px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 12px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px 8px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255,215,0,0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Punishments Content */
+        .punishments-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .punishments-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .punishments-header h2 {
+            color: var(--gold);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .punishments-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 3px;
+        }
+        
+        .punishments-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            background: rgba(10, 10, 10, 0.7);
+            margin-bottom: 40px;
+            background: var(--glass);
+            border-radius: 10px;
+            overflow: hidden;
         }
         
-        .ban-table th, .ban-table td {
-            border: 1px solid var(--gold);
-            padding: 10px;
+        .punishments-table th {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 15px;
             text-align: left;
+            font-weight: 700;
         }
         
-        .ban-table th {
-            background-color: rgba(255, 215, 0, 0.1);
+        .punishments-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .punishments-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .punishments-table tr:hover {
+            background: rgba(255,215,0,0.05);
+        }
+        
+        .ban-duration {
+            font-weight: 600;
+        }
+        
+        .compensation {
+            color: var(--green);
+            font-weight: 600;
+        }
+        
+        .permanent {
+            color: var(--red);
+            font-weight: 700;
+        }
+        
+        .none {
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+        
+        .notes {
+            background: rgba(255,215,0,0.1);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .notes h3 {
             color: var(--gold);
+            margin-bottom: 10px;
         }
         
-        .ban-table tr:nth-child(even) {
-            background-color: rgba(255, 215, 0, 0.05);
+        .notes p {
+            margin-bottom: 10px;
+            line-height: 1.6;
         }
         
-        .permanent-ban {
-            color: #ff5555;
-            font-weight: bold;
+        .notes ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .notes li {
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            background: var(--glass);
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .punishments-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .header {
+                padding: 60px 15px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <div>
-            <h1>BAN DURATIONS</h1>
-            <p>Violation consequences and compensations</p>
+        <div class="header-content">
+            <h1>PUNISHMENTS & COMPENSATIONS</h1>
+            <p>Official ban durations and compensation amounts</p>
         </div>
     </header>
     
-    <!-- Same nav -->
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Rules Hub</a>
+        <a href="../staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="https://discord.gg/prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
     
-    <div class="breadcrumb">
-        <a href="index.html">Rules</a> &gt; <span>Ban Durations</span>
-    </div>
-    
-    <div class="rules-container">
-        <h2 class="section-title">COMPENSATIONS & BAN DURATIONS</h2>
+    <!-- Punishments Content -->
+    <div class="punishments-container">
+        <div class="punishments-header">
+            <h2>Ban Durations & Compensation List</h2>
+            <p>This is the only compensation/ban duration list you have to follow</p>
+        </div>
         
-        <div class="rule-item">
-            <h3>Ban Durations with Compensations</h3>
-            <table class="ban-table">
+        <table class="punishments-table">
+            <thead>
                 <tr>
-                    <th>Rule Name</th>
-                    <th>Duration</th>
+                    <th>Rule Violation</th>
+                    <th>Ban Duration</th>
                     <th>Compensation</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>Event Disturbing</td>
-                    <td>6 Hours</td>
-                    <td>10,000</td>
+                    <td class="ban-duration">6 Hours</td>
+                    <td class="compensation">$10,000</td>
                 </tr>
-                <!-- Include all rows from your original table -->
+                <tr>
+                    <td>Cop Baiting</td>
+                    <td class="ban-duration">12 Hours</td>
+                    <td class="compensation">$15,000</td>
+                </tr>
+                <tr>
+                    <td>Disrespecting Body</td>
+                    <td class="ban-duration">16 Hours</td>
+                    <td class="compensation">$17,000</td>
+                </tr>
+                <tr>
+                    <td>Fail Roleplay</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Erotic Roleplay</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Vehicle Death Match (VDM)</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Fail Initiation</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>New Life Rule Violation</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Exceeding Limit In A Robbery</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Safe Zone Violation</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Unrealistic Name</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Taunting</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>High Packet Loss</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>No POV (Point of View)</td>
+                    <td class="ban-duration">24 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Revenge Roleplay</td>
+                    <td class="ban-duration">32 Hours</td>
+                    <td class="compensation">$25,000</td>
+                </tr>
+                <tr>
+                    <td>Meta Gaming</td>
+                    <td class="ban-duration">32 Hours</td>
+                    <td class="compensation">$28,000</td>
+                </tr>
+                <tr>
+                    <td>Combat Reviving</td>
+                    <td class="ban-duration">36 Hours</td>
+                    <td class="compensation">$30,000</td>
+                </tr>
+                <tr>
+                    <td>Combat Logging</td>
+                    <td class="ban-duration">48 Hours</td>
+                    <td class="compensation">$35,000</td>
+                </tr>
+                <tr>
+                    <td>Combat Storing</td>
+                    <td class="ban-duration">48 Hours</td>
+                    <td class="compensation">$35,000</td>
+                </tr>
+                <tr>
+                    <td>Killing Out of Zone</td>
+                    <td class="ban-duration">48 Hours</td>
+                    <td class="compensation">$35,000</td>
+                </tr>
+                <tr>
+                    <td>Low Effort Roleplay</td>
+                    <td class="ban-duration">72 Hours</td>
+                    <td class="compensation">$45,000</td>
+                </tr>
+                <tr>
+                    <td>Power Gaming</td>
+                    <td class="ban-duration">72 Hours</td>
+                    <td class="compensation">$45,000</td>
+                </tr>
+                <tr>
+                    <td>Abusing Behavior</td>
+                    <td class="ban-duration">72 Hours</td>
+                    <td class="compensation">$45,000</td>
+                </tr>
+                <tr>
+                    <td>Fear Roleplay Violation</td>
+                    <td class="ban-duration">72 Hours</td>
+                    <td class="compensation">$45,000</td>
+                </tr>
+                <tr>
+                    <td>Random Death Match (RDM)</td>
+                    <td class="ban-duration">96 Hours</td>
+                    <td class="compensation">$55,000</td>
+                </tr>
                 <tr>
                     <td>Threatening</td>
-                    <td class="permanent-ban">Permanent Ban</td>
-                    <td>No Compensation</td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
                 </tr>
-                <!-- All other rows -->
-            </table>
-        </div>
+                <tr>
+                    <td>Harassment</td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+                <tr>
+                    <td>Scamming</td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+                <tr>
+                    <td>Hacking</td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+                <tr>
+                    <td>Bug Abuse</td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+                <tr>
+                    <td>Third Party Software</td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+            </tbody>
+        </table>
         
-        <div class="rule-item">
-            <h3>Additional Compensation Guidelines</h3>
+        <div class="notes">
+            <h3><i class="fas fa-exclamation-circle"></i> Important Notes</h3>
             <ul>
-                <li>Stolen vehicles: $15,000-$50,000 based on vehicle</li>
-                <li>Robbery losses: Up to $25,000 maximum claim</li>
-                <li>Improper arrests: $10,000 per hour detained</li>
-                <li>Character kills: Case-by-case evaluation</li>
+                <li>This is the only compensation/ban duration list you have to follow</li>
+                <li>You aren't allowed to set compensation amounts on your own</li>
+                <li>Staff members reserve the right to make final decisions on punishments</li>
+                <li>Policy changes may be implemented at staff discretion</li>
+                <li>For cases not listed here, compensation and durations will be determined by staff through tickets</li>
+                <li>All decisions by senior staff are final</li>
             </ul>
-        </div>
-        
-        <div class="rule-nav-buttons">
-            <a href="faction-rules.html" class="rule-nav-btn"><i class="fas fa-arrow-left"></i> Faction Rules</a>
-            <a href="paradise-rules.html" class="rule-nav-btn">Back to Start <i class="fas fa-arrow-right"></i></a>
+            <p><strong>Happy Paradise Roleplay!</strong></p>
         </div>
     </div>
     
-    <a href="../index.html" class="return-home">
-        <i class="fas fa-arrow-left"></i> Return to Home
-    </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+    </footer>
 </body>
 </html>
