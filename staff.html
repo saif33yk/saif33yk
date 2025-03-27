@@ -21,8 +21,7 @@
         }
         
         body {
-            background: var(--black) url('img/background.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: var(--black) url('img/bg-pattern.png');
             color: white;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
@@ -30,8 +29,10 @@
             flex-direction: column;
         }
         
+        /* Header with Banner */
         .header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/banner.jpg') center/cover;
             text-align: center;
             padding: 60px 20px;
             border-bottom: 4px solid var(--gold);
@@ -43,17 +44,19 @@
         }
         
         .logo {
-            height: 80px;
-            margin-bottom: 20px;
+            height: clamp(60px, 15vw, 100px);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            margin-bottom: 15px;
         }
         
         .header h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
             color: var(--gold);
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             margin-bottom: 10px;
         }
         
+        /* Navigation */
         .nav {
             display: flex;
             flex-wrap: wrap;
@@ -88,13 +91,14 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
         
+        /* Staff Container */
         .staff-container {
             max-width: 1000px;
             margin: 30px auto;
             padding: 20px;
-            background: var(--glass);
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
         
         .staff-tier {
@@ -102,26 +106,38 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 30px;
         }
         
         .tier-label {
             width: 100%;
             text-align: center;
             color: var(--gold);
-            font-size: 1.8rem;
-            margin: 30px 0 20px;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            margin-bottom: 20px;
             position: relative;
         }
         
+        .tier-label:after {
+            content: '';
+            position: absolute;
+            width: clamp(100px, 50%, 200px);
+            height: 3px;
+            background: var(--gold);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
         .staff-card {
-            background: rgba(10, 10, 10, 0.8);
+            background: var(--glass);
             border: 2px solid var(--gold);
             border-radius: 8px;
-            width: 220px;
+            width: clamp(150px, 40vw, 220px);
             padding: 15px;
             text-align: center;
             transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            margin-bottom: 15px;
         }
         
         .staff-card:hover {
@@ -130,47 +146,50 @@
         }
         
         .staff-card img {
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
             object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--gold);
+            margin-bottom: 10px;
         }
         
         .staff-role {
             color: var(--gold);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             margin-bottom: 5px;
         }
         
         .staff-name {
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
         }
         
+        /* Owner Card */
         .owner-card {
-            width: 300px;
+            width: clamp(200px, 70vw, 300px);
             border-width: 3px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
         }
         
         .owner-card img {
-            width: 150px;
-            height: 150px;
+            width: clamp(100px, 25vw, 150px);
+            height: clamp(100px, 25vw, 150px);
         }
         
+        /* Return Home Button */
         .return-home {
             display: block;
             width: max-content;
-            margin: 40px auto 20px;
-            padding: 12px 30px;
+            margin: 20px auto 40px;
+            padding: 10px 25px;
             background: var(--gold);
             color: var(--black);
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
         .return-home:hover {
@@ -178,70 +197,182 @@
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
         }
         
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
+            .header {
+                padding: 40px 15px;
+                min-height: 250px;
             }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.65rem;
+                margin: 3px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .nav {
+                padding: 8px 2px;
+            }
+            
+            .nav-btn {
+                padding: 5px 8px;
+                font-size: 0.6rem;
+            }
+            
             .staff-card {
-                width: 180px;
+                width: 140px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header with Banner -->
     <header class="header">
         <div>
-            <img src="img/logo.png" alt="Server Logo" class="logo">
+            <img src="img/logo.png" alt="Paradise RP" class="logo">
             <h1>STAFF HIERARCHY</h1>
         </div>
     </header>
     
+    <!-- Navigation -->
     <nav class="nav">
         <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
         <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
         <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
         <a href="staff.html" class="nav-btn active"><i class="fas fa-users"></i> Staff</a>
         <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
-        <a href="hall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
+        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
         <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
-        <a href="https://discord.gg/yourlink" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </nav>
     
+    <!-- Staff Container -->
     <div class="staff-container">
-        <!-- Server Owner -->
+        <!-- Tier 1: Server Owner (Alone) -->
         <div class="staff-tier">
             <div class="staff-card owner-card">
-                <img src="img/staff/owner.jpg" alt="Server Owner">
+                <img src="img/staff/desi_gabru.jpg" alt="Desi Gabru">
                 <div class="staff-role">SERVER OWNER</div>
                 <div class="staff-name">Desi Gabru</div>
             </div>
         </div>
         
-        <!-- Project Team -->
-        <div class="tier-label">PROJECT TEAM</div>
-        <div class="staff-tier">
-            <div class="staff-card">
-                <img src="img/staff/ali_ahmed.jpg" alt="Project Management">
-                <div class="staff-role">PROJECT MANAGEMENT</div>
-                <div class="staff-name">Ali Ahmed</div>
-            </div>
-            
-            <div class="staff-card">
-                <img src="img/staff/mrjay.jpg" alt="MrJayPlays">
-                <div class="staff-role">MRJAYPLAYS</div>
-                <div class="staff-name">MrJayPlays</div>
-            </div>
-            
-            <div class="staff-card">
-                <img src="img/staff/jani.jpg" alt="Jani">
-                <div class="staff-role">JANI</div>
-                <div class="staff-name">Jani</div>
+        <!-- Tier 2: Project Management + Special Roles -->
+        <div>
+            <div class="tier-label">PROJECT TEAM</div>
+            <div class="staff-tier">
+                <div class="staff-card">
+                    <img src="img/staff/ali_ahmad.jpg" alt="Ali Ahmad">
+                    <div class="staff-role">PROJECT MANAGEMENT</div>
+                    <div class="staff-name">Ali Ahmad</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/mrjayplays.jpg" alt="MrJayPlays">
+                    <div class="staff-role">MRJAYPLAYS</div>
+                    <div class="staff-name">MrJayPlays</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/jani.jpg" alt="Jani">
+                    <div class="staff-role">JANI</div>
+                    <div class="staff-name">Jani</div>
+                </div>
             </div>
         </div>
         
-        <!-- Add more staff tiers as needed -->
+        <!-- Tier 3: Server Managers -->
+        <div>
+            <div class="tier-label">SERVER MANAGERS</div>
+            <div class="staff-tier">
+                <div class="staff-card">
+                    <img src="img/staff/pan.jpg" alt="Pan">
+                    <div class="staff-role">SERVER MANAGER</div>
+                    <div class="staff-name">Pan</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/zigana.jpg" alt="Zigana">
+                    <div class="staff-role">SERVER MANAGER</div>
+                    <div class="staff-name">Zigana</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tier 4: Technical Team -->
+        <div>
+            <div class="tier-label">TECHNICAL TEAM</div>
+            <div class="staff-tier">
+                <div class="staff-card">
+                    <img src="img/staff/onni_uh.jpg" alt="Onni Uh">
+                    <div class="staff-role">DEVELOPER</div>
+                    <div class="staff-name">Onni Uh</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/king.jpg" alt="King">
+                    <div class="staff-role">DDOS PROTECTION</div>
+                    <div class="staff-name">King</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/smiley.jpg" alt="Smiley">
+                    <div class="staff-role">TECHNICAL ADMIN</div>
+                    <div class="staff-name">Smiley</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tier 5: Administration -->
+        <div>
+            <div class="tier-label">ADMINISTRATION</div>
+            <div class="staff-tier">
+                <div class="staff-card">
+                    <img src="img/staff/rt.jpg" alt="RT">
+                    <div class="staff-role">CHIEF ADMIN</div>
+                    <div class="staff-name">RT</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/bullet_punjabi.jpg" alt="Bullet Punjabi">
+                    <div class="staff-role">CHIEF ADMIN</div>
+                    <div class="staff-name">Bullet Punjabi</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/veshi.jpg" alt="Veshi">
+                    <div class="staff-role">CHIEF ADMIN</div>
+                    <div class="staff-name">Veshi</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/rock.jpg" alt="Rock">
+                    <div class="staff-role">HEAD ADMIN</div>
+                    <div class="staff-name">Rock</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/saif.jpg" alt="Saif">
+                    <div class="staff-role">ADMIN</div>
+                    <div class="staff-name">Saif</div>
+                </div>
+                
+                <div class="staff-card">
+                    <img src="img/staff/kj.jpg" alt="KJ">
+                    <div class="staff-role">ADMIN</div>
+                    <div class="staff-name">KJ</div>
+                </div>
+            </div>
+        </div>
     </div>
     
+    <!-- Return Home Button -->
     <a href="index.html" class="return-home">
         <i class="fas fa-arrow-left"></i> Return to Home
     </a>
