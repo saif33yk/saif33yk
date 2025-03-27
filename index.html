@@ -11,44 +11,66 @@
             --gold: #FFD700;
             --dark-gold: #D4AF37;
             --black: #121212;
-            --darker-black: #0A0A0A;
             --glass: rgba(18, 18, 18, 0.85);
         }
         
         body {
-            background: var(--black);
+            background: var(--black) url('img/bg-pattern.png');
             color: white;
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
+        /* Header with Logo */
         .header {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                        url('img/bg-header.jpg') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/banner.jpg') center/cover;
             text-align: center;
-            padding: 60px 0;
-            border-bottom: 4px solid var(--gold);
+            padding: 100px 0;
             position: relative;
+            border-bottom: 4px solid var(--gold);
         }
         
-        .logo-text {
-            font-size: 3.5rem;
-            background: linear-gradient(to right, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            margin: 0;
-            letter-spacing: 2px;
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
-        .logo-subtext {
+        .logo-main {
+            font-size: 4.5rem;
+            font-weight: 700;
             color: var(--gold);
-            font-weight: 400;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin: 0;
+            line-height: 1;
         }
         
+        .logo-sub {
+            font-size: 1.8rem;
+            color: white;
+            margin-top: 10px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        
+        /* Three Lines Under Logo */
+        .logo-lines {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .logo-line {
+            height: 3px;
+            width: 60px;
+            background: var(--gold);
+            margin: 0 10px;
+        }
+        
+        /* Navigation */
         .nav {
             display: flex;
             justify-content: center;
@@ -64,13 +86,13 @@
         .nav-btn {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 12px;
             font-weight: 600;
             padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
         }
         
@@ -81,13 +103,16 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
         
+        /* Main Content */
         .main-content {
+            flex: 1;
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
             text-align: center;
         }
         
+        /* Buttons */
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
@@ -98,10 +123,6 @@
             text-decoration: none;
             margin: 15px 10px;
             transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
@@ -114,51 +135,43 @@
             background: linear-gradient(135deg, #5865F2, #4752C4);
             color: white;
         }
-        
-        .section-title {
-            color: var(--gold);
-            position: relative;
-            display: inline-block;
-            margin-bottom: 40px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: var(--gold);
-            bottom: -10px;
-            left: 25%;
-            border-radius: 3px;
-        }
     </style>
 </head>
 <body>
-    <!-- Header with Logo -->
+    <!-- Header with Logo and Banner -->
     <header class="header">
-        <h1 class="logo-text">PARADISE ROLEPLAY</h1>
-        <p class="logo-subtext">PAKISTAN'S #1 GTA ROLEPLAY SERVER</p>
+        <div class="logo-container">
+            <h1 class="logo-main">PARADISE</h1>
+            <h2 class="logo-main">ROLEPLAY</h2>
+            <div class="logo-lines">
+                <div class="logo-line"></div>
+                <div class="logo-line"></div>
+                <div class="logo-line"></div>
+            </div>
+            <p class="logo-sub">PAKISTAN'S #1 GTA ROLEPLAY SERVER</p>
+        </div>
     </header>
     
-    <!-- Navigation -->
+    <!-- Navigation with New Buttons -->
     <nav class="nav">
         <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
         <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
         <a href="staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
         <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Top Gangs</a>
+        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Wall of Fame</a>
         <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
-        <a href="https://discord.gg/prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </nav>
     
     <!-- Main Content -->
     <main class="main-content">
-        <h2 class="section-title">Welcome to Paradise</h2>
+        <h2>Welcome to Paradise</h2>
         <p>Experience the ultimate Pakistani GTA RP server with custom JDM cars, gangs, and realistic roleplay.</p>
         
-        <div class="btn-group">
+        <div>
             <a href="join.html" class="btn">Join Now</a>
-            <a href="https://discord.gg/prpk" class="btn btn-discord" target="_blank"><i class="fab fa-discord"></i> Join Discord</a>
+            <a href="https://discord.gg.prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
         </div>
     </main>
 </body>
