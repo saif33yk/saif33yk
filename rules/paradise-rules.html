@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paradise Rules - Paradise RP Pakistan</title>
+    <title>Paradise Rules - Paradise Roleplay Pakistan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -42,11 +42,43 @@
             justify-content: center;
         }
         
-        .header h1 {
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .logo-main {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
             color: var(--gold);
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .logo-sub {
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            color: white;
+            margin-top: 10px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        
+        .logo-lines {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            width: 100%;
+        }
+        
+        .logo-line {
+            height: 3px;
+            width: 40px;
+            background: var(--gold);
+            margin: 0 8px;
         }
         
         .nav {
@@ -91,9 +123,10 @@
         
         .breadcrumb {
             max-width: 1000px;
-            margin: 0 auto 20px;
+            margin: 20px auto 0;
             padding: 0 20px;
             color: var(--gold);
+            font-size: 0.9rem;
         }
         
         .breadcrumb a {
@@ -107,6 +140,7 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
             font-size: clamp(1.3rem, 5vw, 1.8rem);
+            text-align: center;
         }
         
         .rule-item {
@@ -119,6 +153,13 @@
             color: var(--gold);
             margin-bottom: 10px;
             font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .rule-item h3 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
         
         .rule-item p, .rule-item ul {
@@ -141,6 +182,7 @@
             background: rgba(255, 215, 0, 0.2);
             border-radius: 4px;
             font-size: 0.85rem;
+            color: var(--gold);
         }
         
         .rule-nav-buttons {
@@ -164,29 +206,15 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
         
-        .return-home {
-            display: block;
-            width: max-content;
-            margin: 40px auto;
-            padding: 12px 30px;
-            background: var(--gold);
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-        
-        .return-home:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
-        }
-        
         @media (max-width: 768px) {
             .header {
                 padding: 40px 15px;
                 min-height: 250px;
+            }
+            
+            .logo-line {
+                width: 30px;
+                margin: 0 5px;
             }
             
             .nav-btn {
@@ -199,14 +227,29 @@
                 padding: 15px;
                 margin: 20px 15px;
             }
+            
+            .rule-nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .rule-nav-btn {
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <div>
-            <h1>PARADISE RULES</h1>
-            <p>General roleplay standards and server rules</p>
+        <div class="logo-container">
+            <h1 class="logo-main">PARADISE</h1>
+            <h2 class="logo-main">ROLEPLAY</h2>
+            <div class="logo-lines">
+                <div class="logo-line"></div>
+                <div class="logo-line"></div>
+                <div class="logo-line"></div>
+            </div>
+            <p class="logo-sub">PARADISE RULES</p>
         </div>
     </header>
     
@@ -222,160 +265,94 @@
     </nav>
     
     <div class="breadcrumb">
-        <a href="index.html">Rules</a> &gt; <span>Paradise Rules</span>
+        <a href="../index.html">Home</a> &gt; <a href="index.html">Rules</a> &gt; <span>Paradise Rules</span>
     </div>
     
     <div class="rules-container">
-        <h2 class="section-title">PARADISE RP GENERAL RULES</h2>
+        <h2 class="section-title"><i class="fas fa-shield-alt"></i> GENERAL SERVER RULES</h2>
         
         <div class="rule-item">
-            <h3>1. Event Disturbing</h3>
+            <h3><i class="fas fa-calendar-times"></i> Event Disturbing</h3>
             <p>Intentionally disrupting official server events without proper RP reason. This includes interrupting event flow, killing event participants without cause, or otherwise sabotaging organized events.</p>
-            <span class="ban-duration">Ban Duration: 6 Hours | Compensation: $10,000</span>
+            <span class="ban-duration">Ban: 6 Hours | Compensation: $10,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>2. Cop Baiting</h3>
+            <h3><i class="fas fa-police-car"></i> Cop Baiting</h3>
             <p>Purposely attracting police attention without legitimate RP reason. Examples include driving recklessly near police just to get chased, fake 911 calls, or intentionally breaking minor laws in front of officers to waste their time.</p>
-            <span class="ban-duration">Ban Duration: 12 Hours | Compensation: $15,000</span>
+            <span class="ban-duration">Ban: 12 Hours | Compensation: $15,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>3. Disrespecting Body</h3>
+            <h3><i class="fas fa-skull"></i> Disrespecting Body</h3>
             <p>Unrealistic behavior around dead bodies including teabagging, excessive shooting of corpses, or other disrespectful actions that wouldn't occur in real life situations.</p>
-            <span class="ban-duration">Ban Duration: 16 Hours | Compensation: $17,000</span>
+            <span class="ban-duration">Ban: 16 Hours | Compensation: $17,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>4. Fail Roleplay</h3>
+            <h3><i class="fas fa-theater-masks"></i> Fail Roleplay</h3>
             <p>Engaging in low quality or unrealistic roleplay that breaks immersion. This includes meme characters, unrealistic actions, or refusing to participate in proper RP scenarios.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>5. Erotic Roleplay</h3>
+            <h3><i class="fas fa-heart-broken"></i> Erotic Roleplay</h3>
             <p>Engaging in sexual roleplay or overly suggestive behavior. While mild flirting is allowed, explicit sexual content is strictly prohibited.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>6. Vehicle Death Match (VDM) & Intentional Pitting</h3>
+            <h3><i class="fas fa-car-crash"></i> Vehicle Death Match (VDM) & Intentional Pitting</h3>
             <p>Using vehicles as weapons without proper RP reason (VDM) or intentionally pitting/ramming other vehicles without roleplay justification. This excludes legitimate police pursuits with proper cause.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>7. Fail Initiation</h3>
+            <h3><i class="fas fa-comment-slash"></i> Fail Initiation</h3>
             <p>Initiating criminal activities without clear and proper roleplay setup. All criminal actions must begin with clear verbal/written communication that gives the victim reasonable opportunity to respond.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>8. New Life Rule (NLR)</h3>
+            <h3><i class="fas fa-redo"></i> New Life Rule (NLR)</h3>
             <p>Violating the New Life Rule by remembering events from before your character's death or returning to the area of death within 30 minutes. After respawn, your character has no memory of events leading to their death.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>9. Exceeding Limit In A Robbery</h3>
+            <h3><i class="fas fa-money-bill-wave"></i> Exceeding Limit In A Robbery</h3>
             <p>Demanding more than allowed limits during robberies ($25,000 maximum from players). This ensures robberies remain balanced and don't unfairly impact victims.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>10. Safe Zone Violation</h3>
+            <h3><i class="fas fa-peace"></i> Safe Zone Violation</h3>
             <p>Committing crimes or initiating combat in designated safe zones (spawn areas, admin buildings, hospitals, etc.). These areas are meant to be free from criminal activity.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>11. Unrealistic Name</h3>
+            <h3><i class="fas fa-signature"></i> Unrealistic Name</h3>
             <p>Using names that break immersion (e.g., "Xx_Sniper_xX", "Joe Biden", etc.). All character names must be realistic and fit the server's setting.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>12. Taunting</h3>
+            <h3><i class="fas fa-comment-dots"></i> Taunting</h3>
             <p>Excessive out-of-character taunting or harassment. While some IC trash talk is allowed, crossing into OOC harassment is prohibited.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>13. High Packet Loss</h3>
+            <h3><i class="fas fa-wifi"></i> High Packet Loss</h3>
             <p>Consistently playing with high packet loss that negatively impacts other players' experience. Players must maintain stable connections.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-item">
-            <h3>14. No POV</h3>
+            <h3><i class="fas fa-video"></i> No POV</h3>
             <p>Failing to provide point-of-view (POV) footage when requested by staff for rule violation investigations.</p>
-            <span class="ban-duration">Ban Duration: 24 Hours | Compensation: $25,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>15. Revenge Roleplay</h3>
-            <p>Engaging in revenge killings or actions without proper roleplay justification. All conflicts must develop naturally through RP.</p>
-            <span class="ban-duration">Ban Duration: 32 Hours | Compensation: $25,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>16. Meta Gaming</h3>
-            <p>Using out-of-character knowledge in-character (e.g., information from streams, Discord, etc.). All character knowledge must come from in-game sources.</p>
-            <span class="ban-duration">Ban Duration: 32 Hours | Compensation: $28,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>17. Combat Reviving</h3>
-            <p>Reviving teammates during active combat situations without EMS involvement. All revives during fights must be done by medical professionals.</p>
-            <span class="ban-duration">Ban Duration: 36 Hours | Compensation: $30,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>18. Combat Logging</h3>
-            <p>Disconnecting during active roleplay scenarios, especially combat, to avoid consequences.</p>
-            <span class="ban-duration">Ban Duration: 48 Hours | Compensation: $35,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>19. Combat Storing</h3>
-            <p>Storing vehicles or items during active combat to prevent them from being stolen or confiscated.</p>
-            <span class="ban-duration">Ban Duration: 48 Hours | Compensation: $35,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>20. Killing Out of Zone</h3>
-            <p>Engaging in combat or killing players outside designated PVP zones without proper RP justification.</p>
-            <span class="ban-duration">Ban Duration: 48 Hours | Compensation: $35,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>21. Low Effort Roleplay</h3>
-            <p>Consistently engaging in minimal or poor quality roleplay that negatively impacts others' experience.</p>
-            <span class="ban-duration">Ban Duration: 72 Hours | Compensation: $45,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>22. Power Gaming</h3>
-            <p>Forcing actions on other players without consent (e.g., "I shoot you in the head"). All actions must allow for reasonable response.</p>
-            <span class="ban-duration">Ban Duration: 72 Hours | Compensation: $45,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>23. Abusing Behavior</h3>
-            <p>Repeatedly breaking server rules or exploiting game mechanics in unintended ways.</p>
-            <span class="ban-duration">Ban Duration: 72 Hours | Compensation: $45,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>24. Fear Roleplay (NVL - No Value of Life)</h3>
-            <p>Failing to properly value your character's life in dangerous situations (e.g., refusing to surrender when outnumbered at gunpoint).</p>
-            <span class="ban-duration">Ban Duration: 72 Hours | Compensation: $45,000</span>
-        </div>
-        
-        <div class="rule-item">
-            <h3>25. Random Death Match (RDM)</h3>
-            <p>Killing players without proper RP reason or initiation. All lethal actions must be properly roleplayed.</p>
-            <span class="ban-duration">Ban Duration: 96 Hours | Compensation: $55,000</span>
+            <span class="ban-duration">Ban: 24 Hours | Compensation: $25,000</span>
         </div>
         
         <div class="rule-nav-buttons">
@@ -383,9 +360,5 @@
             <a href="major-rules.html" class="rule-nav-btn">Major Rules <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
-    
-    <a href="../index.html" class="return-home">
-        <i class="fas fa-arrow-left"></i> Return to Home
-    </a>
 </body>
 </html>
