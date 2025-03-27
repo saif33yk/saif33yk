@@ -5,6 +5,14 @@ title: Home
 
 # Welcome to Paradise Roleplay Pakistan
 
-The best GTA V Roleplay server in Pakistan!
+![Server Banner](/assets/images/banner.jpg)
 
-[View our rules](/rules) | [Apply to join](/apply) | [Meet our staff](/staff)
+The most realistic GTA V Roleplay experience in Pakistan!
+
+## Features
+- Custom scripts and mods
+- Active admin team
+- Regular events and competitions
+- Fair and balanced economy
+
+[How to Join](/apply/){: .btn .btn-primary}
