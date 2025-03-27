@@ -1,1 +1,272 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradise Rules - Paradise RP Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.85);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: var(--black) url('../img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../img/banner.jpg') center/cover;
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header h1 {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 10px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .rules-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .breadcrumb {
+            max-width: 1000px;
+            margin: 0 auto 20px;
+            padding: 0 20px;
+            color: var(--gold);
+        }
+        
+        .breadcrumb a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        .section-title {
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+        }
+        
+        .rule-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .rule-item h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .rule-item p, .rule-item ul {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .rule-item ul {
+            padding-left: 20px;
+        }
+        
+        .rule-item li {
+            margin-bottom: 8px;
+        }
+        
+        .rule-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .rule-nav-btn {
+            padding: 10px 20px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .rule-nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .return-home {
+            display: block;
+            width: max-content;
+            margin: 40px auto;
+            padding: 12px 30px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .return-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 15px;
+                min-height: 250px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.65rem;
+                margin: 3px;
+            }
+            
+            .rules-container {
+                padding: 15px;
+                margin: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1>PARADISE RULES</h1>
+            <p>General roleplay standards and server rules</p>
+        </div>
+    </header>
+    
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="../about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
+        <a href="index.html" class="nav-btn active"><i class="fas fa-book"></i> Rules</a>
+        <a href="../staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="../gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
+        <a href="../wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
+        <a href="../events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
+    
+    <div class="breadcrumb">
+        <a href="index.html">Rules</a> &gt; <span>Paradise Rules</span>
+    </div>
+    
+    <div class="rules-container">
+        <h2 class="section-title">PARADISE RP GENERAL RULES</h2>
+        
+        <div class="rule-item">
+            <h3>1. Roleplay Standards</h3>
+            <p>All players must maintain realistic roleplay at all times. No trolling, meme characters, or unrealistic behavior.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>2. Character Consistency</h3>
+            <p>Maintain the same character identity, backstory, and relationships throughout your playtime.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>3. New Life Rule (NLR)</h3>
+            <p>After death, you cannot remember events leading to your death or return to the area for 30 minutes.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>4. Combat Logging</h3>
+            <p>Disconnecting during active roleplay scenarios (especially combat) is strictly prohibited.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>5. Event Disturbing</h3>
+            <p>Intentionally disrupting official server events is not allowed without proper RP reason.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>6. Cop Baiting</h3>
+            <p>Purposely attracting police attention without legitimate RP reason is prohibited.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>7. Disrespecting Body</h3>
+            <p>Unrealistic behavior around dead bodies (teabagging, excessive shooting) is not allowed.</p>
+        </div>
+        
+        <div class="rule-item">
+            <h3>8. Fail Roleplay</h3>
+            <p>All roleplay must be realistic and follow server standards. Low effort RP will be penalized.</p>
+        </div>
+        
+        <div class="rule-nav-buttons">
+            <a href="index.html" class="rule-nav-btn"><i class="fas fa-arrow-left"></i> Rules Hub</a>
+            <a href="major-rules.html" class="rule-nav-btn">Major Rules <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+    
+    <a href="../index.html" class="return-home">
+        <i class="fas fa-arrow-left"></i> Return to Home
+    </a>
+</body>
+</html>
