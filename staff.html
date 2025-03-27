@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Staff - Paradise RP Pakistan</title>
+    <title>Staff Hierarchy - Paradise RP Pakistan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -28,148 +28,170 @@
             border-bottom: 4px solid var(--gold);
         }
         
-        .logo {
-            height: 120px;
-            filter: drop-shadow(0 0 10px var(--gold));
+        .staff-hierarchy {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
         }
         
-        .nav {
-            display: flex;
-            justify-content: center;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        .tier {
+            margin-bottom: 30px;
+            border-left: 3px solid var(--gold);
+            padding-left: 20px;
         }
         
-        .nav-btn {
-            color: white;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-        }
+        .tier-1 { margin-left: 0px; }
+        .tier-2 { margin-left: 40px; }
+        .tier-3 { margin-left: 80px; }
+        .tier-4 { margin-left: 120px; }
         
-        .nav-btn:hover {
-            background: var(--gold);
-            color: var(--black);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-        
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .staff-card {
+        .role-card {
             background: var(--glass);
             border: 2px solid var(--gold);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
             transition: all 0.3s;
-            backdrop-filter: blur(5px);
         }
         
-        .staff-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        .role-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
         }
         
-        .staff-card img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+        .role-card img {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            border: 3px solid var(--gold);
-            margin-bottom: 15px;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+            margin-right: 15px;
         }
         
-        .staff-card h3 {
+        .role-title {
             color: var(--gold);
-            margin: 10px 0 5px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
         
-        .staff-card p {
-            margin: 0;
+        .role-name {
             font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <!-- Header with Banner Background -->
     <header class="header">
         <img src="../img/logo.png" alt="Paradise RP" class="logo">
-        <h1>OUR TEAM</h1>
+        <h1>STAFF HIERARCHY</h1>
     </header>
     
-    <!-- Navigation -->
-    <nav class="nav">
-        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
-        <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
-        <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
-        <a href="staff.html" class="nav-btn active"><i class="fas fa-users"></i> Staff</a>
-        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Top Gangs</a>
-        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Wall of Fame</a>
-        <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
-        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-    </nav>
+    <nav class="nav"><!-- Same navigation as before --></nav>
     
-    <!-- Staff Grid -->
-    <div class="staff-grid">
-        <!-- Server Owner -->
-        <div class="staff-card">
-            <img src="../img/staff/desi_gabru.jpg" alt="Desi Gabru">
-            <h3>Desi Gabru</h3>
-            <p>Server Owner</p>
+    <div class="staff-hierarchy">
+        <!-- Tier 1: Server Owner -->
+        <div class="tier tier-1">
+            <div class="role-card">
+                <img src="../img/staff/desi_gabru.jpg" alt="Desi Gabru">
+                <div>
+                    <div class="role-title">SERVER OWNER</div>
+                    <div class="role-name">Desi Gabru</div>
+                </div>
+            </div>
         </div>
-
-        <!-- Server Managers -->
-        <div class="staff-card">
-            <img src="../img/staff/pan.jpg" alt="Pan">
-            <h3>Pan</h3>
-            <p>Server Manager</p>
+        
+        <!-- Tier 2: Project Management -->
+        <div class="tier tier-2">
+            <div class="role-card">
+                <img src="../img/staff/mrjayplays.jpg" alt="MrJayPlays">
+                <div>
+                    <div class="role-title">PROJECT MANAGEMENT</div>
+                    <div class="role-name">MrJayPlays</div>
+                </div>
+            </div>
         </div>
-
-        <div class="staff-card">
-            <img src="../img/staff/zigana.jpg" alt="Zigana">
-            <h3>Zigana</h3>
-            <p>Server Manager</p>
+        
+        <!-- Tier 3: Server Managers & Developer -->
+        <div class="tier tier-3">
+            <div class="role-card">
+                <img src="../img/staff/pan.jpg" alt="Pan">
+                <div>
+                    <div class="role-title">SERVER MANAGER</div>
+                    <div class="role-name">Pan</div>
+                </div>
+            </div>
+            
+            <div class="role-card">
+                <img src="../img/staff/onni_uh.jpg" alt="Onni Uh">
+                <div>
+                    <div class="role-title">DEVELOPER</div>
+                    <div class="role-name">Onni Uh</div>
+                </div>
+            </div>
+            
+            <div class="role-card">
+                <img src="../img/staff/zigana.jpg" alt="Zigana">
+                <div>
+                    <div class="role-title">SERVER MANAGER</div>
+                    <div class="role-name">Zigana</div>
+                </div>
+            </div>
         </div>
-
-        <!-- Server Developer -->
-        <div class="staff-card">
-            <img src="../img/staff/onni_uh.jpg" alt="Onni Uh">
-            <h3>Onni Uh</h3>
-            <p>Server Developer</p>
+        
+        <!-- Tier 4: Admins -->
+        <div class="tier tier-4">
+            <!-- Chief Admins -->
+            <div class="role-card">
+                <img src="../img/staff/rt.jpg" alt="RT">
+                <div>
+                    <div class="role-title">CHIEF ADMINISTRATOR</div>
+                    <div class="role-name">RT</div>
+                </div>
+            </div>
+            
+            <div class="role-card">
+                <img src="../img/staff/bullet_punjabi.jpg" alt="Bullet Punjabi">
+                <div>
+                    <div class="role-title">CHIEF ADMINISTRATOR</div>
+                    <div class="role-name">Bullet Punjabi</div>
+                </div>
+            </div>
+            
+            <div class="role-card">
+                <img src="../img/staff/veshi.jpg" alt="Veshi">
+                <div>
+                    <div class="role-title">CHIEF ADMINISTRATOR</div>
+                    <div class="role-name">Veshi</div>
+                </div>
+            </div>
+            
+            <!-- Head Admin -->
+            <div class="role-card">
+                <img src="../img/staff/rock.jpg" alt="Rock">
+                <div>
+                    <div class="role-title">HEAD ADMINISTRATOR</div>
+                    <div class="role-name">Rock</div>
+                </div>
+            </div>
+            
+            <!-- Admins -->
+            <div class="role-card">
+                <img src="../img/staff/saif.jpg" alt="Saif">
+                <div>
+                    <div class="role-title">ADMINISTRATOR</div>
+                    <div class="role-name">Saif</div>
+                </div>
+            </div>
+            
+            <div class="role-card">
+                <img src="../img/staff/kj.jpg" alt="KJ">
+                <div>
+                    <div class="role-title">ADMINISTRATOR</div>
+                    <div class="role-name">KJ</div>
+                </div>
+            </div>
         </div>
-
-        <!-- Project Management -->
-        <div class="staff-card">
-            <img src="../img/staff/jani.jpg" alt="Jani">
-            <h3>Jani</h3>
-            <p>Project Management</p>
-        </div>
-
-        <div class="staff-card">
-            <img src="../img/staff/ali_ahmad.jpg" alt="Ali Ahmad">
-            <h3>Ali Ahmad</h3>
-            <p>Project Management</p>
-        </div>
-
-        <!-- Add remaining staff members -->
     </div>
 </body>
 </html>
