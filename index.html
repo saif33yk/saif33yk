@@ -1,26 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paradise Roleplay Pakistan</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --darker-black: #0A0A0A;
+            --glass: rgba(18, 18, 18, 0.85);
+        }
+        
+        body {
+            background: var(--black);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                        url('img/bg-header.jpg') center/cover;
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 4px solid var(--gold);
+            position: relative;
+        }
+        
+        .logo-text {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        
+        .logo-subtext {
+            color: var(--gold);
+            font-weight: 400;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 15px 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .btn-discord {
+            background: linear-gradient(135deg, #5865F2, #4752C4);
+            color: white;
+        }
+        
+        .section-title {
+            color: var(--gold);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--gold);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="img/logo.png" alt="Paradise RP" class="logo">
-        <h1>PARADISE ROLEPLAY PAKISTAN</h1>
+    <!-- Header with Logo -->
+    <header class="header">
+        <h1 class="logo-text">PARADISE ROLEPLAY</h1>
+        <p class="logo-subtext">PAKISTAN'S #1 GTA ROLEPLAY SERVER</p>
     </header>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="rules.html">Rules</a>
-        <a href="staff.html">Staff</a>
-        <a href="gangs.html">Top Gangs</a>
-        <a href="events.html">Events</a>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
+        <a href="staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Top Gangs</a>
+        <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
+        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </nav>
-
-    <section class="main-content">
-        <h2>Welcome to Pakistan's #1 GTA Roleplay Server</h2>
-        <a href="https://discord.gg/prpk" class="btn">Join Our Discord</a>
-    </section>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2 class="section-title">Welcome to Paradise</h2>
+        <p>Experience the ultimate Pakistani GTA RP server with custom JDM cars, gangs, and realistic roleplay.</p>
+        
+        <div class="btn-group">
+            <a href="join.html" class="btn">Join Now</a>
+            <a href="https://discord.gg.prpk" class="btn btn-discord" target="_blank"><i class="fab fa-discord"></i> Join Discord</a>
+        </div>
+    </main>
 </body>
 </html>
