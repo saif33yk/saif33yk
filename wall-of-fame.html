@@ -82,7 +82,7 @@
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             color: var(--gold);
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             margin-bottom: 15px;
@@ -95,19 +95,21 @@
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
         /* Navigation */
         .nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             background: var(--glass);
             backdrop-filter: blur(12px);
-            padding: 12px;
+            padding: 10px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -118,16 +120,17 @@
         .nav-btn {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 5px;
             font-weight: 600;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 8px;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
             letter-spacing: 0.8px;
             background: var(--glass-light);
             border: 1px solid rgba(255,215,0,0.1);
+            white-space: nowrap;
         }
         
         .nav-btn:hover {
@@ -230,7 +233,7 @@
         
         .achievement-title {
             color: var(--gold);
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
             margin-bottom: 10px;
             font-weight: 700;
             position: relative;
@@ -263,7 +266,7 @@
             color: var(--gold);
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             margin-bottom: 15px;
             border: 1px solid rgba(212, 175, 55, 0.3);
             transition: all 0.3s;
@@ -275,7 +278,7 @@
         }
         
         .achievement-date {
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             opacity: 0.8;
             margin-bottom: 15px;
             display: block;
@@ -332,6 +335,7 @@
             text-align: center;
             margin: 60px 0 30px;
             position: relative;
+            clear: both;
         }
         
         .month-divider h2 {
@@ -340,7 +344,7 @@
             padding: 10px 30px;
             border-radius: 30px;
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -356,7 +360,7 @@
         
         .footer p {
             color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
         
         /* Responsive */
@@ -386,19 +390,6 @@
                 border-left: 4px solid var(--gold);
                 border-right: none;
             }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .nav {
-                flex-wrap: wrap;
-            }
-            
-            .nav-btn {
-                margin: 5px;
-                padding: 8px 15px;
-            }
         }
     </style>
 </head>
@@ -415,10 +406,10 @@
     
     <!-- Navigation -->
     <nav class="nav">
-        <a href="/saif33yk/index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
         <a href="wall-of-fame.html" class="nav-btn active"><i class="fas fa-trophy"></i> Wall of Fame</a>
-        <a href="/saif33yk/gangs.html" class="nav-btn"><i class="fas fa-users"></i> Gangs</a>
-        <a href="/saif33yk/rules/index.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
+        <a href="../gangs.html" class="nav-btn"><i class="fas fa-users"></i> Gangs</a>
+        <a href="../rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
     </nav>
     
     <div class="container">
@@ -496,8 +487,254 @@
                 </div>
             </div>
             
-            <!-- Continue with all other achievements -->
-            <!-- Add month dividers and achievements following the same pattern -->
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Whitelisted Job</div>
+                    <span class="achievement-gang">Bullet</span>
+                    <span class="achievement-date">03/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bullet.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Captured All Banks in City</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">19/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Captured All Tunnels in City</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">21/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winner of Paradise Gang War Season 18</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">22/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Humane Labs</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">22/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Captured Military Base</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">23/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Cayo Perico</div>
+                    <span class="achievement-gang">LSPD</span>
+                    <span class="achievement-date">29/12/2024</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspd.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <!-- January 2025 -->
+            <div class="month-divider">
+                <h2>January 2025</h2>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Captured Bullet Mansion</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">14/01/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Defended Their Mansion</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">14/01/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Defended Their Mansion</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">14/01/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winner of Paradise Gang War Season 19</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">22/01/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <!-- February 2025 -->
+            <div class="month-divider">
+                <h2>February 2025</h2>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Chicken Labs</div>
+                    <span class="achievement-gang">LSPD</span>
+                    <span class="achievement-date">01/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspd.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winners of Grinding Segment</div>
+                    <span class="achievement-gang">LSPD</span>
+                    <span class="achievement-date">05/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspd.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winners of Code Red Segment</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">05/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winners of Challenge Segment</div>
+                    <span class="achievement-gang">Yakuza</span>
+                    <span class="achievement-date">05/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/yakuza.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Captured Kortz Center</div>
+                    <span class="achievement-gang">Raees</span>
+                    <span class="achievement-date">10/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/raees.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Captured Main Bank</div>
+                    <span class="achievement-gang">Mafia Mandem</span>
+                    <span class="achievement-date">10/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/mafia_mandem.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Cayo Perico</div>
+                    <span class="achievement-gang">LSPD</span>
+                    <span class="achievement-date">21/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspd.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winner of Paradise Gang War Season 20</div>
+                    <span class="achievement-gang">LSPDxSWAT</span>
+                    <span class="achievement-date">22/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspdswat.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Cocaine Lab</div>
+                    <span class="achievement-gang">LSPD</span>
+                    <span class="achievement-date">26/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspd.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Meth Lab</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">26/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Weed Lab</div>
+                    <span class="achievement-gang">Vikings</span>
+                    <span class="achievement-date">26/02/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/vikings.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <!-- March 2025 -->
+            <div class="month-divider">
+                <h2>March 2025</h2>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Humane Labs</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">11/03/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winners of Battle of Gangs</div>
+                    <span class="achievement-gang">Bounty Hunters</span>
+                    <span class="achievement-date">17/03/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/bounty_hunters.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Winner of Paradise Gang War Season 21</div>
+                    <span class="achievement-gang">LSPDxSWAT</span>
+                    <span class="achievement-date">20/03/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspdswat.jpg') center/cover;"></div>
+                </div>
+            </div>
+            
+            <div class="achievement">
+                <div class="achievement-content">
+                    <div class="achievement-title">Kings of Cayo Perico</div>
+                    <span class="achievement-gang">LSPD</span>
+                    <span class="achievement-date">25/03/2025</span>
+                    <div class="achievement-image" style="background: url('img/gangs/lspd.jpg') center/cover;"></div>
+                </div>
+            </div>
             
             <!-- Footer -->
             <div class="footer">
