@@ -11,9 +11,10 @@
             --gold: #FFD700;
             --dark-gold: #D4AF37;
             --black: #121212;
-            --glass: rgba(18, 18, 18, 0.9);
+            --glass: rgba(18, 18, 18, 0.95);
             --red: #ff4444;
             --green: #00C851;
+            --blue: #33b5e5;
         }
         
         * {
@@ -106,7 +107,7 @@
         
         /* Punishments Content */
         .punishments-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -138,24 +139,38 @@
         
         .punishments-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin-bottom: 40px;
             background: var(--glass);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
         }
         
         .punishments-table th {
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             color: var(--black);
-            padding: 15px;
+            padding: 18px 15px;
             text-align: left;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+        
+        .punishments-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+        
+        .punishments-table th:last-child {
+            border-top-right-radius: 12px;
         }
         
         .punishments-table td {
-            padding: 12px 15px;
+            padding: 15px;
             border-bottom: 1px solid rgba(255,215,0,0.1);
+            vertical-align: middle;
         }
         
         .punishments-table tr:last-child td {
@@ -163,11 +178,21 @@
         }
         
         .punishments-table tr:hover {
-            background: rgba(255,215,0,0.05);
+            background: rgba(255,215,0,0.08);
+        }
+        
+        .rule-name {
+            font-weight: 600;
+            color: var(--gold);
         }
         
         .ban-duration {
             font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .temporary {
+            color: var(--blue);
         }
         
         .compensation {
@@ -185,40 +210,77 @@
             font-style: italic;
         }
         
+        .severity-marker {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .severity-low {
+            background: var(--blue);
+        }
+        
+        .severity-medium {
+            background: var(--gold);
+        }
+        
+        .severity-high {
+            background: var(--red);
+        }
+        
         .notes {
-            background: rgba(255,215,0,0.1);
+            background: rgba(255,215,0,0.08);
             border-left: 4px solid var(--gold);
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 40px;
+            backdrop-filter: blur(5px);
         }
         
         .notes h3 {
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notes h3 i {
+            margin-right: 10px;
         }
         
         .notes p {
-            margin-bottom: 10px;
-            line-height: 1.6;
+            margin-bottom: 15px;
+            line-height: 1.7;
         }
         
         .notes ul {
-            padding-left: 20px;
-            margin-bottom: 10px;
+            padding-left: 25px;
+            margin-bottom: 15px;
         }
         
         .notes li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .notes li:before {
+            content: "•";
+            color: var(--gold);
+            position: absolute;
+            left: -20px;
+            font-size: 1.2rem;
         }
         
         /* Footer */
         .footer {
             text-align: center;
             margin-top: 60px;
-            padding: 20px;
+            padding: 25px;
             background: var(--glass);
             border-top: 1px solid rgba(255,215,0,0.1);
+            backdrop-filter: blur(5px);
         }
         
         .footer p {
@@ -231,10 +293,15 @@
             .punishments-table {
                 display: block;
                 overflow-x: auto;
+                white-space: nowrap;
             }
             
             .header {
                 padding: 60px 15px;
+            }
+            
+            .punishments-table td {
+                min-width: 150px;
             }
         }
     </style>
@@ -273,157 +340,157 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Event Disturbing</td>
-                    <td class="ban-duration">6 Hours</td>
+                    <td><span class="severity-marker severity-low"></span> <span class="rule-name">Event Disturbing</span></td>
+                    <td class="ban-duration temporary">6 Hours</td>
                     <td class="compensation">$10,000</td>
                 </tr>
                 <tr>
-                    <td>Cop Baiting</td>
-                    <td class="ban-duration">12 Hours</td>
+                    <td><span class="severity-marker severity-low"></span> <span class="rule-name">Cop Baiting</span></td>
+                    <td class="ban-duration temporary">12 Hours</td>
                     <td class="compensation">$15,000</td>
                 </tr>
                 <tr>
-                    <td>Disrespecting Body</td>
-                    <td class="ban-duration">16 Hours</td>
+                    <td><span class="severity-marker severity-medium"></span> <span class="rule-name">Disrespecting Body</span></td>
+                    <td class="ban-duration temporary">16 Hours</td>
                     <td class="compensation">$17,000</td>
                 </tr>
                 <tr>
-                    <td>Fail Roleplay</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-medium"></span> <span class="rule-name">Fail Roleplay</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Erotic Roleplay</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Erotic Roleplay</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Vehicle Death Match (VDM)</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">VDM & Intentionally Pitting</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Fail Initiation</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-medium"></span> <span class="rule-name">Fail Initiation</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>New Life Rule Violation</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">New Life Rule Violation</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Exceeding Limit In A Robbery</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Exceeding Limit In A Robbery</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Safe Zone Violation</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Safe Zone Violation</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Unrealistic Name</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-medium"></span> <span class="rule-name">Unrealistic Name</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Taunting</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Taunting</span></td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+                <tr>
+                    <td><span class="severity-marker severity-medium"></span> <span class="rule-name">High Packet Loss</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>High Packet Loss</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-medium"></span> <span class="rule-name">No POV (Point of View)</span></td>
+                    <td class="ban-duration temporary">24 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>No POV (Point of View)</td>
-                    <td class="ban-duration">24 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Revenge Roleplay</span></td>
+                    <td class="ban-duration temporary">32 Hours</td>
                     <td class="compensation">$25,000</td>
                 </tr>
                 <tr>
-                    <td>Revenge Roleplay</td>
-                    <td class="ban-duration">32 Hours</td>
-                    <td class="compensation">$25,000</td>
-                </tr>
-                <tr>
-                    <td>Meta Gaming</td>
-                    <td class="ban-duration">32 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Meta Gaming</span></td>
+                    <td class="ban-duration temporary">32 Hours</td>
                     <td class="compensation">$28,000</td>
                 </tr>
                 <tr>
-                    <td>Combat Reviving</td>
-                    <td class="ban-duration">36 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Combat Reviving</span></td>
+                    <td class="ban-duration temporary">36 Hours</td>
                     <td class="compensation">$30,000</td>
                 </tr>
                 <tr>
-                    <td>Combat Logging</td>
-                    <td class="ban-duration">48 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Combat Logging</span></td>
+                    <td class="ban-duration temporary">48 Hours</td>
                     <td class="compensation">$35,000</td>
                 </tr>
                 <tr>
-                    <td>Combat Storing</td>
-                    <td class="ban-duration">48 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Combat Storing</span></td>
+                    <td class="ban-duration temporary">48 Hours</td>
                     <td class="compensation">$35,000</td>
                 </tr>
                 <tr>
-                    <td>Killing Out of Zone</td>
-                    <td class="ban-duration">48 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Killing Out of Zone</span></td>
+                    <td class="ban-duration temporary">48 Hours</td>
                     <td class="compensation">$35,000</td>
                 </tr>
                 <tr>
-                    <td>Low Effort Roleplay</td>
-                    <td class="ban-duration">72 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Low Effort Roleplay</span></td>
+                    <td class="ban-duration temporary">72 Hours</td>
                     <td class="compensation">$45,000</td>
                 </tr>
                 <tr>
-                    <td>Power Gaming</td>
-                    <td class="ban-duration">72 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Power Gaming</span></td>
+                    <td class="ban-duration temporary">72 Hours</td>
                     <td class="compensation">$45,000</td>
                 </tr>
                 <tr>
-                    <td>Abusing Behavior</td>
-                    <td class="ban-duration">72 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Abusing Behavior</span></td>
+                    <td class="ban-duration permanent">Permanent Ban</td>
+                    <td class="none">No Compensation</td>
+                </tr>
+                <tr>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Fear Roleplay Violation</span></td>
+                    <td class="ban-duration temporary">72 Hours</td>
                     <td class="compensation">$45,000</td>
                 </tr>
                 <tr>
-                    <td>Fear Roleplay Violation</td>
-                    <td class="ban-duration">72 Hours</td>
-                    <td class="compensation">$45,000</td>
-                </tr>
-                <tr>
-                    <td>Random Death Match (RDM)</td>
-                    <td class="ban-duration">96 Hours</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Random Death Match (RDM)</span></td>
+                    <td class="ban-duration temporary">96 Hours</td>
                     <td class="compensation">$55,000</td>
                 </tr>
                 <tr>
-                    <td>Threatening</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Threatening</span></td>
                     <td class="ban-duration permanent">Permanent Ban</td>
                     <td class="none">No Compensation</td>
                 </tr>
                 <tr>
-                    <td>Harassment</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Harassment</span></td>
                     <td class="ban-duration permanent">Permanent Ban</td>
                     <td class="none">No Compensation</td>
                 </tr>
                 <tr>
-                    <td>Scamming</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Scamming</span></td>
                     <td class="ban-duration permanent">Permanent Ban</td>
                     <td class="none">No Compensation</td>
                 </tr>
                 <tr>
-                    <td>Hacking</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Hacking</span></td>
                     <td class="ban-duration permanent">Permanent Ban</td>
                     <td class="none">No Compensation</td>
                 </tr>
                 <tr>
-                    <td>Bug Abuse</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Bug Abuse</span></td>
                     <td class="ban-duration permanent">Permanent Ban</td>
                     <td class="none">No Compensation</td>
                 </tr>
                 <tr>
-                    <td>Third Party Software</td>
+                    <td><span class="severity-marker severity-high"></span> <span class="rule-name">Third Party Software</span></td>
                     <td class="ban-duration permanent">Permanent Ban</td>
                     <td class="none">No Compensation</td>
                 </tr>
@@ -433,14 +500,15 @@
         <div class="notes">
             <h3><i class="fas fa-exclamation-circle"></i> Important Notes</h3>
             <ul>
-                <li>This is the only compensation/ban duration list you have to follow</li>
-                <li>You aren't allowed to set compensation amounts on your own</li>
-                <li>Staff members reserve the right to make final decisions on punishments</li>
-                <li>Policy changes may be implemented at staff discretion</li>
-                <li>For cases not listed here, compensation and durations will be determined by staff through tickets</li>
-                <li>All decisions by senior staff are final</li>
+                <li>This is the <strong>only official</strong> compensation/ban duration list - no modifications allowed</li>
+                <li>Staff members reserve all rights to make final decisions on punishments</li>
+                <li>Policy changes may be implemented at management discretion without prior notice</li>
+                <li>For cases not listed here, compensation and durations will be determined through staff tickets</li>
+                <li>All decisions by senior staff are final and non-negotiable</li>
+                <li>Attempting to dispute punishments without valid evidence may result in additional penalties</li>
             </ul>
-            <p><strong>Happy Paradise Roleplay!</strong></p>
+            <p><strong>Note:</strong> Repeated offenses will result in escalated punishments regardless of the original duration.</p>
+            <p style="color: var(--gold); font-weight: 600; margin-top: 20px;">Happy Paradise Roleplay!</p>
         </div>
     </div>
     
