@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone Rules - Paradise Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.95);
+            --red: #ff4444;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: var(--black) url('../assets/img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../assets/img/banner.jpg') center/cover;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 15px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 12px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px 8px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255,215,0,0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Rules Content */
+        .rules-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .rules-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .rules-header h2 {
+            color: var(--gold);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .rules-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .rules-section {
+            background: var(--glass);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .rules-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .rules-list {
+            list-style-type: none;
+        }
+        
+        .rules-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .rules-list li:before {
+            content: '#';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .important-note {
+            background: rgba(255,0,0,0.1);
+            border-left: 4px solid var(--red);
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .ban-duration {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: rgba(255,0,0,0.2);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--red);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            background: var(--glass);
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 15px;
+            }
+            
+            .rules-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>ZONE RULES</h1>
+            <p>Regulations for Turf and Territory Zones</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Rules Hub</a>
+        <a href="../staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="https://discord.gg/prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
+    
+    <!-- Rules Content -->
+    <div class="rules-container">
+        <div class="rules-header">
+            <h2>Turf Zone Regulations</h2>
+            <p>Rules specific to Turf Zone engagements</p>
+        </div>
+        
+        <div class="rules-section">
+            <h3>Turf Zone Rules</h3>
+            <ul class="rules-list">
+                <li>Stay within the boundary of zone.</li>
+                <li>If someone enters the boundary of zone, they can't leave & enter back again - you must fight once you enter the zone.</li>
+                <li>The New Life Rule (NLR) applies across all zones.</li>
+                <li>EMS cannot enter during zone fights.</li>
+                <li>Bring backup from your own gang, but no support from other gangs or alliances.</li>
+                <li>Before starting a code red in the zone, each gang needs to post an anonymous tweet.</li>
+                <li>Combat reviving during active zone fights is strictly prohibited; both the revived and the reviver will face consequences.</li>
+                <li>Once the zone war timer ends, code red activities must cease in that area.</li>
+                <li>All other server rules apply to these territory zones.</li>
+                <li>Once the zone war timer ends, every gang involved needs to type "over" in the out-of-character (OOC) chat.</li>
+                <li>Alliance is strictly not allowed at zones (even after the codered is over).</li>
+                <li>Zone wars near the LSPD station and safe zones are strictly prohibited for gangs.</li>
+                <li>After codered ends, only remaining members of gangs can do alliance to warn LSPD to leave that area.</li>
+                <li>LSPD can only search if they eliminate all the parties fighting in that zone.</li>
+                <li>Gangs must fight within the boundary of zone - killing out of zone will be considered as RDM.</li>
+            </ul>
+            
+            <div class="important-note">
+                <p><strong>Important:</strong> EMS is not allowed to respond at TURF zones in any condition, including within 500M of TURF Zone area. Gang members are also not allowed to call EMS in this case.</p>
+                <p>LSPD is allowed to respond at Turf Zones but must put dispatch before responding on that specific zone.</p>
+                <span class="ban-duration">Ban Duration for Violations: 2 Days</span>
+            </div>
+        </div>
+        
+        <div class="rules-section">
+            <h3>New Territory Zone Rules</h3>
+            <ul class="rules-list">
+                <li>Stay within the zone by keeping an eye on the left-side overlay; if it's not visible, you're out of the action.</li>
+                <li>The New Life Rule (NLR) applies across all zones.</li>
+                <li>EMS cannot enter during zone fights.</li>
+                <li>LSPD must declare their involvement with a 10-11 dispatch before joining a zone fight.</li>
+                <li>Bring backup from your own gang, but no support from other gangs or alliances.</li>
+                <li>LSPD can only join fights within a 10-11 radius on their GPS.</li>
+                <li>Before starting a code red in the zone, each gang needs to post an anonymous tweet.</li>
+                <li>Combat reviving during active zone fights is strictly prohibited.</li>
+                <li>All other server rules apply to these territory zones.</li>
+                <li>Once the zone war timer ends, every gang involved needs to type "over" in OOC chat.</li>
+                <li>After the code red is over, PD can search gang members but if rebels have more manpower, they can demand PD to leave the area.</li>
+                <li>During zone fights in small areas, the nearest 2 plots of that zone will be considered within the code red radius.</li>
+            </ul>
+        </div>
+        
+        <div class="rules-section">
+            <h3>Rules of Engagement for Spray/Influence/Territory Zones</h3>
+            <ul class="rules-list">
+                <li>No Alliances will be considered in any spray zones.</li>
+                <li>No 3rd party allowed.</li>
+                <li>No back-up allowed for Rebels - only those present in the area can participate.</li>
+                <li>If code-red is initiated on a street, it applies to the whole area, not just one block.</li>
+                <li>NLR has to be respected and obliged (30 mins).</li>
+                <li>Cops can intervene in any code red situation but must wait 60 seconds after dispatch.</li>
+                <li>No Safe zones except hospital will be considered in ZONES (shops & petrol pumps are not safe).</li>
+                <li>Rebels can use shops and petrol pumps in code red for their cover.</li>
+                <li>CODE RED HAS TO BE INITIATED VERBALLY within 30 seconds of warning.</li>
+                <li>If code has been initiated verbally, gangs must put a tweet - other gangs/civilians must leave the area immediately.</li>
+                <li>"HAATH UPAR, HAATH UPAR" is strictly prohibited in territories - only ask them to leave the area.</li>
+            </ul>
+            <span class="ban-duration">Ban Duration for "HAATH UPAR" Violation: 48 Hours</span>
+        </div>
+        
+        <div class="important-note">
+            <h3>Additional Important Notes</h3>
+            <ul class="rules-list">
+                <li>You can only spray at territories while on foot - spraying while riding a vehicle is bug abuse (Permanent Ban).</li>
+                <li>Kidnapping anyone from territories is strictly prohibited <span class="ban-duration">(Ban Duration: 48 Hours)</span>.</li>
+                <li>Those who started the zone war, their whole family members must be in the zone influence - otherwise menu suspension after 3 warnings.</li>
+                <li>If you suspect the situation is over but the other party isn't admitting, you can write "Fire in 10 seconds or over considered" in OOC.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+    </footer>
+</body>
+</html>
