@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Paradise Roleplay Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.85);
+            --glass-light: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            background: var(--black) url('img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/events-banner.jpg') center/cover;
+            border-bottom: 4px solid var(--gold);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--gold);
+            font-size: 2.8rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation */
+        .event-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .event-btn {
+            background: var(--glass);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .event-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .event-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Event Cards */
+        .event-section {
+            display: none;
+        }
+        
+        .event-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .event-card {
+            background: var(--glass);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-left: 4px solid var(--gold);
+            backdrop-filter: blur(8px);
+        }
+        
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .event-title {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .event-type {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .detail-item i {
+            color: var(--gold);
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .event-image {
+            width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .rules-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .rules-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .rules-list li::before {
+            content: '•';
+            color: var(--gold);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .register-btn {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Event Schedule */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .schedule-card {
+            background: var(--glass);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .schedule-title {
+            color: var(--gold);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .event-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .event-type {
+                margin-top: 10px;
+            }
+            
+            .event-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-btn {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Paradise Events</h1>
+            <p class="subtitle">Weekly Business Wars • Monthly Gang Wars • Special RP Events</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Event Navigation -->
+        <div class="event-nav">
+            <button class="event-btn active" data-section="ongoing">Ongoing Event</button>
+            <button class="event-btn" data-section="upcoming">Upcoming Events</button>
+            <button class="event-btn" data-section="schedule">Event Schedule</button>
+            <button class="event-btn" data-section="register">Register Team</button>
+        </div>
+        
+        <!-- Ongoing Event -->
+        <section id="ongoing" class="event-section active">
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">Business War</h2>
+                    <span class="event-type">Weekly Event</span>
+                </div>
+                
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Date:</strong> 30 March 2025
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Time:</strong> 12:00 AM (PKT)
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location:</strong> Mirror Park
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>Participants:</strong> All Gangs & LSPD
+                        </div>
+                    </div>
+                </div>
+                
+                <img src="img/wars/bwlocation.jpg" alt="Business War Location" class="event-image">
+                
+                <h3 style="color: var(--gold); margin-top: 0;">Event Rules:</h3>
+                <ul class="rules-list">
+                    <li>Bring your own weapons & Ammo, Simple Pistol (Without Attachment)</li>
+                    <li>Glock Allowed (Without Extended & Attachment)</li>
+                    <li>Armors not allowed</li>
+                    <li>Engaging in out-of-zone fights will result in disqualification</li>
+                    <li>Playtime required: 8 Days</li>
+                    <li>30 PRP Coins Entry Fee (Per Gang)</li>
+                </ul>
+                
+                <button class="register-btn">Register Your Gang</button>
+            </div>
+        </section>
+        
+        <!-- Upcoming Events -->
+        <section id="upcoming" class="event-section">
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">Gang War Season 22</h2>
+                    <span class="event-type">Monthly Event</span>
+                </div>
+                
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Date:</strong> 15 April 2025
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Time:</strong> 10:00 PM (PKT)
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-trophy"></i>
+                        <div>
+                            <strong>Prize Pool:</strong> 500 PRP Coins
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="color: var(--gold); margin-top: 0;">About the Event:</h3>
+                <p>The ultimate test of gang strength and strategy. Prove your gang's dominance in this city-wide battle.</p>
+                
+                <button class="register-btn">Register Your Gang</button>
+            </div>
+            
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">Race Championship</h2>
+                    <span class="event-type">Special Event</span>
+                </div>
+                
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Date:</strong> 22 April 2025
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Time:</strong> 9:00 PM (PKT)
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <i class="fas fa-flag-checkered"></i>
+                        <div>
+                            <strong>Track:</strong> Grand Tour of Los Santos
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="color: var(--gold); margin-top: 0;">Vehicle Restrictions:</h3>
+                <ul class="rules-list">
+                    <li>Sports class only</li>
+                    <li>No weaponized vehicles</li>
+                    <li>No modifications above level 2</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Event Schedule -->
+        <section id="schedule" class="event-section">
+            <h2 style="color: var(--gold); border-bottom: 2px solid var(--dark-gold); padding-bottom: 10px;">
+                Paradise Event Schedule
+            </h2>
+            
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <h3 class="schedule-title">Weekly Events</h3>
+                    <ul class="rules-list">
+                        <li><strong>Business Wars:</strong> Every Sunday at 12:00 AM</li>
+                        <li><strong>RP Challenges:</strong> Every Wednesday at 9:00 PM</li>
+                        <li><strong>Car Meets:</strong> Every Friday at 10:00 PM</li>
+                    </ul>
+                </div>
+                
+                <div class="schedule-card">
+                    <h3 class="schedule-title">Monthly Events</h3>
+                    <ul class="rules-list">
+                        <li><strong>Gang Wars:</strong> 15th of each month</li>
+                        <li><strong>Deathmatch Tournaments:</strong> Last Saturday of month</li>
+                    </ul>
+                </div>
+                
+                <div class="schedule-card">
+                    <h3 class="schedule-title">Special Events</h3>
+                    <ul class="rules-list">
+                        <li><strong>Heist Challenges:</strong> Random dates</li>
+                        <li><strong>Roleplay Scenarios:</strong> Announced in Discord</li>
+                        <li><strong>Seasonal Events:</strong> Holidays and special occasions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Registration Form -->
+        <section id="register" class="event-section">
+            <div class="event-card">
+                <h2 style="color: var(--gold); margin-top: 0;">Event Registration</h2>
+                <p>Register your gang or team for upcoming events. All fields are required.</p>
+                
+                <form id="eventRegistrationForm" style="margin-top: 20px;">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--gold);">Event</label>
+                        <select style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--dark-gold); border-radius: 5px; color: white;">
+                            <option value="">Select Event</option>
+                            <option value="Business War">Business War (30 March)</option>
+                            <option value="Gang War">Gang War Season 22</option>
+                            <option value="Race Championship">Race Championship</option>
+                        </select>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--gold);">Gang/Team Name</label>
+                        <input type="text" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--dark-gold); border-radius: 5px; color: white;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--gold);">Leader's Name</label>
+                        <input type="text" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--dark-gold); border-radius: 5px; color: white;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--gold);">Leader's Discord</label>
+                        <input type="text" placeholder="username#1234" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.5); border: 1px solid var(--dark-gold); border-radius: 5px; color: white;">
+                    </div>
+                    
+                    <h3 style="color: var(--gold); margin-bottom: 10px;">Team Members (11 required)</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 20px;">
+                        <!-- Repeat for 11 members -->
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-size: 0.9rem;">Member 1</label>
+                            <input type="text" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 3px; color: white;">
+                        </div>
+                        <!-- Add more members... -->
+                    </div>
+                    
+                    <button type="submit" class="register-btn">Submit Registration</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.event-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.event-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked button
+                this.classList.add('active');
+                
+                // Hide all sections
+                document.querySelectorAll('.event-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show selected section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+        
+        // Form submission
+        document.getElementById('eventRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registration submitted successfully! We will contact you on Discord.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
