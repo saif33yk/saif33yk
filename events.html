@@ -826,7 +826,12 @@
                 <div class="event-rules">
                     <h3>Event Rules:</h3>
                     <ul id="currentEventRules">
-                        <!-- Rules will be added dynamically -->
+                        <li>Bring your own weapons & Ammo, Simple Pistol (Without Attachment)</li>
+                        <li>Glock Allowed (Without Extended & Attachment)</li>
+                        <li>Armors not allowed</li>
+                        <li>Engaging in out-of-zone fights will result in disqualification</li>
+                        <li>Playtime required: 8 Days</li>
+                        <li>30 PRP Coins Entry Fee (Per Gang)</li>
                     </ul>
                 </div>
                 
@@ -834,7 +839,7 @@
                     <!-- Registration status will be shown here -->
                 </div>
                 
-                <div class="registration-form" id="registrationForm" style="display: none;">
+                <div class="registration-form" id="registrationForm">
                     <h3>Register Your Team</h3>
                     <form id="teamRegistrationForm">
                         <div class="form-group">
@@ -1536,13 +1541,6 @@
             currentEventTitle.textContent = currentEvent.type;
             currentEventDate.textContent = formatDate(currentEvent.date);
             
-            currentEventRules.innerHTML = '';
-            currentEvent.rules.forEach(rule => {
-                const li = document.createElement('li');
-                li.textContent = rule;
-                currentEventRules.appendChild(li);
-            });
-            
             // Check registration status
             const now = new Date();
             const registrationEnd = new Date(currentEvent.registrationEnd);
@@ -1821,7 +1819,7 @@
             if (!username) return;
             
             // Check if username already exists
-            if (DB.users.some(u => u.username === username) {
+            if (DB.users.some(u => u.username === username)) {
                 alert('Username already exists');
                 return;
             }
