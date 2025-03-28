@@ -3,48 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Login | Paradise RP</title>
-    <link rel="stylesheet" href="../../css/staff.css">
+    <title>Staff Login | Paradise Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reuse all CSS from index.html */
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.85);
+            --glass-light: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Login specific styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        
+        .login-logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        
+        .login-title {
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--dark-gold);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .login-footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .login-footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Reuse all other styles from index.html */
+    </style>
 </head>
 <body>
+    <!-- Header with Banner -->
+    <header class="header">
+        <div class="header-content">
+            <h1>STAFF PORTAL</h1>
+            <p>Paradise Roleplay Administration System</p>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
     <div class="login-container">
-        <form id="staffLogin" onsubmit="return login()">
-            <img src="../../images/logo.png" alt="Logo" class="logo">
-            <h2><i class="fas fa-user-shield"></i> Staff Login</h2>
+        <div class="login-box">
+            <img src="../../img/logo.png" alt="Paradise Roleplay" class="login-logo">
+            <h2 class="login-title"><i class="fas fa-lock"></i> Staff Login</h2>
             
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" required>
+            <form class="login-form" id="staffLoginForm">
+                <div class="form-group">
+                    <label for="username">Staff ID</label>
+                    <input type="text" id="username" required placeholder="Enter your staff ID">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Access Code</label>
+                    <input type="password" id="password" required placeholder="Enter your access code">
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>For authorized staff only. Unauthorized access prohibited.</p>
+                <p>Return to <a href="../../index.html">main website</a></p>
             </div>
-            
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" required>
-            </div>
-            
-            <button type="submit" class="btn">Login</button>
-            
-            <div class="links">
-                <a href="../../events.html">Back to Events</a>
-            </div>
-        </form>
+        </div>
     </div>
-
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/prpk" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@paradiseroleplaypk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/theparadisehug/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-check-circle" style="color: var(--success);"></i> Login Successful</h2>
+            <p>Redirecting to staff dashboard...</p>
+        </div>
+    </div>
+    
     <script>
-        function login() {
-            // Simple validation for demo
+        document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hardcoded credentials for demo
+            const validCredentials = {
+                'admin': 'paradise123',
+                'staff1': 'prpk2023',
+                'moderator': 'modpass'
+            };
+            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            if(username === 'admin' && password === 'paradise123') {
-                localStorage.setItem('staffAuth', 'true');
-                window.location.href = 'dashboard.html';
-                return false;
+            if (validCredentials[username] && validCredentials[username] === password) {
+                document.getElementById('loginModal').style.display = 'flex';
+                
+                // Redirect to dashboard after delay
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
             } else {
-                alert('Invalid credentials');
-                return false;
+                alert('Invalid credentials. Please try again.');
             }
-        }
+        });
     </script>
 </body>
 </html>
