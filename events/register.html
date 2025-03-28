@@ -7,110 +7,311 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reuse all CSS from index.html */
         :root {
             --gold: #FFD700;
             --dark-gold: #D4AF37;
             --black: #121212;
-            --glass: rgba(18, 18, 18, 0.85);
-            --glass-light: rgba(255, 255, 255, 0.1);
+            --darker-black: #0a0a0a;
+            --glass: rgba(30, 30, 30, 0.9);
+            --glass-light: rgba(255, 255, 255, 0.15);
             --success: #4CAF50;
             --danger: #F44336;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        /* Registration specific styles */
-        .registration-form {
+        body {
+            background: var(--black) url('../img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('../img/register-banner.jpg') center/cover;
+            text-align: center;
+            padding: 100px 20px;
+            border-bottom: 4px solid var(--gold);
+        }
+        
+        .header-content h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            color: var(--gold);
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .header-content p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 15px 5px;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--darker-black);
+            font-weight: 700;
+        }
+        
+        /* Registration Form */
+        .registration-container {
             max-width: 800px;
             margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .registration-card {
             background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 40px;
-            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
             border-top: 4px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            color: rgba(255,255,255,0.8);
         }
         
         .form-group {
             margin-bottom: 25px;
         }
         
-        .form-group label {
+        .form-label {
             display: block;
             margin-bottom: 8px;
             color: var(--gold);
             font-weight: 600;
         }
         
-        .form-group input,
-        .form-group select {
+        .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 15px;
             background: rgba(0,0,0,0.3);
-            border: 1px solid var(--dark-gold);
-            border-radius: 5px;
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 8px;
             color: white;
             font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
         }
         
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-control:focus {
             outline: none;
             border-color: var(--gold);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
         
-        .members-list {
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+        
+        /* Member List */
+        .member-list {
             margin-top: 15px;
         }
         
-        .member-input {
+        .member-item {
+            display: flex;
+            align-items: center;
             margin-bottom: 10px;
         }
         
-        .add-member-btn {
-            background: rgba(255,215,0,0.2);
-            color: var(--gold);
-            border: 1px dashed var(--gold);
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
+        .member-input {
+            flex: 1;
+            margin-right: 10px;
         }
         
-        .add-member-btn:hover {
-            background: rgba(255,215,0,0.3);
+        .remove-member {
+            background: rgba(244, 67, 54, 0.2);
+            color: var(--danger);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .remove-member:hover {
+            background: rgba(244, 67, 54, 0.3);
+        }
+        
+        .add-member-btn {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
         }
         
         .add-member-btn i {
             margin-right: 8px;
         }
         
+        .add-member-btn:hover {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Submit Button */
         .submit-btn {
             width: 100%;
             padding: 15px;
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            color: var(--black);
+            color: var(--darker-black);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             margin-top: 20px;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
         }
         
-        /* Reuse all other styles from index.html */
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .footer p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .registration-card {
+                padding: 30px;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .registration-card {
+                padding: 25px 20px;
+            }
+            
+            .header {
+                padding: 80px 20px;
+            }
+            
+            .member-item {
+                flex-direction: column;
+            }
+            
+            .member-input {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .remove-member {
+                width: 100%;
+                border-radius: 5px;
+                height: auto;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header with Banner -->
+    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <h1>TEAM REGISTRATION</h1>
@@ -126,17 +327,19 @@
         <a href="staff/login.html" class="nav-btn"><i class="fas fa-lock"></i> Staff</a>
     </nav>
     
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="registration-form">
-            <h2><i class="fas fa-users"></i> Register Your Team</h2>
-            <p>Fill out the form below to register your team for upcoming events</p>
+    <!-- Registration Form -->
+    <div class="registration-container">
+        <div class="registration-card">
+            <div class="form-header">
+                <h2><i class="fas fa-users"></i> Create Your Team</h2>
+                <p>Fill out the form below to register your team for upcoming events</p>
+            </div>
             
-            <form id="teamRegistrationForm">
+            <form id="registrationForm">
                 <div class="form-group">
-                    <label for="eventSelect">Select Event</label>
-                    <select id="eventSelect" required>
-                        <option value="">-- Select an Event --</option>
+                    <label for="eventSelect" class="form-label">Select Event</label>
+                    <select id="eventSelect" class="form-control" required>
+                        <option value="">-- Choose an event --</option>
                         <option value="business-war">Business War (June 15-22)</option>
                         <option value="street-race">Street Race Championship (July 1-7)</option>
                         <option value="gang-wars">Gang Wars (July 15-22)</option>
@@ -144,22 +347,48 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="teamName">Team Name</label>
-                    <input type="text" id="teamName" required placeholder="Enter your team name">
+                    <label for="teamName" class="form-label">Team Name</label>
+                    <input type="text" id="teamName" class="form-control" placeholder="Enter your team name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="teamLeader">Team Leader</label>
-                    <input type="text" id="teamLeader" required placeholder="Your in-game name">
+                    <label for="teamLeader" class="form-label">Team Leader</label>
+                    <input type="text" id="teamLeader" class="form-control" placeholder="Your in-game username" required>
                 </div>
                 
                 <div class="form-group">
-                    <label>Team Members (Minimum 4)</label>
-                    <div class="members-list" id="membersList">
-                        <input type="text" class="member-input" required placeholder="Member 1">
-                        <input type="text" class="member-input" required placeholder="Member 2">
-                        <input type="text" class="member-input" required placeholder="Member 3">
-                        <input type="text" class="member-input" required placeholder="Member 4">
+                    <label for="contactNumber" class="form-label">Contact Number</label>
+                    <input type="tel" id="contactNumber" class="form-control" placeholder="WhatsApp number for updates" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Team Members (Minimum 4)</label>
+                    <div class="member-list" id="memberList">
+                        <!-- Members will be added here -->
+                        <div class="member-item">
+                            <input type="text" class="form-control member-input" placeholder="Member 1" required>
+                            <button type="button" class="remove-member" disabled>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="member-item">
+                            <input type="text" class="form-control member-input" placeholder="Member 2" required>
+                            <button type="button" class="remove-member" disabled>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="member-item">
+                            <input type="text" class="form-control member-input" placeholder="Member 3" required>
+                            <button type="button" class="remove-member" disabled>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="member-item">
+                            <input type="text" class="form-control member-input" placeholder="Member 4" required>
+                            <button type="button" class="remove-member" disabled>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
                     <button type="button" class="add-member-btn" id="addMemberBtn">
                         <i class="fas fa-plus"></i> Add Member
@@ -167,8 +396,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="teamContact">Contact Number</label>
-                    <input type="tel" id="teamContact" required placeholder="WhatsApp number for updates">
+                    <label for="teamBio" class="form-label">Team Bio (Optional)</label>
+                    <textarea id="teamBio" class="form-control" rows="3" placeholder="Tell us about your team"></textarea>
                 </div>
                 
                 <button type="submit" class="submit-btn">
@@ -176,7 +405,7 @@
                 </button>
             </form>
         </div>
-    </main>
+    </div>
     
     <!-- Footer -->
     <footer class="footer">
@@ -188,53 +417,113 @@
         </div>
     </footer>
     
-    <!-- Staff Login Button -->
-    <div class="staff-login-btn" id="staffLoginBtn">
-        <i class="fas fa-lock"></i>
-    </div>
-    
     <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeSuccessModal">&times;</span>
-            <h2><i class="fas fa-check-circle" style="color: var(--success);"></i> Registration Successful!</h2>
-            <p>Your team has been successfully registered for the event.</p>
-            <p>We'll contact you soon with further details.</p>
-            <button class="btn" style="width: 100%; margin-top: 20px;" id="successOkBtn">OK</button>
+    <div class="modal" id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="background: var(--glass); padding: 40px; border-radius: 10px; text-align: center; max-width: 500px; width: 90%; border-top: 4px solid var(--gold);">
+            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success); margin-bottom: 20px;"></i>
+            <h2 style="color: var(--gold); margin-bottom: 15px;">Registration Successful!</h2>
+            <p style="margin-bottom: 25px;">Your team has been successfully registered for the event. We'll contact you soon with further details.</p>
+            <button id="closeModal" style="background: linear-gradient(135deg, var(--gold), var(--dark-gold)); color: var(--darker-black); border: none; padding: 12px 30px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: var(--transition);">
+                Continue
+            </button>
         </div>
     </div>
     
     <script>
         // Add member functionality
         document.getElementById('addMemberBtn').addEventListener('click', function() {
-            const membersList = document.getElementById('membersList');
-            const memberCount = membersList.children.length + 1;
-            const newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.className = 'member-input';
-            newInput.required = true;
-            newInput.placeholder = `Member ${memberCount}`;
-            membersList.appendChild(newInput);
+            const memberList = document.getElementById('memberList');
+            const memberCount = memberList.children.length + 1;
+            
+            const memberItem = document.createElement('div');
+            memberItem.className = 'member-item';
+            
+            memberItem.innerHTML = `
+                <input type="text" class="form-control member-input" placeholder="Member ${memberCount}" required>
+                <button type="button" class="remove-member">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            memberList.appendChild(memberItem);
+            
+            // Add event listener to new remove button
+            memberItem.querySelector('.remove-member').addEventListener('click', function() {
+                if (memberList.children.length > 4) {
+                    memberItem.remove();
+                } else {
+                    alert('You must have at least 4 team members');
+                }
+            });
         });
         
         // Form submission
-        document.getElementById('teamRegistrationForm').addEventListener('submit', function(e) {
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Validate form
+            const teamName = document.getElementById('teamName').value;
+            const teamLeader = document.getElementById('teamLeader').value;
+            const contactNumber = document.getElementById('contactNumber').value;
+            const eventSelect = document.getElementById('eventSelect').value;
+            
+            if (!teamName || !teamLeader || !contactNumber || eventSelect === '') {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Validate team members
+            const memberInputs = document.querySelectorAll('.member-input');
+            let members = [];
+            
+            memberInputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    input.focus();
+                    alert('Please fill in all team member names');
+                    return;
+                }
+                members.push(input.value.trim());
+            });
+            
+            if (members.length < 4) {
+                alert('You must have at least 4 team members');
+                return;
+            }
+            
+            // In a real application, you would send this data to your server
+            const formData = {
+                event: eventSelect,
+                teamName: teamName,
+                teamLeader: teamLeader,
+                contactNumber: contactNumber,
+                members: members,
+                bio: document.getElementById('teamBio').value
+            };
+            
+            console.log('Form data:', formData); // For demo purposes
+            
+            // Show success modal
             document.getElementById('successModal').style.display = 'flex';
         });
         
-        // Close success modal
-        document.getElementById('closeSuccessModal').addEventListener('click', function() {
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', function() {
             document.getElementById('successModal').style.display = 'none';
-            document.getElementById('teamRegistrationForm').reset();
+            document.getElementById('registrationForm').reset();
+            
+            // Reset member list to 4
+            const memberList = document.getElementById('memberList');
+            while (memberList.children.length > 4) {
+                memberList.removeChild(memberList.lastChild);
+            }
+            
+            // Reset member placeholders
+            const memberInputs = document.querySelectorAll('.member-input');
+            memberInputs.forEach((input, index) => {
+                input.value = '';
+                input.placeholder = `Member ${index + 1}`;
+            });
         });
-        
-        document.getElementById('successOkBtn').addEventListener('click', function() {
-            document.getElementById('successModal').style.display = 'none';
-            document.getElementById('teamRegistrationForm').reset();
-        });
-        
-        // Include other JavaScript from index.html as needed
     </script>
 </body>
 </html>
