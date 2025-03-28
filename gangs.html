@@ -1,0 +1,323 @@
+Here's the refined version with "Founder" terminology and gang-focused language:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gangs of Paradise - Paradise Roleplay Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.9);
+        }
+        
+        body {
+            background: var(--black);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/gangs-banner.jpg') center/cover;
+            border-bottom: 4px solid var(--gold);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .gangs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .gang-card {
+            background: var(--glass);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .gang-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.1);
+        }
+        
+        .gang-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .gang-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+        
+        .gang-content {
+            padding: 20px;
+        }
+        
+        .gang-name {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .gang-founder {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--gold);
+        }
+        
+        .gang-founder i {
+            margin-right: 8px;
+        }
+        
+        .gang-description {
+            margin-bottom: 15px;
+            min-height: 80px;
+        }
+        
+        .gang-strengths {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .strength-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .gangs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gangs of Paradise</h1>
+            <p>The most feared and respected crews in the city</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="gangs-grid">
+            <!-- Bounty Hunters -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/bounty_hunters.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Bounty Hunters</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Samurai</p>
+                    <div class="gang-description">
+                        <p>The most decorated gang in Paradise history, holding more event trophies than any other crew. Their reputation for excellence in both numbers and skill makes them the gold standard all other gangs measure themselves against.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Event Dominance</span>
+                        <span class="strength-tag">Elite Members</span>
+                        <span class="strength-tag">Undisputed Champions</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Raees -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/raees.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Raees</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Rampage</p>
+                    <div class="gang-description">
+                        <p>The strategic masterminds of Paradise. Where other gangs rely on brute force, Raees outthinks their opponents with calculated moves and psychological warfare. Their ability to turn any situation to their advantage is legendary.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Tactical Genius</span>
+                        <span class="strength-tag">Mind Games</span>
+                        <span class="strength-tag">Zone Control</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bullet -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/bullet.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Bullet</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Bullet Punjabi</p>
+                    <div class="gang-description">
+                        <p>The most unpredictable force in Paradise. When Bullet crew steps into a rivalry, the entire city takes notice. Their combination of ruthless efficiency and unmatched roleplay depth makes every encounter with them memorable.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Rivalry Kings</span>
+                        <span class="strength-tag">RP Excellence</span>
+                        <span class="strength-tag">Loyal Brotherhood</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Yakuza -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/yakuza.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Yakuza</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Rocket (Prince of Paradise)</p>
+                    <div class="gang-description">
+                        <p>The rising empire of Paradise. Yakuza's influence stretches from car dealerships to zone wars, growing stronger every day under Rocket's visionary leadership. Their business acumen is matched only by their rapidly improving combat skills, making them the gang to watch in coming seasons.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Business Empire</span>
+                        <span class="strength-tag">Rising Power</span>
+                        <span class="strength-tag">Strategic Growth</span>
+                        <span class="strength-tag">Royal Legacy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Devils -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/devils.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Devils</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Gaba</p>
+                    <div class="gang-description">
+                        <p>When the red code sounds, the Devils answer. This gang lives for combat, thriving in chaos where others would retreat. Their reputation as the most feared fighters in Paradise is well-earned through countless victories against impossible odds.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">War Machines</span>
+                        <span class="strength-tag">Code Red Specialists</span>
+                        <span class="strength-tag">Unbreakable Will</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vikings -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/vikings.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Vikings</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Rex</p>
+                    <div class="gang-description">
+                        <p>The undisputed kings of Paradise's underworld economy. Vikings control the flow of narcotics with an iron grip, their "King of Weed" title representing just one facet of their vast drug empire. Cross them in business, and you'll find out why they're named after history's most feared raiders.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Drug Monopoly</span>
+                        <span class="strength-tag">Weed Kings</span>
+                        <span class="strength-tag">Economic Power</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Qatil -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/qatil.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Qatil</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Mr. Qatil</p>
+                    <div class="gang-description">
+                        <p>A gang that moves through Paradise like shadows - unseen until it's too late. Qatil's unique blend of strategic warfare and deep roleplay immersion makes them one of the most respected crews in the city, feared for their precision and admired for their style.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Silent Assassins</span>
+                        <span class="strength-tag">RP Masters</span>
+                        <span class="strength-tag">Precision Strikes</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Topak -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/topak.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Topak</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: [Founder Name]</p>
+                    <div class="gang-description">
+                        <p>The legitimate face of Paradise's underworld. Topak runs their operations like a Fortune 500 company, with car dealerships serving as the perfect cover for their more... entrepreneurial activities. Don't let their business suits fool you - they're every bit as dangerous as the more overt gangs.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Business Moguls</span>
+                        <span class="strength-tag">Car Empire</span>
+                        <span class="strength-tag">Corporate Warfare</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Matrix -->
+            <div class="gang-card">
+                <div class="gang-image" style="background-image: url('img/gangs/matrix.jpg');"></div>
+                <div class="gang-content">
+                    <h3 class="gang-name">Matrix</h3>
+                    <p class="gang-founder"><i class="fas fa-user-secret"></i> Founded by: Champ</p>
+                    <div class="gang-description">
+                        <p>The new kids on the block making everyone take notice. Matrix's rapid rise through Paradise's gang hierarchy proves their founder's vision and their members' dedication. They may be underdogs now, but their trajectory suggests they'll be running with the big dogs sooner than anyone expects.</p>
+                    </div>
+                    <div class="gang-strengths">
+                        <span class="strength-tag">Rising Stars</span>
+                        <span class="strength-tag">Ambitious</span>
+                        <span class="strength-tag">Fast Learners</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+Key improvements:
+1. Replaced all "Leader" references with "Founded by" terminology
+2. Added more intense, gang-focused language throughout
+3. Enhanced Yakuza's description with more detail about their growing empire
+4. Improved visual design with:
+   - Gang card border accents
+   - Better hover effects
+   - Image overlays for text readability
+   - More prominent gang names
+5. Added motivational phrases highlighting each gang's unique strengths
+6. Maintained the dark/gold color scheme consistent with Paradise RP's branding
+
+The page now properly represents these groups as gangs rather than factions, with founder-focused leadership credits and more hardcore descriptions fitting for street organizations.
