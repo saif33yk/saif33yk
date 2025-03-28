@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff - Paradise RP Pakistan</title>
+    <title>Major Rules - Paradise Roleplay</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,7 +11,10 @@
             --gold: #FFD700;
             --dark-gold: #D4AF37;
             --black: #121212;
-            --glass: rgba(18, 18, 18, 0.85);
+            --glass: rgba(18, 18, 18, 0.95);
+            --red: #ff4444;
+            --dark-red: #cc0000;
+            --discord: #5865F2;
         }
         
         * {
@@ -29,25 +32,50 @@
             flex-direction: column;
         }
         
-        /* Header with Banner */
+        /* Header */
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('img/banner.jpg') center/cover;
             text-align: center;
-            padding: 60px 20px;
-            border-bottom: 4px solid var(--gold);
+            padding: 100px 20px;
+            border-bottom: 4px solid var(--red);
             height: auto;
-            min-height: 300px;
+            min-height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, rgba(255,0,0,0) 100%);
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
         }
         
         .header h1 {
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             color: var(--gold);
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         
         /* Navigation */
@@ -56,348 +84,504 @@
             flex-wrap: wrap;
             justify-content: center;
             background: var(--glass);
-            backdrop-filter: blur(10px);
-            padding: 10px 5px;
+            backdrop-filter: blur(12px);
+            padding: 15px 5px;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,0,0,0.2);
         }
         
         .nav-btn {
             color: white;
             text-decoration: none;
-            margin: 5px;
+            margin: 5px 8px;
             font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            letter-spacing: 0.8px;
             white-space: nowrap;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,0,0,0.1);
         }
         
         .nav-btn:hover {
-            background: var(--gold);
-            color: var(--black);
+            background: linear-gradient(135deg, rgba(255,0,0,0.3), rgba(204,0,0,0.3));
+            color: white;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+            border-color: rgba(255,0,0,0.3);
         }
         
-        /* Staff Container */
-        .staff-container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--red), var(--dark-red));
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
         }
         
-        .staff-tier {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        .nav-btn i {
+            margin-right: 8px;
         }
         
-        .tier-label {
-            width: 100%;
+        /* Rules Content */
+        .rules-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 25px;
+        }
+        
+        .rules-header {
             text-align: center;
-            color: var(--gold);
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            margin-bottom: 20px;
-            position: relative;
+            margin-bottom: 40px;
         }
         
-        .tier-label:after {
+        .rules-header h2 {
+            color: var(--gold);
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .rules-header h2::after {
             content: '';
             position: absolute;
-            width: clamp(100px, 50%, 200px);
-            height: 3px;
-            background: var(--gold);
-            bottom: -8px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 3px;
         }
         
-        .staff-card {
-            background: var(--glass);
-            border: 2px solid var(--gold);
+        .warning-banner {
+            background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(204,0,0,0.2));
+            border: 2px solid var(--red);
+            padding: 25px;
+            margin: 30px 0;
             border-radius: 8px;
-            width: clamp(150px, 40vw, 220px);
-            padding: 15px;
             text-align: center;
-            transition: all 0.3s;
             backdrop-filter: blur(5px);
+        }
+        
+        .warning-banner h3 {
+            color: white;
+            font-size: 1.5rem;
             margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255,0,0,0.5);
         }
         
-        .staff-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        .permanent-ban-tag {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
         }
         
-        .staff-card img {
-            width: clamp(80px, 20vw, 120px);
-            height: clamp(80px, 20vw, 120px);
-            object-fit: cover;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .rule-card {
+            background: var(--glass);
             border-radius: 8px;
-            border: 2px solid var(--gold);
-            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--red);
+            backdrop-filter: blur(5px);
         }
         
-        .staff-role {
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,0,0,0.2);
+        }
+        
+        .rule-card-header {
+            background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(204,0,0,0.2));
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,0,0,0.2);
+        }
+        
+        .rule-card-header h3 {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .rule-card-body {
+            padding: 20px;
+        }
+        
+        .rule-card-body p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .rule-card-body ul {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        
+        .rule-card-body ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .rule-card-body ul li:before {
+            content: '⚠️';
+            position: absolute;
+            left: 5px;
+            font-size: 1.1em;
+        }
+        
+        .category-header {
+            margin: 50px 0 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--red);
             color: var(--gold);
-            font-weight: 700;
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-            margin-bottom: 5px;
+            font-size: 1.5rem;
         }
         
-        .staff-name {
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-        }
-        
-        /* Owner Card */
-        .owner-card {
-            width: clamp(200px, 70vw, 300px);
-            border-width: 3px;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-        }
-        
-        .owner-card img {
-            width: clamp(100px, 25vw, 150px);
-            height: clamp(100px, 25vw, 150px);
-        }
-        
-        /* Return Home Button */
-        .return-home {
-            display: block;
-            width: max-content;
-            margin: 20px auto 40px;
-            padding: 10px 25px;
-            background: var(--gold);
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             color: var(--black);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            transition: all 0.3s;
+            margin: 10px;
+            transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .return-home:hover {
+        .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
         }
         
-        /* Responsive Adjustments */
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-discord {
+            background: linear-gradient(135deg, var(--discord), #4752C4);
+            color: white;
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        }
+        
+        .btn-discord:hover {
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            background: var(--glass);
+            border-top: 1px solid rgba(255,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
             .header {
-                padding: 40px 15px;
-                min-height: 250px;
+                padding: 80px 15px;
+                min-height: 300px;
+            }
+            
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .rule-card {
+                max-width: 100%;
             }
             
             .nav-btn {
-                padding: 6px 10px;
-                font-size: 0.65rem;
-                margin: 3px;
+                padding: 10px 15px;
+                font-size: 0.75rem;
             }
         }
         
         @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5rem;
+            .header {
+                padding: 60px 15px;
+                min-height: 250px;
             }
             
-            .nav {
-                padding: 8px 2px;
+            .header h1 {
+                font-size: 1.8rem;
             }
             
             .nav-btn {
-                padding: 5px 8px;
-                font-size: 0.6rem;
+                padding: 8px 12px;
+                font-size: 0.7rem;
+                margin: 3px;
             }
             
-            .staff-card {
-                width: 140px;
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header with Banner -->
+    <!-- Header -->
     <header class="header">
-        <div>
-            <h1>STAFF HIERARCHY</h1>
+        <div class="header-content">
+            <h1>MAJOR SERVER RULES</h1>
+            <p>Permanent Ban & Character Wipe Offenses</p>
         </div>
     </header>
     
     <!-- Navigation -->
     <nav class="nav">
-        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
-        <a href="about.html" class="nav-btn"><i class="fas fa-info-circle"></i> About</a>
-        <a href="rules.html" class="nav-btn"><i class="fas fa-book"></i> Rules</a>
-        <a href="staff.html" class="nav-btn active"><i class="fas fa-users"></i> Staff</a>
-        <a href="gangs.html" class="nav-btn"><i class="fas fa-mask"></i> Gangs</a>
-        <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Hall of Fame</a>
-        <a href="events.html" class="nav-btn"><i class="fas fa-calendar-star"></i> Events</a>
-        <a href="https://discord.gg.prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Rules Hub</a>
+        <a href="../staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="https://discord.gg/prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </nav>
     
-    <!-- Staff Container -->
-    <div class="staff-container">
-        <!-- Tier 1: Server Owner (Alone) -->
-        <div class="staff-tier">
-            <div class="staff-card owner-card">
-                <img src="img/staff/desi_gabru.jpg" alt="Desi Gabru">
-                <div class="staff-role">SERVER OWNER</div>
-                <div class="staff-name">Desi Gabru</div>
-            </div>
+    <!-- Rules Content -->
+    <div class="rules-container">
+        <div class="warning-banner">
+            <h3>ZERO TOLERANCE POLICY</h3>
+            <p>Violation of any major rule will result in immediate <span class="permanent-ban-tag">Permanent Ban</span> and possible character wipe</p>
         </div>
         
-        <!-- Tier 2: Project Management + Special Roles -->
-        <div>
-            <div class="tier-label">PROJECT TEAM</div>
-            <div class="staff-tier">
-                <div class="staff-card">
-                    <img src="img/staff/ali_ahmad.jpg" alt="Ali Ahmad">
-                    <div class="staff-role">PROJECT MANAGEMENT</div>
-                    <div class="staff-name">Ali Ahmad</div>
+        <h3 class="category-header">GENERAL OFFENSES</h3>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Abuse & Harassment <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/mrjayplays.jpg" alt="MrJayPlays">
-                    <div class="staff-role">MRJAYPLAYS</div>
-                    <div class="staff-name">MrJayPlays</div>
-                </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/jani.jpg" alt="Jani">
-                    <div class="staff-role">JANI</div>
-                    <div class="staff-name">Jani</div>
+                <div class="rule-card-body">
+                    <p>Any form of abuse, taunting, or harassment will result in permanent ban.</p>
+                    <ul>
+                        <li>Disrespecting or abusing staff members</li>
+                        <li>Disrespect to content creators or female players (no second chances)</li>
+                        <li>Abusive behavior in any form</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        
-        <!-- Tier 3: Server Management -->
-        <div>
-            <div class="tier-label">SERVER MANAGEMENT</div>
-            <div class="staff-tier">
-                <div class="staff-card">
-                    <img src="img/staff/pan.jpg" alt="Pan">
-                    <div class="staff-role">SERVER MANAGER</div>
-                    <div class="staff-name">Pan</div>
+            
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Ban Evasion <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/zigana.jpg" alt="Zigana">
-                    <div class="staff-role">SERVER MANAGER</div>
-                    <div class="staff-name">Zigana</div>
+                <div class="rule-card-body">
+                    <p>Attempting to bypass bans or restrictions will lead to further penalties.</p>
+                    <ul>
+                        <li>Using alternate accounts to join gang VCs when banned</li>
+                        <li>Playing from other Steam accounts</li>
+                        <li>Gangs allowing banned members in VC will be deleted</li>
+                    </ul>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/rt.jpg" alt="RT">
-                    <div class="staff-role">CHIEF ADMIN</div>
-                    <div class="staff-name">RT</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Real Money Transactions <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/bullet_punjabi.jpg" alt="Bullet Punjabi">
-                    <div class="staff-role">CHIEF ADMIN</div>
-                    <div class="staff-name">Bullet Punjabi</div>
+                <div class="rule-card-body">
+                    <p>Selling in-game assets for real money is strictly prohibited.</p>
+                    <ul>
+                        <li>Selling in-game cash, cars, or any items</li>
+                        <li>Real money trading of any kind</li>
+                    </ul>
                 </div>
             </div>
         </div>
         
-        <!-- Tier 4: Technical Team -->
-        <div>
-            <div class="tier-label">TECHNICAL TEAM</div>
-            <div class="staff-tier">
-                <div class="staff-card">
-                    <img src="img/staff/onni_uh.jpg" alt="Onni Uh">
-                    <div class="staff-role">DEVELOPER</div>
-                    <div class="staff-name">Onni Uh</div>
+        <h3 class="category-header">BUG ABUSE & EXPLOITS</h3>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Game Exploits <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/king.jpg" alt="King">
-                    <div class="staff-role">DDOS PROTECTION</div>
-                    <div class="staff-name">King</div>
+                <div class="rule-card-body">
+                    <p>Exploiting game mechanics or bugs for unfair advantage.</p>
+                    <ul>
+                        <li>Arena bug to increase health/armor</li>
+                        <li>Spraying at territories while riding vehicles</li>
+                        <li>F8 quit command exploitation (adding text after quit)</li>
+                        <li>Canceling server-side animations (moneywash/drug making)</li>
+                        <li>Any major/minor bug abuse including duping guns/ammo</li>
+                    </ul>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/smiley.jpg" alt="Smiley">
-                    <div class="staff-role">TECHNICAL ADMIN</div>
-                    <div class="staff-name">Smiley</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Unauthorized Modifications <span class="permanent-ban-tag">Permanent Ban</span></h3>
+                </div>
+                <div class="rule-card-body">
+                    <p>Using prohibited modifications that provide unfair advantages.</p>
+                    <ul>
+                        <li>Graphic packs that remove water, bushes or props</li>
+                        <li>Any modification that gives competitive advantage</li>
+                        <li>Unauthorized recording methods (only NVIDIA/AMD allowed)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Weapon Boxes <span class="permanent-ban-tag">Permanent Ban</span></h3>
+                </div>
+                <div class="rule-card-body">
+                    <p>Unauthorized possession of weapon boxes is strictly prohibited.</p>
+                    <ul>
+                        <li>Only whitelisted factions may carry weapon boxes</li>
+                        <li>Any unauthorized possession will result in ban</li>
+                    </ul>
                 </div>
             </div>
         </div>
         
-        <!-- Tier 5: Administrator Team -->
-        <div>
-            <div class="tier-label">ADMINISTRATOR TEAM</div>
-            <div class="staff-tier">
-                <div class="staff-card">
-                    <img src="img/staff/veshi.jpg" alt="Veshi">
-                    <div class="staff-role">CHIEF ADMIN</div>
-                    <div class="staff-name">Veshi</div>
+        <h3 class="category-header">ROLEPLAY & GAMEPLAY</h3>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Character Wipe Offenses <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/rock.jpg" alt="Rock">
-                    <div class="staff-role">HEAD ADMIN</div>
-                    <div class="staff-name">Rock</div>
+                <div class="rule-card-body">
+                    <p>Serious violations that result in complete character removal.</p>
+                    <ul>
+                        <li>Sentenced to death by Chief Justice (character removed)</li>
+                        <li>Roleplaying same character after death sentence</li>
+                        <li>Major bug abuse may result in complete account wipe</li>
+                    </ul>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/saif.jpg" alt="Saif">
-                    <div class="staff-role">ADMIN</div>
-                    <div class="staff-name">Saif</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Gang Violations <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/kj.jpg" alt="KJ">
-                    <div class="staff-role">ADMIN</div>
-                    <div class="staff-name">KJ</div>
+                <div class="rule-card-body">
+                    <p>Gang-related offenses with severe consequences.</p>
+                    <ul>
+                        <li>If 3+ gang members caught exploiting spray bug, whole gang banned</li>
+                        <li>Dragging permanently banned players into gang VC will delete waiting VC</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Property & Economy <span class="permanent-ban-tag">Permanent Ban</span></h3>
+                </div>
+                <div class="rule-card-body">
+                    <p>Abusing property or economic systems.</p>
+                    <ul>
+                        <li>Storing white money in house inventories</li>
+                        <li>Entering labs without required cards</li>
+                        <li>Any job/robbery/drug related major bug abuse</li>
+                    </ul>
                 </div>
             </div>
         </div>
         
-        <!-- Tier 6: Community Support -->
-        <div>
-            <div class="tier-label">COMMUNITY SUPPORT</div>
-            <div class="staff-tier">
-                <div class="staff-card">
-                    <img src="img/staff/bhola.jpg" alt="Bhola">
-                    <div class="staff-role">MODERATOR</div>
-                    <div class="staff-name">Bhola</div>
+        <h3 class="category-header">STAFF & SECURITY</h3>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-card-header">
+                    <h3>Privacy Violations <span class="permanent-ban-tag">Permanent Ban</span></h3>
                 </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/dexter.jpg" alt="Dexter">
-                    <div class="staff-role">SUPPORT</div>
-                    <div class="staff-name">Dexter</div>
-                </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/usman.jpg" alt="Usman">
-                    <div class="staff-role">HELPER</div>
-                    <div class="staff-name">Usman</div>
-                </div>
-                
-                <div class="staff-card">
-                    <img src="img/staff/bhatti.jpg" alt="Bhatti">
-                    <div class="staff-role">HELPER</div>
-                    <div class="staff-name">Bhatti</div>
+                <div class="rule-card-body">
+                    <p>Unauthorized access to player information or systems.</p>
+                    <ul>
+                        <li>Checking another player's PC without staff authorization</li>
+                        <li>Violations result in ban from both Discord and game</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+        
+        <div class="warning-banner">
+            <h3>SERVER INTEGRITY</h3>
+            <p>These rules exist to maintain fair play and quality roleplay for all members. Permanent bans are irreversible.</p>
+        </div>
+        
+        <div class="btn-container">
+            <a href="../index.html" class="btn"><i class="fas fa-home"></i> Return to Home</a>
+            <a href="https://discord.gg/prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
         </div>
     </div>
     
-    <!-- Return Home Button -->
-    <a href="index.html" class="return-home">
-        <i class="fas fa-arrow-left"></i> Return to Home
-    </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/prpk" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@paradiseroleplaypk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/theparadisehug/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
 </body>
 </html>
