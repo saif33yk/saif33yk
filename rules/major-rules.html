@@ -14,6 +14,7 @@
             --glass: rgba(18, 18, 18, 0.95);
             --red: #ff4444;
             --dark-red: #cc0000;
+            --discord: #5865F2;
         }
         
         * {
@@ -23,7 +24,7 @@
         }
         
         body {
-            background: var(--black) url('../assets/img/bg-pattern.png');
+            background: var(--black) url('img/bg-pattern.png');
             color: white;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
@@ -34,16 +35,27 @@
         /* Header */
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('../assets/img/major-rules-banner.jpg') center/cover;
+                        url('img/banner.jpg') center/cover;
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             border-bottom: 4px solid var(--red);
             height: auto;
-            min-height: 300px;
+            min-height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, rgba(255,0,0,0) 100%);
+            z-index: 0;
         }
         
         .header-content {
@@ -53,10 +65,17 @@
         }
         
         .header h1 {
-            font-size: clamp(2rem, 6vw, 2.5rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             color: var(--gold);
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         
         /* Navigation */
@@ -66,7 +85,7 @@
             justify-content: center;
             background: var(--glass);
             backdrop-filter: blur(12px);
-            padding: 12px 5px;
+            padding: 15px 5px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -79,11 +98,11 @@
             text-decoration: none;
             margin: 5px 8px;
             font-weight: 600;
-            padding: 10px 18px;
+            padding: 12px 20px;
             border-radius: 8px;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             letter-spacing: 0.8px;
             white-space: nowrap;
             background: rgba(255,255,255,0.1);
@@ -104,11 +123,15 @@
             box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
         }
         
+        .nav-btn i {
+            margin-right: 8px;
+        }
+        
         /* Rules Content */
         .rules-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 25px;
         }
         
         .rules-header {
@@ -118,9 +141,10 @@
         
         .rules-header h2 {
             color: var(--gold);
-            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
             margin-bottom: 15px;
             position: relative;
+            display: inline-block;
         }
         
         .rules-header h2::after {
@@ -131,7 +155,8 @@
             transform: translateX(-50%);
             width: 100px;
             height: 3px;
-            background: var(--gold);
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 3px;
         }
         
         .warning-banner {
@@ -141,6 +166,7 @@
             margin: 30px 0;
             border-radius: 8px;
             text-align: center;
+            backdrop-filter: blur(5px);
         }
         
         .warning-banner h3 {
@@ -181,8 +207,9 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             border-top: 4px solid var(--red);
+            backdrop-filter: blur(5px);
         }
         
         .rule-card:hover {
@@ -201,6 +228,7 @@
             font-size: 1.2rem;
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
         
         .rule-card-body {
@@ -218,8 +246,8 @@
         }
         
         .rule-card-body ul li {
-            padding: 8px 0;
-            padding-left: 25px;
+            padding: 10px 0;
+            padding-left: 30px;
             position: relative;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
@@ -227,7 +255,8 @@
         .rule-card-body ul li:before {
             content: '⚠️';
             position: absolute;
-            left: 0;
+            left: 5px;
+            font-size: 1.1em;
         }
         
         .category-header {
@@ -238,6 +267,53 @@
             font-size: 1.5rem;
         }
         
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-discord {
+            background: linear-gradient(135deg, var(--discord), #4752C4);
+            color: white;
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        }
+        
+        .btn-discord:hover {
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
         /* Footer */
         .footer {
             text-align: center;
@@ -245,6 +321,7 @@
             padding: 25px;
             background: var(--glass);
             border-top: 1px solid rgba(255,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
         
         .footer p {
@@ -252,10 +329,27 @@
             font-size: 0.9rem;
         }
         
+        .social-links {
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header {
-                padding: 60px 15px;
+                padding: 80px 15px;
+                min-height: 300px;
             }
             
             .rules-grid {
@@ -264,6 +358,33 @@
             
             .rule-card {
                 max-width: 100%;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 60px 15px;
+                min-height: 250px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.7rem;
+                margin: 3px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -446,26 +567,21 @@
             <h3>SERVER INTEGRITY</h3>
             <p>These rules exist to maintain fair play and quality roleplay for all members. Permanent bans are irreversible.</p>
         </div>
-    </div>
-<div class="rules-header">
-             <div class="rules-header">
-         
-        <div class="rules-header">
-            <h2>Additional Information</h2>
-        </div>
         
-        <div class="rules-section">
-            <h3>Need More Details?</h3>
-            <p>For complete robbery rules and updates, please visit our Discord server's rules channel:</p>
-            <a href="https://discord.com/channels/682251894529589255/827663861188132904" class="discord-btn" target="_blank">
-                <i class="fab fa-discord"></i> View Robbery Rules on Discord
-            </a>
+        <div class="btn-container">
+            <a href="../index.html" class="btn"><i class="fas fa-home"></i> Return to Home</a>
+            <a href="https://discord.gg/prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
         </div>
     </div>
     
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/prpk" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@paradiseroleplaypk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/theparadisehug/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
 </body>
 </html>
