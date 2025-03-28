@@ -3,269 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paradise Roleplay | Pakistan's Premier GTA RP</title>
+    <title>Events | Paradise Roleplay Pakistan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reuse all CSS from index.html */
         :root {
             --gold: #FFD700;
-            --dark-gold: #C5A000;
+            --dark-gold: #D4AF37;
             --black: #121212;
-            --dark-gray: #1E1E1E;
-            --light-gray: #2D2D2D;
+            --glass: rgba(18, 18, 18, 0.85);
+            --glass-light: rgba(255, 255, 255, 0.1);
+            --success: #4CAF50;
+            --danger: #F44336;
         }
         
+        /* All the same styles as index.html */
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--black);
+            background: var(--black) url('img/bg-pattern.png');
             color: white;
-            margin: 0;
-            line-height: 1.6;
-            background-image: url('assets/images/bg-texture.png');
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Header with different banner */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/events-banner.jpg') center/cover;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 4px solid var(--gold);
         }
         
-        /* Professional Header */
-        header {
-            background: rgba(18, 18, 18, 0.9);
-            padding: 20px 0;
-            border-bottom: 3px solid var(--gold);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(5px);
+        /* Event-specific styles */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
         }
         
-        .header-container {
+        .event-card {
+            background: var(--glass);
+            border-radius: 10px;
+            overflow: hidden;
+            border-top: 4px solid var(--gold);
+            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .event-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .event-details {
+            padding: 20px;
+        }
+        
+        .event-title {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .event-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
         }
         
-        .logo {
-            height: 60px;
-            transition: transform 0.3s;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Professional Navigation */
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 25px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            letter-spacing: 1px;
-            position: relative;
-            padding: 5px 0;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--gold);
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s;
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('assets/images/hero-bg.jpg') no-repeat center center/cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero-content h1 {
-            font-size: 3.5rem;
+        .event-description {
             margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
         }
         
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        /* Professional Buttons */
-        .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--black);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            border: 2px solid var(--gold);
-            margin: 0 10px;
-        }
-        
-        .btn:hover {
-            background: transparent;
-            color: var(--gold);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--gold);
-            border-color: var(--gold);
-        }
-        
-        .btn-outline:hover {
-            background: var(--gold);
-            color: var(--black);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark-gray);
-            padding: 50px 0 20px;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            color: var(--gold);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--gold);
-        }
-        
-        .social-links {
+        .event-actions {
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
         
-        .social-links a {
-            color: white;
-            font-size: 20px;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--gold);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-        }
+        /* Reuse all other styles from index.html */
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Professional Header -->
-    <header>
-        <div class="container header-container">
-            <a href="index.html">
-                <img src="assets/images/logo.png" alt="Paradise Roleplay" class="logo">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="events/register.html">Register</a></li>
-                    <li><a href="events/staff/login.html">Staff Portal</a></li>
-                </ul>
-            </nav>
+    <!-- Header with Banner -->
+    <header class="header">
+        <div class="header-content">
+            <h1>PARADISE ROLEPLAY EVENTS</h1>
+            <p>Join the most exciting competitions in Pakistan's premier GTA RP server</p>
         </div>
     </header>
     
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>PARADISE ROLEPLAY PAKISTAN</h1>
-            <p>Experience the most immersive GTA V roleplay server with custom events, businesses, and a thriving community</p>
-            <div class="hero-buttons">
-                <a href="events.html" class="btn">View Events</a>
-                <a href="events/register.html" class="btn btn-outline">Register Now</a>
-            </div>
-        </div>
-    </section>
+    <!-- Navigation (same as index.html) -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="events.html" class="nav-btn active"><i class="fas fa-calendar-alt"></i> Events</a>
+        <a href="register.html" class="nav-btn"><i class="fas fa-user-plus"></i> Register</a>
+        <a href="staff/login.html" class="nav-btn"><i class="fas fa-lock"></i> Staff</a>
+    </nav>
     
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p>Pakistan's premier GTA V roleplay community since 2020, offering unique experiences and professional roleplay environments.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="events.html">Current Events</a></li>
-                        <li><a href="events/business-war/">Business War</a></li>
-                        <li><a href="events/register.html">Team Registration</a></li>
-                        <li><a href="#">Rules & Guidelines</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2>Current Events</h2>
+        <p>Participate in our weekly events with amazing prizes and recognition</p>
+        
+        <div class="events-container">
+            <!-- Business War Event -->
+            <div class="event-card">
+                <div class="event-image" style="background-image: url('../img/business-war-thumb.jpg');"></div>
+                <div class="event-details">
+                    <h3 class="event-title">Business War</h3>
+                    <div class="event-meta">
+                        <span><i class="fas fa-calendar"></i> June 15-22, 2023</span>
+                        <span><i class="fas fa-users"></i> 12 Teams</span>
+                    </div>
+                    <p class="event-description">
+                        Battle for control of the city's underground businesses. Form your team and dominate the competition.
+                    </p>
+                    <div class="event-actions">
+                        <a href="business-war/" class="btn"><i class="fas fa-info-circle"></i> Details</a>
+                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register</a>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; 2023 Paradise Roleplay Pakistan. All Rights Reserved.
+            
+            <!-- Street Race Event -->
+            <div class="event-card">
+                <div class="event-image" style="background-image: url('../img/street-race-thumb.jpg');"></div>
+                <div class="event-details">
+                    <h3 class="event-title">Street Race Championship</h3>
+                    <div class="event-meta">
+                        <span><i class="fas fa-calendar"></i> July 1-7, 2023</span>
+                        <span><i class="fas fa-users"></i> 8 Teams</span>
+                    </div>
+                    <p class="event-description">
+                        High-speed races through the city streets. Custom vehicles allowed with restrictions.
+                    </p>
+                    <div class="event-actions">
+                        <a href="#" class="btn"><i class="fas fa-info-circle"></i> Details</a>
+                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gang Wars Event -->
+            <div class="event-card">
+                <div class="event-image" style="background-image: url('../img/gang-wars-thumb.jpg');"></div>
+                <div class="event-details">
+                    <h3 class="event-title">Gang Wars</h3>
+                    <div class="event-meta">
+                        <span><i class="fas fa-calendar"></i> July 15-22, 2023</span>
+                        <span><i class="fas fa-users"></i> Coming Soon</span>
+                    </div>
+                    <p class="event-description">
+                        Territory control battle between registered gangs. Strategic gameplay required.
+                    </p>
+                    <div class="event-actions">
+                        <a href="#" class="btn"><i class="fas fa-info-circle"></i> Details</a>
+                        <a href="#" class="btn btn-outline disabled"><i class="fas fa-clock"></i> Coming Soon</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </main>
+    
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/prpk" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@paradiseroleplaypk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/theparadisehug/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
+    
+    <!-- Staff Login Button (same as index.html) -->
+    <div class="staff-login-btn" id="staffLoginBtn">
+        <i class="fas fa-lock"></i>
+    </div>
+    
+    <!-- Include all JavaScript from index.html -->
+    <script>
+        // Same JavaScript as index.html
+    </script>
 </body>
 </html>
