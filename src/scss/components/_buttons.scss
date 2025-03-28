@@ -1,0 +1,18 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, $gold, $dark-gold);
+  color: $black;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  
+  &-discord {
+    background: linear-gradient(135deg, #5865F2, #4752C4);
+    color: white;
+  }
+  
+  &-success {
+    background: linear-gradient(135deg, $success, #3d8b40);
+  }
+}
