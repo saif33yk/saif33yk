@@ -3,136 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Login | Paradise Roleplay</title>
+    <title>Admin Login | Paradise Roleplay</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reuse all CSS from index.html */
         :root {
             --gold: #FFD700;
             --dark-gold: #D4AF37;
             --black: #121212;
-            --glass: rgba(18, 18, 18, 0.85);
-            --glass-light: rgba(255, 255, 255, 0.1);
+            --darker-black: #0a0a0a;
+            --glass: rgba(30, 30, 30, 0.9);
+            --glass-light: rgba(255, 255, 255, 0.15);
+            --success: #4CAF50;
+            --danger: #F44336;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        /* Login specific styles */
-        .login-container {
+        body {
+            background: var(--black) url('../img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
-            padding: 20px;
         }
         
-        .login-box {
-            background: var(--glass);
-            padding: 40px;
-            border-radius: 10px;
+        /* Login Container */
+        .login-container {
             width: 100%;
-            max-width: 500px;
-            border-top: 4px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
+            max-width: 450px;
+            padding: 0 20px;
         }
         
+        /* Login Card */
+        .login-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border-top: 4px solid var(--gold);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+        }
+        
+        /* Logo */
         .login-logo {
-            width: 100px;
+            width: 80px;
             margin-bottom: 20px;
         }
         
-        .login-title {
-            color: var(--gold);
+        /* Header */
+        .login-header {
             margin-bottom: 30px;
-            font-size: 1.8rem;
         }
         
-        .login-form .form-group {
+        .login-header h1 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Form Elements */
+        .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
         
-        .login-form label {
+        .form-label {
             display: block;
             margin-bottom: 8px;
             color: var(--gold);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
-        .login-form input {
+        .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 15px;
             background: rgba(0,0,0,0.3);
-            border: 1px solid var(--dark-gold);
-            border-radius: 5px;
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 8px;
             color: white;
             font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
         }
         
-        .login-form input:focus {
+        .form-control:focus {
             outline: none;
             border-color: var(--gold);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
         
+        /* Login Button */
         .login-btn {
             width: 100%;
             padding: 15px;
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            color: var(--black);
+            color: var(--darker-black);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
+            transition: var(--transition);
+            margin-top: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
         
         .login-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
         }
         
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Footer Links */
         .login-footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
+            margin-top: 25px;
+            font-size: 0.85rem;
             color: rgba(255,255,255,0.7);
         }
         
         .login-footer a {
             color: var(--gold);
             text-decoration: none;
+            transition: var(--transition);
         }
         
-        /* Reuse all other styles from index.html */
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Error Message */
+        .error-message {
+            color: var(--danger);
+            background: rgba(244, 67, 54, 0.1);
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+        
+        .error-message i {
+            margin-right: 8px;
+        }
+        
+        /* Remember Me */
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me input {
+            margin-right: 10px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 576px) {
+            .login-card {
+                padding: 30px 20px;
+            }
+            
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header with Banner -->
-    <header class="header">
-        <div class="header-content">
-            <h1>STAFF PORTAL</h1>
-            <p>Paradise Roleplay Administration System</p>
-        </div>
-    </header>
-    
-    <!-- Main Content -->
     <div class="login-container">
-        <div class="login-box">
-            <img src="../../img/logo.png" alt="Paradise Roleplay" class="login-logo">
-            <h2 class="login-title"><i class="fas fa-lock"></i> Staff Login</h2>
+        <div class="login-card">
+            <img src="../img/logo.png" alt="Paradise Roleplay" class="login-logo">
             
-            <form class="login-form" id="staffLoginForm">
+            <div class="login-header">
+                <h1>Admin Login</h1>
+                <p>Access the Paradise Roleplay control panel</p>
+            </div>
+            
+            <!-- Error Message (hidden by default) -->
+            <div class="error-message" id="errorMessage">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Invalid username or password</span>
+            </div>
+            
+            <form id="loginForm">
                 <div class="form-group">
-                    <label for="username">Staff ID</label>
-                    <input type="text" id="username" required placeholder="Enter your staff ID">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Access Code</label>
-                    <input type="password" id="password" required placeholder="Enter your access code">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
                 </div>
                 
                 <button type="submit" class="login-btn">
@@ -141,55 +234,67 @@
             </form>
             
             <div class="login-footer">
-                <p>For authorized staff only. Unauthorized access prohibited.</p>
-                <p>Return to <a href="../../index.html">main website</a></p>
+                <p>Forgot your password? <a href="forgot-password.html">Reset it here</a></p>
+                <p>Return to <a href="../index.html">main website</a></p>
             </div>
         </div>
     </div>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://discord.gg/prpk" target="_blank"><i class="fab fa-discord"></i></a>
-            <a href="https://www.youtube.com/@paradiseroleplaypk" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/theparadisehug/" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-    </footer>
-    
-    <!-- Success Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-check-circle" style="color: var(--success);"></i> Login Successful</h2>
-            <p>Redirecting to staff dashboard...</p>
-        </div>
-    </div>
-    
     <script>
-        document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Hardcoded credentials for demo
-            const validCredentials = {
-                'admin': 'paradise123',
-                'staff1': 'prpk2023',
-                'moderator': 'modpass'
-            };
-            
+            // Get form values
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
             
+            // Hardcoded credentials for demo (replace with actual authentication)
+            const validCredentials = {
+                'admin': 'paradise@2023',
+                'staff': 'prpk@staff123',
+                'moderator': 'mod@pass456'
+            };
+            
+            // Check credentials
             if (validCredentials[username] && validCredentials[username] === password) {
-                document.getElementById('loginModal').style.display = 'flex';
+                // Successful login
+                document.getElementById('errorMessage').style.display = 'none';
                 
-                // Redirect to dashboard after delay
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 1500);
+                // In a real app, you would:
+                // 1. Send credentials to server for verification
+                // 2. Handle the authentication token
+                // 3. Redirect to dashboard
+                
+                // For demo, we'll simulate a successful login
+                alert('Login successful! Redirecting to dashboard...');
+                window.location.href = 'dashboard.html';
             } else {
-                alert('Invalid credentials. Please try again.');
+                // Failed login
+                document.getElementById('errorText').textContent = 'Invalid username or password';
+                document.getElementById('errorMessage').style.display = 'block';
+                
+                // Shake animation for error
+                document.getElementById('loginForm').classList.add('shake');
+                setTimeout(() => {
+                    document.getElementById('loginForm').classList.remove('shake');
+                }, 500);
             }
         });
+        
+        // Add shake animation to CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            .shake {
+                animation: shake 0.5s;
+            }
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
