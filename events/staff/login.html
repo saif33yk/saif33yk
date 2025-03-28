@@ -270,56 +270,58 @@
             'bullet': 'E4#tR23wSx'
         };
         
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            if (staffCredentials[username.toLowerCase()] && staffCredentials[username.toLowerCase()] === password) {
-                if (rememberMe) {
-                    localStorage.setItem('prpAuth', username);
-                } else {
-                    sessionStorage.setItem('prpAuth', username);
-                }
-                
-                // Fixed redirect - using absolute path from root
-                window.location.href = '/saif33yk/events/staff/dashboard.html';
+       
+    
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        document.getElementById('errorMessage').style.display = 'none';
+        
+        if (staffCredentials[username.toLowerCase()] && staffCredentials[username.toLowerCase()] === password) {
+            if (rememberMe) {
+                localStorage.setItem('prpAuth', 'true');
+                localStorage.setItem('prpUsername', username);
             } else {
-                document.getElementById('errorText').textContent = 'Invalid username or password';
-                document.getElementById('errorMessage').style.display = 'block';
-                
-                this.classList.add('shake');
-                setTimeout(() => {
-                    this.classList.remove('shake');
-                }, 500);
+                sessionStorage.setItem('prpAuth', 'true');
             }
-        });
+            
+            // Use full URL for redirect
+            window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/dashboard.html';
+        } else {
+            document.getElementById('errorText').textContent = 'Invalid username or password';
+            document.getElementById('errorMessage').style.display = 'block';
+            this.classList.add('shake');
+            setTimeout(() => this.classList.remove('shake'), 500);
+        }
+    });
+
+    // Check for existing session on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const authToken = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
+        if (authToken && window.location.pathname.includes('login.html')) {
+            window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/dashboard.html';
+        }
         
-        document.addEventListener('DOMContentLoaded', function() {
-            const authToken = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
-            if (authToken) {
-                document.getElementById('username').value = authToken;
-                document.getElementById('rememberMe').checked = !!localStorage.getItem('prpAuth');
-            }
-        });
-        
-        // Shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            .shake {
-                animation: shake 0.5s;
-            }
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                20%, 40%, 60%, 80% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+        const savedUsername = localStorage.getItem('prpUsername');
+        if (savedUsername) {
+            document.getElementById('username').value = savedUsername;
+            document.getElementById('rememberMe').checked = true;
+        }
+    });
+
+    // Shake animation CSS
+    const style = document.createElement('style');
+    style.textContent = `.shake { animation: shake 0.5s; }
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            10%,30%,50%,70%,90% { transform: translateX(-5px); }
+            20%,40%,60%,80% { transform: translateX(5px); }
+        }`;
+    document.head.appendChild(style);
+</script>
 </body>
 </html>
