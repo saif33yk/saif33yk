@@ -1,73 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Same head content -->
-    <title>Robbery Rules - Paradise RP Pakistan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Robbery Rules - Paradise Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.95);
+            --red: #ff4444;
+            --blue: #4444ff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: var(--black) url('../assets/img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../assets/img/robbery-banner.jpg') center/cover;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 15px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 12px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px 8px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255,215,0,0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Rules Content */
+        .rules-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .rules-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .rules-header h2 {
+            color: var(--gold);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .rules-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .rules-section {
+            background: var(--glass);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .rules-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .rules-list {
+            list-style-type: none;
+        }
+        
+        .rules-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .rules-list li:before {
+            content: '#';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .important-note {
+            background: rgba(255,0,0,0.1);
+            border-left: 4px solid var(--red);
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .ban-duration {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: rgba(255,0,0,0.2);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--red);
+            font-weight: 600;
+        }
+        
+        .permanent-ban {
+            color: var(--red);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .info-box {
+            background: rgba(0,0,255,0.1);
+            border-left: 4px solid var(--blue);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .robbery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .robbery-card {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid var(--gold);
+        }
+        
+        .robbery-card h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .discord-btn {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            background: var(--glass);
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 15px;
+            }
+            
+            .rules-section {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <div>
-            <h1>ROBBERY RULES</h1>
-            <p>Rules for criminal activities and heists</p>
+        <div class="header-content">
+            <h1>MAJOR ROBBERY RULES</h1>
+            <p>Regulations for all robbery scenarios</p>
         </div>
     </header>
     
-    <!-- Same nav -->
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Rules Hub</a>
+        <a href="../staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="https://discord.gg/prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
     
-    <div class="breadcrumb">
-        <a href="index.html">Rules</a> &gt; <span>Robbery Rules</span>
-    </div>
-    
+    <!-- Rules Content -->
     <div class="rules-container">
-        <h2 class="section-title">ROBBERY RULES</h2>
-        
-        <div class="rule-item">
-            <h3>1. Value for Value</h3>
-            <p>All robberies must provide RP value for both parties. No robbing just for items/money.</p>
+        <div class="rules-header">
+            <h2>General Robbery Rules</h2>
+            <p>Fundamental rules applicable to all robbery scenarios</p>
         </div>
         
-        <div class="rule-item">
-            <h3>2. Minimum Participants</h3>
-            <p>Store robberies require 3+ criminals. Bank robberies require 5+ with proper planning and RP.</p>
+        <div class="important-note">
+            <h3>Mandatory Requirement</h3>
+            <p><strong>You must announce in OOC chat before initiating any robbery.</strong> Failure to follow this rule will lead to strict punishment.</p>
+            <span class="ban-duration">Ban Duration: 24 Hours</span>
         </div>
         
-        <div class="rule-item">
-            <h3>3. Police Response</h3>
-            <p>You must allow reasonable time for police response (minimum 5 minutes for stores, 10 for banks).</p>
-        </div>
-        
-        <div class="rule-item">
-            <h3>4. Hostage Rules</h3>
-            <ul>
-                <li>Hostages must be treated realistically</li>
-                <li>No killing hostages unless extreme circumstances</li>
-                <li>Hostages must be released when safe</li>
+        <div class="rules-section">
+            <h3>Core Robbery Regulations</h3>
+            <ul class="rules-list">
+                <li>When 30 minutes of server restart notification pops up, you can't trigger any robbery <span class="ban-duration">(Ban Duration: 24 Hours)</span></li>
+                <li>Robbers must use masks during any robbery to avoid identification.</li>
+                <li>Tasing is prohibited during hostage situations unless the robber's gun isn't pointed at the hostage.</li>
+                <li>The hostage is the top priority in any situation.</li>
+                <li>Robbers cannot execute hostages without valid reason.</li>
+                <li>If caught, robbers must demonstrate Fear RP toward officers.</li>
+                <li>No Fail RP accusations without recorded evidence shown to staff.</li>
+                <li>You must have a hostage to negotiate with police or buy time. Without a hostage, police can initiate Code Red after 30 seconds warning.</li>
+                <li>Running during negotiations is prohibited - you must wait until negotiations conclude.</li>
+                <li>In hostage situations, robbers cannot make more than 2 (reasonable) demands.</li>
+                <li>Non-gang members cannot participate in major robberies (small banks and shops are permitted). <span class="ban-duration">(Ban Duration: 24 Hours)</span></li>
+                <li>If someone crashes/disconnects during a robbery, they cannot return to that situation. <span class="ban-duration">(Ban Duration: 48 Hours or 6H Jail)</span></li>
+                <li><span class="permanent-ban">Only pistols and pump shotguns allowed in shop robberies. Machine/AP pistols are prohibited!</span></li>
             </ul>
         </div>
         
-        <div class="rule-item">
-            <h3>5. Fail Initiation</h3>
-            <p>All criminal initiations must be clear and unambiguous. Vague threats don't count as proper initiation.</p>
+        <div class="info-box">
+            <h3>Simultaneous Robbery Rule</h3>
+            <p>When a Major Robbery is in progress, no other robberies can be triggered. You must wait until the current major robbery concludes.</p>
+            <span class="ban-duration">Violation Punishment: 3 Hours Jail Time</span>
         </div>
         
-        <div class="rule-item">
-            <h3>6. Exceeding Limits</h3>
-            <p>During robberies, you cannot demand more than the established limits (e.g., $25,000 maximum from players).</p>
+        <div class="rules-section">
+            <h3>Audio Restrictions</h3>
+            <p>Rebels & LSPD are prohibited from playing loud music during major robberies.</p>
+            <span class="ban-duration">Ban Duration: 48 Hours</span>
         </div>
         
-        <div class="rule-item">
-            <h3>7. Safe Zone Violation</h3>
-            <p>No robberies or criminal activity in designated safe zones (spawn, admin areas, etc.).</p>
+        <div class="rules-header">
+            <h2>Robbery Specific Rules</h2>
+            <p>Regulations for each type of robbery scenario</p>
         </div>
         
-        <div class="rule-nav-buttons">
-            <a href="major-rules.html" class="rule-nav-btn"><i class="fas fa-arrow-left"></i> Major Rules</a>
-            <a href="turf-rules.html" class="rule-nav-btn">Turf Rules <i class="fas fa-arrow-right"></i></a>
+        <div class="robbery-grid">
+            <div class="robbery-card">
+                <h4>ATM Robbery</h4>
+                <ul class="rules-list">
+                    <li>1 Rebel & 1 Cop maximum</li>
+                    <li>Only Simple Pistol allowed</li>
+                    <li>Direct Code Red prohibited - must RP first</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Shop Robbery</h4>
+                <ul class="rules-list">
+                    <li>2 Officers & 2 Rebels maximum</li>
+                    <li>Only Pistol & Pump Shotgun allowed</li>
+                    <li>Machine/AP Pistols prohibited</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Jewellery Store</h4>
+                <ul class="rules-list">
+                    <li>5 LSPD Officers maximum response</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Fleeca Bank</h4>
+                <ul class="rules-list">
+                    <li>10 LSPD Officers maximum response</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Main Bank Heist</h4>
+                <ul class="rules-list">
+                    <li>15 Rebels & PD maximum</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>FIB Robbery</h4>
+                <ul class="rules-list">
+                    <li>20 Rebels & 20 Police maximum</li>
+                    <li>EMS revives prohibited</li>
+                    <li>No carrying dead members</li>
+                    <li>LSPD must respond via helicopter from rooftop</li>
+                    <li>Gangs must enter from bottom floor only</li>
+                    <li>No exiting until situation concludes</li>
+                    <li>Must wait for robbery completion before Code Red</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Humane Labs</h4>
+                <ul class="rules-list">
+                    <li>Unlimited Rebels & Police</li>
+                    <li>EMS revives prohibited</li>
+                    <li>No carrying dead members</li>
+                    <li>No exiting until situation concludes</li>
+                    <li>Must wait for robbery completion before Code Red</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Slaughter House</h4>
+                <ul class="rules-list">
+                    <li>LSPD enters from both entrances</li>
+                    <li>Rebels cannot fight outside before Code Red</li>
+                    <li>Code Red initiates 60 sec after robbery completion</li>
+                    <li>Outside fighting allowed after Code Red starts</li>
+                    <li>No escaping via back entrance</li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Merryweather</h4>
+                <ul class="rules-list">
+                    <li>Unlimited Rebels & Police</li>
+                    <li>EMS revives prohibited</li>
+                    <li>Code Red after 30 sec cooldown post-robbery</li>
+                    <li>No rooftop helicopter landings (Rebels/PD)</li>
+                    <li><span class="ban-duration">Admin Jail: 4 Hours | Ban: 36 Hours</span></li>
+                </ul>
+            </div>
+            
+            <div class="robbery-card">
+                <h4>Chicken Labs</h4>
+                <ul class="rules-list">
+                    <li>LSPD breaches from backside only</li>
+                    <li>No flanking/escaping until situation ends</li>
+                    <li>No interference from back entrance</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="rules-header">
+            <h2>Additional Information</h2>
+        </div>
+        
+        <div class="rules-section">
+            <h3>Need More Details?</h3>
+            <p>For complete robbery rules and updates, please visit our Discord server's rules channel:</p>
+            <a href="https://discord.com/channels/682251894529589255/827663861188132904" class="discord-btn" target="_blank">
+                <i class="fab fa-discord"></i> View Robbery Rules on Discord
+            </a>
         </div>
     </div>
     
-    <a href="../index.html" class="return-home">
-        <i class="fas fa-arrow-left"></i> Return to Home
-    </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+    </footer>
 </body>
 </html>
