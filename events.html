@@ -7,18 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reuse all CSS from index.html */
         :root {
             --gold: #FFD700;
             --dark-gold: #D4AF37;
             --black: #121212;
-            --glass: rgba(18, 18, 18, 0.85);
+            --darker-black: #0a0a0a;
+            --glass: rgba(30, 30, 30, 0.85);
             --glass-light: rgba(255, 255, 255, 0.1);
             --success: #4CAF50;
             --danger: #F44336;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        /* All the same styles as index.html */
         body {
             background: var(--black) url('img/bg-pattern.png');
             color: white;
@@ -26,52 +26,211 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            margin: 0;
         }
         
-        /* Header with different banner */
+        /* Enhanced Header */
         .header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('img/events-banner.jpg') center/cover;
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             border-bottom: 4px solid var(--gold);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Event-specific styles */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 100%);
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Professional Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 15px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 30px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255,215,0,0.4);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--darker-black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            font-weight: 700;
+        }
+        
+        .nav-btn i {
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 30px;
+            width: 100%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: var(--gold);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            border-radius: 3px;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Professional Event Cards */
         .events-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
-            padding: 40px 0;
+            padding: 20px 0;
         }
         
         .event-card {
             background: var(--glass);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
             border-top: 4px solid var(--gold);
-            transition: transform 0.3s;
+            transition: var(--transition);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
         }
         
         .event-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .event-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: var(--gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--gold);
         }
         
         .event-image {
             height: 200px;
             background-size: cover;
             background-position: center;
+            position: relative;
+        }
+        
+        .event-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
         }
         
         .event-details {
-            padding: 20px;
+            padding: 25px;
         }
         
         .event-title {
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 1.5rem;
+            font-weight: 700;
         }
         
         .event-meta {
@@ -82,17 +241,213 @@
             color: rgba(255,255,255,0.7);
         }
         
+        .event-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-meta i {
+            margin-right: 5px;
+            color: var(--gold);
+        }
+        
         .event-description {
             margin-bottom: 20px;
             line-height: 1.6;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Professional Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--darker-black);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 5px;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.5);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+            font-size: 1em;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--darker-black);
+        }
+        
+        .btn-disabled {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.2);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .btn-disabled:hover {
+            transform: none;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
         }
         
         .event-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
-        /* Reuse all other styles from index.html */
+        /* Footer */
+        .footer {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .footer p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+            background: rgba(255,215,0,0.2);
+        }
+        
+        /* Staff Login Button */
+        .staff-login-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.7);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .staff-login-btn:hover {
+            background: var(--gold);
+            color: var(--darker-black);
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav {
+                flex-wrap: wrap;
+                padding: 10px 5px;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.75rem;
+                margin: 5px;
+            }
+            
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 80px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .event-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .header {
+                padding: 60px 15px;
+            }
+            
+            .staff-login-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -104,22 +459,25 @@
         </div>
     </header>
     
-    <!-- Navigation (same as index.html) -->
+    <!-- Professional Navigation -->
     <nav class="nav">
         <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
         <a href="events.html" class="nav-btn active"><i class="fas fa-calendar-alt"></i> Events</a>
         <a href="register.html" class="nav-btn"><i class="fas fa-user-plus"></i> Register</a>
-        <a href="staff/login.html" class="nav-btn"><i class="fas fa-lock"></i> Staff</a>
+        <a href="staff/login.html" class="nav-btn"><i class="fas fa-user-shield"></i> Staff</a>
     </nav>
     
     <!-- Main Content -->
     <main class="main-content">
-        <h2>Current Events</h2>
-        <p>Participate in our weekly events with amazing prizes and recognition</p>
+        <div class="section-header">
+            <h2>Current Events</h2>
+            <p>Participate in our weekly events with amazing prizes and recognition</p>
+        </div>
         
         <div class="events-container">
             <!-- Business War Event -->
             <div class="event-card">
+                <div class="event-badge">Active</div>
                 <div class="event-image" style="background-image: url('../img/business-war-thumb.jpg');"></div>
                 <div class="event-details">
                     <h3 class="event-title">Business War</h3>
@@ -132,13 +490,14 @@
                     </p>
                     <div class="event-actions">
                         <a href="business-war/" class="btn"><i class="fas fa-info-circle"></i> Details</a>
-                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register</a>
+                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register Now</a>
                     </div>
                 </div>
             </div>
             
             <!-- Street Race Event -->
             <div class="event-card">
+                <div class="event-badge">Upcoming</div>
                 <div class="event-image" style="background-image: url('../img/street-race-thumb.jpg');"></div>
                 <div class="event-details">
                     <h3 class="event-title">Street Race Championship</h3>
@@ -151,33 +510,34 @@
                     </p>
                     <div class="event-actions">
                         <a href="#" class="btn"><i class="fas fa-info-circle"></i> Details</a>
-                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register</a>
+                        <a href="register.html" class="btn btn-outline"><i class="fas fa-user-plus"></i> Register Now</a>
                     </div>
                 </div>
             </div>
             
             <!-- Gang Wars Event -->
             <div class="event-card">
+                <div class="event-badge">Coming Soon</div>
                 <div class="event-image" style="background-image: url('../img/gang-wars-thumb.jpg');"></div>
                 <div class="event-details">
                     <h3 class="event-title">Gang Wars</h3>
                     <div class="event-meta">
                         <span><i class="fas fa-calendar"></i> July 15-22, 2023</span>
-                        <span><i class="fas fa-users"></i> Coming Soon</span>
+                        <span><i class="fas fa-users"></i> Pre-register</span>
                     </div>
                     <p class="event-description">
                         Territory control battle between registered gangs. Strategic gameplay required.
                     </p>
                     <div class="event-actions">
                         <a href="#" class="btn"><i class="fas fa-info-circle"></i> Details</a>
-                        <a href="#" class="btn btn-outline disabled"><i class="fas fa-clock"></i> Coming Soon</a>
+                        <a href="#" class="btn btn-disabled"><i class="fas fa-clock"></i> Coming Soon</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     
-    <!-- Footer (same as index.html) -->
+    <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
         <div class="social-links">
@@ -187,14 +547,26 @@
         </div>
     </footer>
     
-    <!-- Staff Login Button (same as index.html) -->
+    <!-- Staff Login Button -->
     <div class="staff-login-btn" id="staffLoginBtn">
         <i class="fas fa-lock"></i>
     </div>
     
-    <!-- Include all JavaScript from index.html -->
     <script>
-        // Same JavaScript as index.html
+        // Staff login button functionality
+        document.getElementById('staffLoginBtn').addEventListener('click', function() {
+            window.location.href = 'staff/login.html';
+        });
+        
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
