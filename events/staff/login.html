@@ -253,81 +253,81 @@
     </div>
     
     <script>
-        // Staff credentials (in production, this would be server-side authentication)
-        const staffCredentials = {
-            'admin': 'paradise@2023',
-            'staff': 'prpk@staff123',
-            'moderator': 'mod@pass456',
-            'pan': 'Xk9#pL23qW',
-            'zigana': 'R7$mN45tYv',
-            'saif': 'B2^nK78uHj',
-            'desi': 'G5&hP90fDc',
-            'kj': 'M3@qS12rTb',
-            'rock': 'V9!wZ34eLm',
-            'veshi': 'F6*dX67yNp',
-            'bhola': 'C8%jU89iKo',
-            'rt': 'A1$pQ56oLz',
-            'bullet': 'E4#tR23wSx'
-        };
+    // Staff credentials (in production, this would be server-side authentication)
+    const staffCredentials = {
+        'admin': 'paradise@2023',
+        'staff': 'prpk@staff123',
+        'moderator': 'mod@pass456',
+        'pan': 'Xk9#pL23qW',
+        'zigana': 'R7$mN45tYv',
+        'saif': 'B2^nK78uHj',
+        'desi': 'G5&hP90fDc',
+        'kj': 'M3@qS12rTb',
+        'rock': 'V9!wZ34eLm',
+        'veshi': 'F6*dX67yNp',
+        'bhola': 'C8%jU89iKo',
+        'rt': 'A1$pQ56oLz',
+        'bullet': 'E4#tR23wSx'
+    };
+    
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            
-            // Hide error message initially
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            // Check credentials
-            if (staffCredentials[username.toLowerCase()] && staffCredentials[username.toLowerCase()] === password) {
-                // Successful login - store session if "Remember me" is checked
-                if (rememberMe) {
-                    localStorage.setItem('prpAuth', username);
-                } else {
-                    sessionStorage.setItem('prpAuth', username);
-                }
-                
-                // Redirect to dashboard with correct path
-                window.location.href = 'events/staff/dashboard.html';
+        // Get form values
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
+        
+        // Hide error message initially
+        document.getElementById('errorMessage').style.display = 'none';
+        
+        // Check credentials
+        if (staffCredentials[username.toLowerCase()] && staffCredentials[username.toLowerCase()] === password) {
+            // Successful login - store session if "Remember me" is checked
+            if (rememberMe) {
+                localStorage.setItem('prpAuth', username);
             } else {
-                // Failed login - show error
-                document.getElementById('errorText').textContent = 'Invalid username or password';
-                document.getElementById('errorMessage').style.display = 'block';
-                
-                // Add shake animation to form
-                this.classList.add('shake');
-                setTimeout(() => {
-                    this.classList.remove('shake');
-                }, 500);
+                sessionStorage.setItem('prpAuth', username);
             }
-        });
-        
-        // Check for existing session
-        document.addEventListener('DOMContentLoaded', function() {
-            const authToken = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
-            if (authToken) {
-                // Auto-fill username if remembered
-                document.getElementById('username').value = authToken;
-                document.getElementById('rememberMe').checked = !!localStorage.getItem('prpAuth');
-            }
-        });
-        
-        // Add shake animation to CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            .shake {
-                animation: shake 0.5s;
-            }
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                20%, 40%, 60%, 80% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+            
+            // Redirect to dashboard with absolute path
+            window.location.href = '/saif33yk/events/staff/dashboard.html';
+        } else {
+            // Failed login - show error
+            document.getElementById('errorText').textContent = 'Invalid username or password';
+            document.getElementById('errorMessage').style.display = 'block';
+            
+            // Add shake animation to form
+            this.classList.add('shake');
+            setTimeout(() => {
+                this.classList.remove('shake');
+            }, 500);
+        }
+    });
+    
+    // Check for existing session
+    document.addEventListener('DOMContentLoaded', function() {
+        const authToken = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
+        if (authToken) {
+            // Auto-fill username if remembered
+            document.getElementById('username').value = authToken;
+            document.getElementById('rememberMe').checked = !!localStorage.getItem('prpAuth');
+        }
+    });
+    
+    // Add shake animation to CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        .shake {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
 </body>
 </html>
