@@ -132,3 +132,196 @@
             background: var(--glass);
             padding: 20px;
             border-radius: 8px;
+            border-top: 4px solid var(--gold);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .recent-activity {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .activity-item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,215,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--gold);
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .activity-time {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Reuse all other styles from index.html */
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="../../img/logo.png" alt="Paradise Roleplay" class="sidebar-logo">
+                <h3 class="sidebar-title">Staff Dashboard</h3>
+                <p class="sidebar-user">Logged in as: <strong>Admin</strong></p>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="teams.html"><i class="fas fa-users"></i> Teams</a></li>
+                <li><a href="players.html"><i class="fas fa-user"></i> Players</a></li>
+                <li><a href="reports.html"><i class="fas fa-flag"></i> Reports</a></li>
+                <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="../../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Staff Dashboard</h1>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Active Events</div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Ongoing</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">Registered Teams</div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">This Month</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">New Players</div>
+                    <div class="stat-value">56</div>
+                    <div class="stat-label">Last 7 Days</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-label">Pending Reports</div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Needs Review</div>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                <div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
+                    <a href="events.html" class="btn"><i class="fas fa-plus"></i> Create Event</a>
+                    <a href="teams.html" class="btn"><i class="fas fa-users"></i> Manage Teams</a>
+                    <a href="reports.html" class="btn"><i class="fas fa-flag"></i> View Reports</a>
+                    <a href="messages.html" class="btn"><i class="fas fa-envelope"></i> Check Messages</a>
+                </div>
+            </div>
+            
+            <div class="recent-activity">
+                <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New team registered for Business War</div>
+                        <div class="activity-time">10 minutes ago</div>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New report submitted by player "DesiGabru"</div>
+                        <div class="activity-time">35 minutes ago</div>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Street Race event scheduled for July 1-7</div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Player "ToxicGamer" banned for rule violation</div>
+                        <div class="activity-time">5 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../../index.html';
+            }
+        });
+    </script>
+</body>
+</html>
