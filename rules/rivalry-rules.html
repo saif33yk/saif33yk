@@ -1,59 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Same head content -->
-    <title>Gang Rivalry Rules - Paradise RP Pakistan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivalry Rules - Paradise Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.95);
+            --red: #ff4444;
+            --blue: #4444ff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: var(--black) url('../assets/img/bg-pattern.png');
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('../assets/img/rivalry-banner.jpg') center/cover;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 4px solid var(--gold);
+            height: auto;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 15px;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            padding: 12px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            margin: 5px 8px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .nav-btn:hover {
+            background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(212,175,55,0.3));
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255,215,0,0.3);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Rules Content */
+        .rules-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .rules-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .rules-header h2 {
+            color: var(--gold);
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .rules-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .rules-section {
+            background: var(--glass);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .rules-section h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .rules-list {
+            list-style-type: none;
+        }
+        
+        .rules-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .rules-list li:before {
+            content: '#';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .important-note {
+            background: rgba(255,0,0,0.1);
+            border-left: 4px solid var(--red);
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .ban-duration {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: rgba(255,0,0,0.2);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--red);
+            font-weight: 600;
+        }
+        
+        .info-box {
+            background: rgba(0,0,255,0.1);
+            border-left: 4px solid var(--blue);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .category-header {
+            margin: 50px 0 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold);
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        
+        .discord-btn {
+            display: inline-block;
+            background: #5865F2;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            background: var(--glass);
+            border-top: 1px solid rgba(255,215,0,0.1);
+        }
+        
+        .footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 15px;
+            }
+            
+            .rules-section {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <div>
-            <h1>GANG RIVALRY RULES</h1>
-            <p>Rules for inter-gang conflicts</p>
+        <div class="header-content">
+            <h1>RIVALRY RULES</h1>
+            <p>Regulations for Gang Conflicts and Interactions</p>
         </div>
     </header>
     
-    <!-- Same nav -->
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Rules Hub</a>
+        <a href="../staff.html" class="nav-btn"><i class="fas fa-users"></i> Staff</a>
+        <a href="https://discord.gg/prpk" class="nav-btn" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+    </nav>
     
-    <div class="breadcrumb">
-        <a href="index.html">Rules</a> &gt; <span>Gang Rivalry Rules</span>
-    </div>
-    
+    <!-- Rules Content -->
     <div class="rules-container">
-        <h2 class="section-title">GANG RIVALRY RULES</h2>
-        
-        <div class="rule-item">
-            <h3>1. Rivalry Declaration</h3>
-            <p>Official rivalries must be registered with staff. Minimum 3-day notice before any hostile actions.</p>
+        <div class="rules-header">
+            <h2>Gang Rivalry System</h2>
+            <p>Structured conflict rules for balanced gang warfare</p>
         </div>
         
-        <div class="rule-item">
-            <h3>2. Hit Rules</h3>
-            <ul>
-                <li>Maximum 2 hits per day on rival gang members</li>
-                <li>No hits on unarmed or passive members</li>
-                <li>Must provide RP reason for each hit</li>
-                <li>No revenge killing outside of proper RP scenarios</li>
+        <h3 class="category-header">GENERAL RIVALRY RULES</h3>
+        
+        <div class="rules-section">
+            <h3>Rivalry Declaration</h3>
+            <ul class="rules-list">
+                <li>Each gang can declare one rivalry per week</li>
+                <li>Declared rivalries last for 48 hours</li>
+                <li>A gang can only be targeted by one rivalry per week</li>
+                <li>No surrendering from rivalries - must face it for full duration</li>
+                <li>Only Senior Staff can suspend rivalries</li>
+                <li>Toxic behavior during rivalries will result in fines</li>
             </ul>
         </div>
         
-        <div class="rule-item">
-            <h3>3. Gang Alliances</h3>
-            <p>Alliances must be roleplayed properly with documentation. No OOC alliances affecting IC decisions.</p>
+        <div class="important-note">
+            <p><strong>Important:</strong> All existing server rules apply within the rivalry system. These rules ensure fair competition and prevent excessive targeting.</p>
         </div>
         
-        <div class="rule-item">
-            <h3>4. Taunting Rules</h3>
-            <p>While some taunting is allowed for RP, excessive OOC taunting or harassment will be penalized.</p>
+        <h3 class="category-header">KIDNAPPING RULES</h3>
+        
+        <div class="rules-section">
+            <h3>Kidnapping Regulations</h3>
+            <ul class="rules-list">
+                <li>Only allowed against rivalry gangs (no random kidnappings)</li>
+                <li>No third-party gangs can interfere in kidnapping situations</li>
+                <li>Backup support only allowed from your own gang with declared rivalry</li>
+                <li>Third-party members found in kidnapping situations will be banned</li>
+            </ul>
+            <span class="ban-duration">Ban Duration for Violations: 36 Hours (Interference: 4 Days)</span>
         </div>
         
-        <div class="rule-nav-buttons">
-            <a href="turf-rules.html" class="rule-nav-btn"><i class="fas fa-arrow-left"></i> Turf Rules</a>
-            <a href="faction-rules.html" class="rule-nav-btn">Faction Rules <i class="fas fa-arrow-right"></i></a>
+        <h3 class="category-header">ROB COMMAND RULES</h3>
+        
+        <div class="rules-section">
+            <h3>Robbery Regulations</h3>
+            <ul class="rules-list">
+                <li>Must have gun pointed at player to use ROB command</li>
+                <li>Only allowed against rivalry gang members</li>
+                <li>Cannot rob Police, EMS, Weazel News or Government members</li>
+                <li>Cannot rob people in SafeZones</li>
+                <li>Allowed at spray zones against rivalries</li>
+                <li>Must have higher manpower to initiate robbery</li>
+                <li>Civilians cannot be robbed (including whitelisted job holders)</li>
+                <li>Cannot rob dead players</li>
+            </ul>
+            <div class="info-box">
+                <p><strong>Note:</strong> ROB command availability is event-based and activated by staff at specific times.</p>
+                <span class="ban-duration">Ban Duration for Violations: 36 Hours</span>
+            </div>
+        </div>
+        
+        <h3 class="category-header">VEHICLE & COMBAT RULES</h3>
+        
+        <div class="rules-section">
+            <h3>Vehicle Pitting</h3>
+            <ul class="rules-list">
+                <li>Intentionally pitting vehicles or persons is prohibited</li>
+                <li>Exception: Allowed during declared rivalries</li>
+            </ul>
+            <span class="ban-duration">Admin Jail Duration: 4 Hours</span>
+        </div>
+        
+        <div class="rules-section">
+            <h3>Additional Information</h3>
+            <p>For complete rivalry rules and updates, please visit our Discord server:</p>
+            <a href="https://discord.com/channels/682251894529589255/827663861188132904" class="discord-btn" target="_blank">
+                <i class="fab fa-discord"></i> View Rivalry Rules on Discord
+            </a>
         </div>
     </div>
     
-    <a href="../index.html" class="return-home">
-        <i class="fas fa-arrow-left"></i> Return to Home
-    </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+    </footer>
 </body>
 </html>
