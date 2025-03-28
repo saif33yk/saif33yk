@@ -470,6 +470,15 @@
     </style>
 </head>
 <body>
+    <!-- Immediate Authentication Check -->
+    <script>
+        // Check authentication before anything loads
+        const isAuthenticated = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
+        if (!isAuthenticated) {
+            window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
+        }
+    </script>
+
     <!-- Dashboard Header -->
     <header class="dashboard-header">
         <div class="logo-container">
@@ -479,7 +488,7 @@
         <nav class="staff-nav">
             <a href="#" class="staff-nav-btn active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
             <a href="events.html" class="staff-nav-btn"><i class="fas fa-calendar-alt"></i> Events</a>
-            <a href="#" class="staff-nav-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a href="#" class="staff-nav-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </header>
     
@@ -508,7 +517,7 @@
                 <h3 class="sidebar-title">Account</h3>
                 <a href="#" class="sidebar-link"><i class="fas fa-user-cog"></i> Profile</a>
                 <a href="#" class="sidebar-link"><i class="fas fa-shield-alt"></i> Security</a>
-                <a href="#" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" class="sidebar-link" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </aside>
         
@@ -517,7 +526,7 @@
             <div class="content-header">
                 <div>
                     <h1 class="content-title">Staff Dashboard</h1>
-                    <p class="welcome-message">Welcome back, Admin! Last login: Today at 14:30 from 192.168.1.1</p>
+                    <p class="welcome-message" id="welcomeMessage">Welcome back! Loading...</p>
                 </div>
                 <a href="create-event.html" class="btn"><i class="fas fa-plus"></i> New Event</a>
             </div>
@@ -667,25 +676,41 @@
             </div>
         </div>
     </main>
-    
+
+    <!-- Main Dashboard Script -->
     <script>
-        // Simulate logout functionality
-        document.querySelectorAll('.sidebar-link, .staff-nav-btn').forEach(link => {
-            if (link.textContent.includes('Logout')) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Clear session and redirect to login
-                    sessionStorage.removeItem('staffLoggedIn');
-                    localStorage.removeItem('rememberStaff');
-                    window.location.href = 'staff/login.html';
-                });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Double-check authentication
+            const isAuthenticated = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
+            if (!isAuthenticated) {
+                window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
+                return;
             }
+
+            // Set welcome message with username
+            const username = localStorage.getItem('prpUsername') || 'Admin';
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            welcomeMessage.textContent = `Welcome back, ${username}! Last login: ${new Date().toLocaleString()}`;
+
+            // Logout functionality
+            function handleLogout() {
+                localStorage.removeItem('prpAuth');
+                localStorage.removeItem('prpUsername');
+                sessionStorage.removeItem('prpAuth');
+                window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
+            }
+
+            // Attach logout handlers
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                handleLogout();
+            });
+
+            document.getElementById('sidebarLogoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                handleLogout();
+            });
         });
-        
-        // Check if user is logged in (simulated)
-        if (!sessionStorage.getItem('staffLoggedIn') && !localStorage.getItem('rememberStaff')) {
-            window.location.href = 'staff/login.html';
-        }
     </script>
 </body>
 </html>
