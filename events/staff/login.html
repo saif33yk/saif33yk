@@ -37,6 +37,17 @@
             padding: 0 20px;
         }
         
+        /* Logo Placement */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            height: 80px;
+            margin-bottom: 15px;
+        }
+        
         /* Login Card */
         .login-card {
             background: var(--glass);
@@ -58,12 +69,6 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--dark-gold));
-        }
-        
-        /* Logo */
-        .login-logo {
-            width: 80px;
-            margin-bottom: 20px;
         }
         
         /* Header */
@@ -190,6 +195,10 @@
                 padding: 30px 20px;
             }
             
+            .logo {
+                height: 60px;
+            }
+            
             .login-header h1 {
                 font-size: 1.5rem;
             }
@@ -198,9 +207,12 @@
 </head>
 <body>
     <div class="login-container">
+        <!-- Logo Placement -->
+        <div class="logo-container">
+            <img src="../img/logo.png" alt="Paradise Roleplay" class="logo">
+        </div>
+        
         <div class="login-card">
-            <img src="../img/logo.png" alt="Paradise Roleplay" class="login-logo">
-            
             <div class="login-header">
                 <h1>Admin Login</h1>
                 <p>Access the Paradise Roleplay control panel</p>
@@ -215,7 +227,7 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                    <input type="text" id="username" class="form-control" placeholder="Enter admin username" required>
                 </div>
                 
                 <div class="form-group">
@@ -241,44 +253,65 @@
     </div>
     
     <script>
+        // Staff credentials (in production, this would be server-side authentication)
+        const staffCredentials = {
+            'admin': 'paradise@2023',
+            'staff': 'prpk@staff123',
+            'moderator': 'mod@pass456',
+            'pan': 'Xk9#pL23qW',
+            'zigana': 'R7$mN45tYv',
+            'saif': 'B2^nK78uHj',
+            'desi': 'G5&hP90fDc',
+            'kj': 'M3@qS12rTb',
+            'rock': 'V9!wZ34eLm',
+            'veshi': 'F6*dX67yNp',
+            'bhola': 'C8%jU89iKo',
+            'rt': 'A1$pQ56oLz',
+            'bullet': 'E4#tR23wSx'
+        };
+        
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form values
-            const username = document.getElementById('username').value;
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const rememberMe = document.getElementById('rememberMe').checked;
             
-            // Hardcoded credentials for demo (replace with actual authentication)
-            const validCredentials = {
-                'admin': 'paradise@2023',
-                'staff': 'prpk@staff123',
-                'moderator': 'mod@pass456'
-            };
+            // Hide error message initially
+            document.getElementById('errorMessage').style.display = 'none';
             
             // Check credentials
-            if (validCredentials[username] && validCredentials[username] === password) {
-                // Successful login
-                document.getElementById('errorMessage').style.display = 'none';
+            if (staffCredentials[username.toLowerCase()] && staffCredentials[username.toLowerCase()] === password) {
+                // Successful login - store session if "Remember me" is checked
+                if (rememberMe) {
+                    localStorage.setItem('prpAuth', username);
+                } else {
+                    sessionStorage.setItem('prpAuth', username);
+                }
                 
-                // In a real app, you would:
-                // 1. Send credentials to server for verification
-                // 2. Handle the authentication token
-                // 3. Redirect to dashboard
-                
-                // For demo, we'll simulate a successful login
-                alert('Login successful! Redirecting to dashboard...');
+                // Redirect to dashboard
                 window.location.href = 'dashboard.html';
             } else {
-                // Failed login
+                // Failed login - show error
                 document.getElementById('errorText').textContent = 'Invalid username or password';
                 document.getElementById('errorMessage').style.display = 'block';
                 
-                // Shake animation for error
-                document.getElementById('loginForm').classList.add('shake');
+                // Add shake animation to form
+                this.classList.add('shake');
                 setTimeout(() => {
-                    document.getElementById('loginForm').classList.remove('shake');
+                    this.classList.remove('shake');
                 }, 500);
+            }
+        });
+        
+        // Check for existing session
+        document.addEventListener('DOMContentLoaded', function() {
+            const authToken = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
+            if (authToken) {
+                // Auto-fill username if remembered
+                document.getElementById('username').value = authToken;
+                document.getElementById('rememberMe').checked = !!localStorage.getItem('prpAuth');
             }
         });
         
