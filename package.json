@@ -1,0 +1,16 @@
+{
+  "name": "paradise-roleplay-pk",
+  "version": "1.0.0",
+  "description": "Official website for Paradise Roleplay Pakistan",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^4.0.0"
+  },
+  "devDependencies": {
+    "sass": "^1.58.0"
+  }
+}
