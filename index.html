@@ -20,6 +20,8 @@
             --black: #121212;
             --glass: rgba(18, 18, 18, 0.85);
             --glass-light: rgba(255, 255, 255, 0.1);
+            --success: #4CAF50;
+            --danger: #F44336;
         }
         
         * {
@@ -241,6 +243,26 @@
             box-shadow: 0 12px 30px rgba(88, 101, 242, 0.6);
         }
         
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #3d8b40);
+            color: white;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .btn-success:hover {
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.6);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #d32f2f);
+            color: white;
+            box-shadow: 0 5px 20px rgba(244, 67, 54, 0.4);
+        }
+        
+        .btn-danger:hover {
+            box-shadow: 0 12px 30px rgba(244, 67, 54, 0.6);
+        }
+        
         /* Footer */
         .footer {
             background: var(--glass);
@@ -272,7 +294,7 @@
             transform: translateY(-3px);
         }
         
-        /* Staff Login Modal */
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -346,22 +368,94 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        .login-btn {
+        .form-group select {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            color: var(--black);
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--dark-gold);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .form-btn {
+            width: 48%;
+            padding: 12px;
             border: none;
             border-radius: 5px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 10px;
+        }
+        
+        .form-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
         }
         
         .login-btn:hover {
-            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .cancel-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .cancel-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--gold);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
         }
         
         /* Admin Panel */
@@ -420,35 +514,51 @@
             padding-bottom: 10px;
         }
         
-        .registered-teams {
+        .registered-users {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
         
-        .team-card {
+        .user-card {
             background: rgba(0,0,0,0.3);
             border-radius: 5px;
             padding: 15px;
             border-left: 3px solid var(--gold);
         }
         
-        .team-name {
+        .user-name {
             color: var(--gold);
             font-weight: 700;
             margin-bottom: 5px;
         }
         
-        .team-members {
+        .user-details {
             margin-top: 10px;
         }
         
-        .team-member {
+        .user-detail {
             display: flex;
             justify-content: space-between;
             padding: 5px 0;
             border-bottom: 1px dashed rgba(255,255,255,0.1);
+        }
+        
+        .action-btns {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        
+        .action-btn {
+            padding: 5px 10px;
+            margin-left: 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
         }
         
         /* Staff Login Button */
@@ -476,6 +586,58 @@
             transform: scale(1.1);
         }
         
+        /* User Signup Button */
+        .user-signup-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .user-signup-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: scale(1.1);
+        }
+        
+        /* Message Box */
+        .message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            z-index: 1100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .message-box.show {
+            transform: translateX(0);
+        }
+        
+        .message-box.success {
+            background: var(--success);
+        }
+        
+        .message-box.error {
+            background: var(--danger);
+        }
+        
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .header {
@@ -500,7 +662,7 @@
                 margin: 30px auto;
             }
             
-            .registered-teams {
+            .registered-users {
                 grid-template-columns: 1fr;
             }
         }
@@ -533,6 +695,15 @@
             
             .main-content {
                 padding: 0 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-btn {
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -578,63 +749,167 @@
         </div>
     </footer>
     
+    <!-- User Signup Button -->
+    <div class="user-signup-btn" id="userSignupBtn">
+        <i class="fas fa-user-plus"></i>
+    </div>
+    
     <!-- Staff Login Button -->
     <div class="staff-login-btn" id="staffLoginBtn">
         <i class="fas fa-lock"></i>
     </div>
     
-    <!-- Staff Login Modal -->
-    <div class="modal" id="loginModal">
+    <!-- User Signup Modal -->
+    <div class="modal" id="signupModal">
         <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <h2>Staff Login</h2>
-            <form id="loginForm">
+            <span class="close-modal" id="closeSignupModal">&times;</span>
+            <h2>User Registration</h2>
+            <form id="signupForm">
                 <div class="form-group">
-                    <label for="username">Staff Name</label>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
                     <input type="text" id="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Access Code</label>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
                     <input type="password" id="password" required>
                 </div>
-                <button type="submit" class="login-btn">Login</button>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="form-btn cancel-btn" id="cancelSignup">Cancel</button>
+                    <button type="submit" class="form-btn login-btn">Register</button>
+                </div>
             </form>
         </div>
     </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <h2>Login</h2>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="staff">Staff Login</button>
+                <button class="tab-btn" data-tab="admin">Admin Login</button>
+            </div>
+            
+            <!-- Staff Login Form -->
+            <div class="tab-content active" id="staff-tab">
+                <form id="staffLoginForm">
+                    <div class="form-group">
+                        <label for="staffUsername">Staff Name</label>
+                        <input type="text" id="staffUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffPassword">Access Code</label>
+                        <input type="password" id="staffPassword" required>
+                    </div>
+                    <button type="submit" class="login-btn" style="width: 100%;">Login</button>
+                </form>
+            </div>
+            
+            <!-- Admin Login Form -->
+            <div class="tab-content" id="admin-tab">
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">Admin Username</label>
+                        <input type="text" id="adminUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <button type="submit" class="login-btn" style="width: 100%;">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Message Box -->
+    <div class="message-box" id="messageBox"></div>
     
     <!-- Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <div class="container">
             <div class="admin-header">
-                <h2 class="admin-title">Staff Control Panel</h2>
+                <h2 class="admin-title">Admin Control Panel</h2>
                 <button class="logout-btn" id="logoutBtn">Logout</button>
             </div>
             
             <div class="admin-section">
-                <h3>Registered Teams for Business War (30 March 2025)</h3>
-                <div class="registered-teams" id="registeredTeams">
-                    <!-- Teams will be loaded here -->
+                <h3>Registered Users</h3>
+                <div class="registered-users" id="registeredUsers">
+                    <!-- Users will be loaded here -->
                 </div>
             </div>
             
             <div class="admin-section">
-                <h3>Event Management</h3>
+                <h3>User Management</h3>
                 <div style="margin-top: 15px;">
-                    <button class="btn" style="margin: 5px;">Add New Event</button>
-                    <button class="btn" style="margin: 5px;">View All Registrations</button>
-                    <button class="btn" style="margin: 5px;">Download Team Data</button>
+                    <button class="btn btn-success" style="margin: 5px;" id="addUserBtn">Add New User</button>
+                    <button class="btn" style="margin: 5px;" id="refreshUsersBtn">Refresh List</button>
+                    <button class="btn" style="margin: 5px;" id="exportUsersBtn">Export User Data</button>
                 </div>
             </div>
             
             <div class="admin-section">
-                <h3>Event Location</h3>
-                <img src="img/wars/gwlocation.jpg" alt="Event Location" style="width: 100%; border-radius: 5px; margin-top: 10px;">
+                <h3>Server Statistics</h3>
+                <div style="margin-top: 15px;">
+                    <p>Total Registered Users: <span id="totalUsers">0</span></p>
+                    <p>Active Today: <span id="activeUsers">0</span></p>
+                    <p>Staff Members: <span id="staffCount">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Staff Panel -->
+    <div class="admin-panel" id="staffPanel">
+        <div class="container">
+            <div class="admin-header">
+                <h2 class="admin-title">Staff Control Panel</h2>
+                <button class="logout-btn" id="staffLogoutBtn">Logout</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>Registered Users</h3>
+                <div class="registered-users" id="staffRegisteredUsers">
+                    <!-- Users will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="admin-section">
+                <h3>User Management</h3>
+                <div style="margin-top: 15px;">
+                    <button class="btn" style="margin: 5px;" id="staffRefreshUsersBtn">Refresh List</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Staff credentials (in a real app, this would be server-side)
+        // Database simulation (in a real app, this would be server-side)
+        let usersDatabase = JSON.parse(localStorage.getItem('paradiseUsers')) || [];
+        let currentUser = null;
+        
+        // Admin credentials
+        const adminCredentials = {
+            'admin': { password: 'Admin@123', access: 'full' },
+            'superadmin': { password: 'Super@123', access: 'full' }
+        };
+        
+        // Staff credentials
         const staffCredentials = {
             'pan': { password: 'Xk9#pL23qW', access: 'full' },
             'zigana': { password: 'R7$mN45tYv', access: 'full' },
@@ -647,100 +922,406 @@
             'rt': { password: 'A1$pQ56oLz', access: 'full' },
             'bullet punjabi': { password: 'E4#tR23wSx', access: 'full' }
         };
-
-        // Sample team data (in real app, this would come from a database)
-        const sampleTeams = [
-            {
-                name: "Bounty Hunters",
-                event: "Business War",
-                leader: "Samurai",
-                members: ["Samurai", "Ghost", "Rocket", "Viper", "Shadow", "Blade", "Phantom", "Reaper", "Wraith", "Specter", "Onyx"]
-            },
-            {
-                name: "Raees Gang",
-                event: "Business War",
-                leader: "Rampage",
-                members: ["Rampage", "Bullet", "Storm", "Titan", "Havoc", "Fury", "Rogue", "Vandal", "Chaos", "Anarchy", "Mayhem"]
-            },
-            {
-                name: "Yakuza",
-                event: "Business War",
-                leader: "Rocket",
-                members: ["Rocket", "Dragon", "Ronin", "Shogun", "Ninja", "Samurai", "Tora", "Kitsune", "Ryū", "Kenshi", "Bushido"]
-            }
-        ];
-
+        
+        // Sample user data
+        if (usersDatabase.length === 0) {
+            usersDatabase = [
+                {
+                    id: 1,
+                    fullName: "John Doe",
+                    username: "johndoe",
+                    email: "john@example.com",
+                    password: "password123",
+                    role: "user",
+                    registeredAt: new Date().toISOString(),
+                    lastLogin: null
+                },
+                {
+                    id: 2,
+                    fullName: "Jane Smith",
+                    username: "janesmith",
+                    email: "jane@example.com",
+                    password: "password123",
+                    role: "user",
+                    registeredAt: new Date().toISOString(),
+                    lastLogin: null
+                }
+            ];
+            localStorage.setItem('paradiseUsers', JSON.stringify(usersDatabase));
+        }
+        
         // DOM Elements
+        const userSignupBtn = document.getElementById('userSignupBtn');
         const staffLoginBtn = document.getElementById('staffLoginBtn');
+        const signupModal = document.getElementById('signupModal');
         const loginModal = document.getElementById('loginModal');
-        const closeModal = document.getElementById('closeModal');
-        const loginForm = document.getElementById('loginForm');
+        const closeSignupModal = document.getElementById('closeSignupModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const cancelSignup = document.getElementById('cancelSignup');
+        const signupForm = document.getElementById('signupForm');
+        const staffLoginForm = document.getElementById('staffLoginForm');
+        const adminLoginForm = document.getElementById('adminLoginForm');
         const adminPanel = document.getElementById('adminPanel');
+        const staffPanel = document.getElementById('staffPanel');
         const logoutBtn = document.getElementById('logoutBtn');
-        const registeredTeams = document.getElementById('registeredTeams');
-
+        const staffLogoutBtn = document.getElementById('staffLogoutBtn');
+        const registeredUsers = document.getElementById('registeredUsers');
+        const staffRegisteredUsers = document.getElementById('staffRegisteredUsers');
+        const addUserBtn = document.getElementById('addUserBtn');
+        const refreshUsersBtn = document.getElementById('refreshUsersBtn');
+        const staffRefreshUsersBtn = document.getElementById('staffRefreshUsersBtn');
+        const exportUsersBtn = document.getElementById('exportUsersBtn');
+        const totalUsers = document.getElementById('totalUsers');
+        const activeUsers = document.getElementById('activeUsers');
+        const staffCount = document.getElementById('staffCount');
+        const messageBox = document.getElementById('messageBox');
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Show signup modal
+        userSignupBtn.addEventListener('click', () => {
+            signupModal.style.display = 'flex';
+        });
+        
         // Show login modal
         staffLoginBtn.addEventListener('click', () => {
             loginModal.style.display = 'flex';
         });
-
-        // Close modal
-        closeModal.addEventListener('click', () => {
+        
+        // Close signup modal
+        closeSignupModal.addEventListener('click', () => {
+            signupModal.style.display = 'none';
+        });
+        
+        // Close login modal
+        closeLoginModal.addEventListener('click', () => {
             loginModal.style.display = 'none';
         });
-
-        // Login form submission
-        loginForm.addEventListener('submit', (e) => {
+        
+        // Cancel signup
+        cancelSignup.addEventListener('click', () => {
+            signupModal.style.display = 'none';
+        });
+        
+        // Tab switching
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Update active tab button
+                tabBtns.forEach(tb => tb.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update active tab content
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // User signup form submission
+        signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const username = document.getElementById('username').value.toLowerCase();
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const username = document.getElementById('username').value.trim().toLowerCase();
+            const email = document.getElementById('email').value.trim().toLowerCase();
             const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validate inputs
+            if (password !== confirmPassword) {
+                showMessage('Passwords do not match!', 'error');
+                return;
+            }
+            
+            if (usersDatabase.some(user => user.username === username)) {
+                showMessage('Username already exists!', 'error');
+                return;
+            }
+            
+            if (usersDatabase.some(user => user.email === email)) {
+                showMessage('Email already registered!', 'error');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: usersDatabase.length > 0 ? Math.max(...usersDatabase.map(u => u.id)) + 1 : 1,
+                fullName,
+                username,
+                email,
+                password, // In a real app, this would be hashed
+                role: 'user',
+                registeredAt: new Date().toISOString(),
+                lastLogin: null
+            };
+            
+            usersDatabase.push(newUser);
+            localStorage.setItem('paradiseUsers', JSON.stringify(usersDatabase));
+            
+            // Clear form
+            signupForm.reset();
+            
+            // Show success message
+            showMessage('Registration successful! Welcome to Paradise Roleplay.', 'success');
+            
+            // Close modal after delay
+            setTimeout(() => {
+                signupModal.style.display = 'none';
+            }, 1500);
+        });
+        
+        // Staff login form submission
+        staffLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('staffUsername').value.trim().toLowerCase();
+            const password = document.getElementById('staffPassword').value;
             
             if (staffCredentials[username] && staffCredentials[username].password === password) {
+                currentUser = {
+                    username,
+                    role: 'staff',
+                    access: staffCredentials[username].access
+                };
+                
                 loginModal.style.display = 'none';
-                adminPanel.style.display = 'block';
-                loadTeams();
-                document.getElementById('password').value = '';
+                staffPanel.style.display = 'block';
+                loadStaffUsers();
+                document.getElementById('staffPassword').value = '';
+                
+                showMessage(`Welcome back, ${username}!`, 'success');
             } else {
-                alert('Invalid credentials!');
+                showMessage('Invalid staff credentials!', 'error');
             }
         });
-
-        // Logout
+        
+        // Admin login form submission
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value.trim().toLowerCase();
+            const password = document.getElementById('adminPassword').value;
+            
+            if (adminCredentials[username] && adminCredentials[username].password === password) {
+                currentUser = {
+                    username,
+                    role: 'admin',
+                    access: adminCredentials[username].access
+                };
+                
+                loginModal.style.display = 'none';
+                adminPanel.style.display = 'block';
+                loadAdminUsers();
+                updateStats();
+                document.getElementById('adminPassword').value = '';
+                
+                showMessage(`Welcome back, Admin ${username}!`, 'success');
+            } else {
+                showMessage('Invalid admin credentials!', 'error');
+            }
+        });
+        
+        // Logout from admin panel
         logoutBtn.addEventListener('click', () => {
             adminPanel.style.display = 'none';
-            document.getElementById('username').value = '';
+            currentUser = null;
+            showMessage('Logged out successfully.', 'success');
         });
-
-        // Load teams into admin panel
-        function loadTeams() {
-            registeredTeams.innerHTML = '';
+        
+        // Logout from staff panel
+        staffLogoutBtn.addEventListener('click', () => {
+            staffPanel.style.display = 'none';
+            currentUser = null;
+            showMessage('Logged out successfully.', 'success');
+        });
+        
+        // Refresh users in admin panel
+        refreshUsersBtn.addEventListener('click', () => {
+            loadAdminUsers();
+            updateStats();
+            showMessage('User list refreshed.', 'success');
+        });
+        
+        // Refresh users in staff panel
+        staffRefreshUsersBtn.addEventListener('click', () => {
+            loadStaffUsers();
+            showMessage('User list refreshed.', 'success');
+        });
+        
+        // Export user data
+        exportUsersBtn.addEventListener('click', () => {
+            const dataStr = JSON.stringify(usersDatabase, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
             
-            sampleTeams.forEach(team => {
-                const teamCard = document.createElement('div');
-                teamCard.className = 'team-card';
+            const exportFileDefaultName = `paradise-users-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showMessage('User data exported successfully.', 'success');
+        });
+        
+        // Add new user from admin panel
+        addUserBtn.addEventListener('click', () => {
+            const fullName = prompt("Enter user's full name:");
+            if (!fullName) return;
+            
+            const username = prompt("Enter username:");
+            if (!username) return;
+            
+            if (usersDatabase.some(user => user.username === username.toLowerCase())) {
+                showMessage('Username already exists!', 'error');
+                return;
+            }
+            
+            const email = prompt("Enter email:");
+            if (!email) return;
+            
+            if (usersDatabase.some(user => user.email === email.toLowerCase())) {
+                showMessage('Email already registered!', 'error');
+                return;
+            }
+            
+            const password = prompt("Set password:");
+            if (!password) return;
+            
+            const role = prompt("Set role (user/staff):", "user");
+            if (!['user', 'staff'].includes(role.toLowerCase())) {
+                showMessage('Invalid role! Must be "user" or "staff".', 'error');
+                return;
+            }
+            
+            const newUser = {
+                id: usersDatabase.length > 0 ? Math.max(...usersDatabase.map(u => u.id)) + 1 : 1,
+                fullName,
+                username: username.toLowerCase(),
+                email: email.toLowerCase(),
+                password, // In a real app, this would be hashed
+                role: role.toLowerCase(),
+                registeredAt: new Date().toISOString(),
+                lastLogin: null
+            };
+            
+            usersDatabase.push(newUser);
+            localStorage.setItem('paradiseUsers', JSON.stringify(usersDatabase));
+            loadAdminUsers();
+            updateStats();
+            
+            showMessage(`User ${username} added successfully as ${role}.`, 'success');
+        });
+        
+        // Load users into admin panel
+        function loadAdminUsers() {
+            registeredUsers.innerHTML = '';
+            
+            usersDatabase.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
                 
-                let membersHTML = '';
-                team.members.forEach(member => {
-                    membersHTML += `
-                        <div class="team-member">
-                            <span>${member}</span>
-                            ${member === team.leader ? '<span style="color: var(--gold);">(Leader)</span>' : ''}
+                userCard.innerHTML = `
+                    <div class="user-name">${user.fullName} <small>(${user.username})</small></div>
+                    <div><small>Role: <span style="color: ${user.role === 'admin' ? 'var(--gold)' : user.role === 'staff' ? '#4CAF50' : '#2196F3'}">${user.role.toUpperCase()}</span></small></div>
+                    <div class="user-details">
+                        <div class="user-detail">
+                            <span>Email:</span>
+                            <span>${user.email}</span>
                         </div>
-                    `;
-                });
-                
-                teamCard.innerHTML = `
-                    <div class="team-name">${team.name}</div>
-                    <div><small>Event: ${team.event}</small></div>
-                    <div class="team-members">${membersHTML}</div>
+                        <div class="user-detail">
+                            <span>Registered:</span>
+                            <span>${new Date(user.registeredAt).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                    <div class="action-btns">
+                        <button class="action-btn" style="background: var(--danger);" onclick="deleteUser(${user.id})">Delete</button>
+                        ${user.role !== 'admin' ? `<button class="action-btn" style="background: var(--success);" onclick="promoteUser(${user.id})">Promote</button>` : ''}
+                    </div>
                 `;
                 
-                registeredTeams.appendChild(teamCard);
+                registeredUsers.appendChild(userCard);
             });
         }
-
-        // Close modal when clicking outside
+        
+        // Load users into staff panel (limited view)
+        function loadStaffUsers() {
+            staffRegisteredUsers.innerHTML = '';
+            
+            usersDatabase.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
+                
+                userCard.innerHTML = `
+                    <div class="user-name">${user.fullName} <small>(${user.username})</small></div>
+                    <div><small>Role: <span style="color: ${user.role === 'admin' ? 'var(--gold)' : user.role === 'staff' ? '#4CAF50' : '#2196F3'}">${user.role.toUpperCase()}</span></small></div>
+                    <div class="user-details">
+                        <div class="user-detail">
+                            <span>Registered:</span>
+                            <span>${new Date(user.registeredAt).toLocaleDateString()}</span>
+                        </div>
+                        <div class="user-detail">
+                            <span>Last Login:</span>
+                            <span>${user.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Never'}</span>
+                        </div>
+                    </div>
+                `;
+                
+                staffRegisteredUsers.appendChild(userCard);
+            });
+        }
+        
+        // Update statistics in admin panel
+        function updateStats() {
+            totalUsers.textContent = usersDatabase.length;
+            activeUsers.textContent = usersDatabase.filter(u => u.lastLogin && new Date(u.lastLogin).toDateString() === new Date().toDateString()).length;
+            staffCount.textContent = usersDatabase.filter(u => u.role === 'staff' || u.role === 'admin').length;
+        }
+        
+        // Delete user (admin only)
+        window.deleteUser = function(id) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+            
+            usersDatabase = usersDatabase.filter(user => user.id !== id);
+            localStorage.setItem('paradiseUsers', JSON.stringify(usersDatabase));
+            loadAdminUsers();
+            updateStats();
+            
+            showMessage('User deleted successfully.', 'success');
+        };
+        
+        // Promote user (admin only)
+        window.promoteUser = function(id) {
+            const user = usersDatabase.find(u => u.id === id);
+            if (!user) return;
+            
+            const newRole = user.role === 'user' ? 'staff' : 'admin';
+            
+            if (confirm(`Promote ${user.username} to ${newRole.toUpperCase()}?`)) {
+                user.role = newRole;
+                localStorage.setItem('paradiseUsers', JSON.stringify(usersDatabase));
+                loadAdminUsers();
+                updateStats();
+                
+                showMessage(`User ${user.username} promoted to ${newRole}.`, 'success');
+            }
+        };
+        
+        // Show message
+        function showMessage(message, type) {
+            messageBox.textContent = message;
+            messageBox.className = `message-box ${type} show`;
+            
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Close modals when clicking outside
         window.addEventListener('click', (e) => {
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
             if (e.target === loginModal) {
                 loginModal.style.display = 'none';
             }
