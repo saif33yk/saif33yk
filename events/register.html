@@ -3,94 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Team | Paradise RP</title>
+    <title>Team Registration | Paradise Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reuse all CSS from index.html */
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --black: #121212;
+            --glass: rgba(18, 18, 18, 0.85);
+            --glass-light: rgba(255, 255, 255, 0.1);
+            --success: #4CAF50;
+            --danger: #F44336;
+        }
+        
         /* Registration specific styles */
         .registration-form {
             max-width: 800px;
-            margin: 0 auto;
-            background: rgba(44, 62, 80, 0.8);
-            padding: 30px;
+            margin: 40px auto;
+            background: var(--glass);
+            padding: 40px;
             border-radius: 10px;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
-        .member-list {
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--dark-gold);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .members-list {
             margin-top: 15px;
         }
+        
+        .member-input {
+            margin-bottom: 10px;
+        }
+        
+        .add-member-btn {
+            background: rgba(255,215,0,0.2);
+            color: var(--gold);
+            border: 1px dashed var(--gold);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .add-member-btn:hover {
+            background: rgba(255,215,0,0.3);
+        }
+        
+        .add-member-btn i {
+            margin-right: 8px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Reuse all other styles from index.html */
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="../images/logo.png" alt="Logo" class="logo">
-            <nav>
-                <a href="../index.html">Home</a>
-                <a href="../events.html">Events</a>
-                <a href="register.html" class="active">Register</a>
-            </nav>
-        </header>
-
-        <main>
-            <form id="teamRegistration" class="registration-form">
-                <h2><i class="fas fa-users"></i> Register Your Team</h2>
-                
+    <!-- Header with Banner -->
+    <header class="header">
+        <div class="header-content">
+            <h1>TEAM REGISTRATION</h1>
+            <p>Register your team for upcoming Paradise Roleplay events</p>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="../events.html" class="nav-btn"><i class="fas fa-calendar-alt"></i> Events</a>
+        <a href="register.html" class="nav-btn active"><i class="fas fa-user-plus"></i> Register</a>
+        <a href="staff/login.html" class="nav-btn"><i class="fas fa-lock"></i> Staff</a>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="registration-form">
+            <h2><i class="fas fa-users"></i> Register Your Team</h2>
+            <p>Fill out the form below to register your team for upcoming events</p>
+            
+            <form id="teamRegistrationForm">
                 <div class="form-group">
-                    <label>Event:</label>
-                    <select id="eventSelect">
-                        <option value="business-war">Business War</option>
-                        <option value="street-race">Street Race Championship</option>
+                    <label for="eventSelect">Select Event</label>
+                    <select id="eventSelect" required>
+                        <option value="">-- Select an Event --</option>
+                        <option value="business-war">Business War (June 15-22)</option>
+                        <option value="street-race">Street Race Championship (July 1-7)</option>
+                        <option value="gang-wars">Gang Wars (July 15-22)</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label>Team Name:</label>
-                    <input type="text" id="teamName" required>
+                    <label for="teamName">Team Name</label>
+                    <input type="text" id="teamName" required placeholder="Enter your team name">
                 </div>
                 
                 <div class="form-group">
-                    <label>Team Leader:</label>
-                    <input type="text" id="teamLeader" required>
+                    <label for="teamLeader">Team Leader</label>
+                    <input type="text" id="teamLeader" required placeholder="Your in-game name">
                 </div>
                 
                 <div class="form-group">
-                    <label>Team Members (Minimum 4):</label>
-                    <div class="member-list" id="memberList">
-                        <input type="text" class="member-input" required>
-                        <input type="text" class="member-input" required>
-                        <input type="text" class="member-input" required>
-                        <input type="text" class="member-input" required>
+                    <label>Team Members (Minimum 4)</label>
+                    <div class="members-list" id="membersList">
+                        <input type="text" class="member-input" required placeholder="Member 1">
+                        <input type="text" class="member-input" required placeholder="Member 2">
+                        <input type="text" class="member-input" required placeholder="Member 3">
+                        <input type="text" class="member-input" required placeholder="Member 4">
                     </div>
-                    <button type="button" onclick="addMember()" class="btn">
+                    <button type="button" class="add-member-btn" id="addMemberBtn">
                         <i class="fas fa-plus"></i> Add Member
                     </button>
                 </div>
                 
-                <button type="submit" class="btn">
-                    <i class="fas fa-check"></i> Submit Registration
+                <div class="form-group">
+                    <label for="teamContact">Contact Number</label>
+                    <input type="tel" id="teamContact" required placeholder="WhatsApp number for updates">
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Registration
                 </button>
             </form>
-        </main>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Paradise Roleplay Pakistan. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/prpk" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@paradiseroleplaypk" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/theparadisehug/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    
+    <!-- Staff Login Button -->
+    <div class="staff-login-btn" id="staffLoginBtn">
+        <i class="fas fa-lock"></i>
     </div>
-
+    
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeSuccessModal">&times;</span>
+            <h2><i class="fas fa-check-circle" style="color: var(--success);"></i> Registration Successful!</h2>
+            <p>Your team has been successfully registered for the event.</p>
+            <p>We'll contact you soon with further details.</p>
+            <button class="btn" style="width: 100%; margin-top: 20px;" id="successOkBtn">OK</button>
+        </div>
+    </div>
+    
     <script>
-        let memberCount = 4;
-        
-        function addMember() {
-            memberCount++;
+        // Add member functionality
+        document.getElementById('addMemberBtn').addEventListener('click', function() {
+            const membersList = document.getElementById('membersList');
+            const memberCount = membersList.children.length + 1;
             const newInput = document.createElement('input');
             newInput.type = 'text';
             newInput.className = 'member-input';
             newInput.required = true;
-            document.getElementById('memberList').appendChild(newInput);
-        }
+            newInput.placeholder = `Member ${memberCount}`;
+            membersList.appendChild(newInput);
+        });
         
-        document.getElementById('teamRegistration').onsubmit = function(e) {
+        // Form submission
+        document.getElementById('teamRegistrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Team registration submitted successfully!');
-            window.location.href = '../events.html';
-        };
+            document.getElementById('successModal').style.display = 'flex';
+        });
+        
+        // Close success modal
+        document.getElementById('closeSuccessModal').addEventListener('click', function() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('teamRegistrationForm').reset();
+        });
+        
+        document.getElementById('successOkBtn').addEventListener('click', function() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('teamRegistrationForm').reset();
+        });
+        
+        // Include other JavaScript from index.html as needed
     </script>
 </body>
 </html>
