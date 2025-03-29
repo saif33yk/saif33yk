@@ -26,6 +26,7 @@
             color: white;
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -39,12 +40,28 @@
             padding: 40px 0;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/gangs-banner.jpg') center/cover;
             border-bottom: 4px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(255, 215, 0, 0.1) 70%);
+            animation: pulse 8s infinite alternate;
+            z-index: 0;
         }
         
         h1 {
             font-size: 2.5rem;
             color: var(--gold);
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            position: relative;
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
         .gangs-grid {
@@ -59,13 +76,27 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             border-left: 4px solid var(--gold);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
         }
         
+        .gang-card:nth-child(1) { animation-delay: 0.1s; }
+        .gang-card:nth-child(2) { animation-delay: 0.2s; }
+        .gang-card:nth-child(3) { animation-delay: 0.3s; }
+        .gang-card:nth-child(4) { animation-delay: 0.4s; }
+        .gang-card:nth-child(5) { animation-delay: 0.5s; }
+        .gang-card:nth-child(6) { animation-delay: 0.6s; }
+        .gang-card:nth-child(7) { animation-delay: 0.7s; }
+        .gang-card:nth-child(8) { animation-delay: 0.8s; }
+        .gang-card:nth-child(9) { animation-delay: 0.9s; }
+        
         .gang-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2), 0 0 20px rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--gold);
         }
         
         .gang-image {
@@ -73,6 +104,11 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .gang-card:hover .gang-image {
+            transform: scale(1.05);
         }
         
         .gang-image::after {
@@ -87,6 +123,24 @@
         
         .gang-content {
             padding: 20px;
+            position: relative;
+        }
+        
+        .gang-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -4px;
+            height: 100%;
+            width: 4px;
+            background: var(--gold);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+        
+        .gang-card:hover .gang-content::before {
+            transform: scaleY(1);
         }
         
         .gang-name {
@@ -94,6 +148,12 @@
             font-size: 1.5rem;
             margin-bottom: 10px;
             font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .gang-card:hover .gang-name {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
         }
         
         .gang-founder {
@@ -106,11 +166,21 @@
         
         .gang-founder i {
             margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .gang-card:hover .gang-founder i {
+            transform: rotate(10deg);
         }
         
         .gang-description {
             margin-bottom: 15px;
             min-height: 80px;
+            transition: all 0.3s ease;
+        }
+        
+        .gang-card:hover .gang-description {
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .gang-strengths {
@@ -129,6 +199,67 @@
             margin-bottom: 8px;
             font-size: 0.8rem;
             border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .gang-card:hover .strength-tag {
+            background: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+        
+        /* Animations */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Floating animation for header text */
+        header p {
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Gold particle effects */
+        .gold-particle {
+            position: absolute;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
         }
         
         @media (max-width: 768px) {
@@ -307,5 +438,41 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Create gold particles on header hover
+        document.querySelector('header').addEventListener('mousemove', function(e) {
+            const particles = document.createElement('div');
+            particles.className = 'gold-particle';
+            
+            const size = Math.random() * 5 + 2;
+            particles.style.width = `${size}px`;
+            particles.style.height = `${size}px`;
+            
+            particles.style.left = `${e.clientX}px`;
+            particles.style.top = `${e.clientY}px`;
+            
+            document.body.appendChild(particles);
+            
+            // Animate particle
+            const animation = particles.animate([
+                { opacity: 0.8, transform: 'translate(0, 0)' },
+                { opacity: 0, transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` }
+            ], {
+                duration: 1000 + Math.random() * 1000,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+            
+            animation.onfinish = () => particles.remove();
+        });
+        
+        // Add slight delay to gang cards for staggered animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.gang-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
 </body>
 </html>
