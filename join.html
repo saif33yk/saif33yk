@@ -196,6 +196,8 @@
             transition: all 0.3s ease;
             animation: stepAppear 0.5s ease-out forwards;
             opacity: 0;
+            position: relative;
+            overflow: hidden;
         }
 
         @keyframes stepAppear {
@@ -278,9 +280,9 @@
         /* Buttons */
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            background: var(--gold);
             color: var(--black);
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 30px;
             font-weight: 700;
             text-decoration: none;
@@ -288,25 +290,25 @@
             transition: all 0.3s;
             text-align: center;
             font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
+            border: none;
         }
 
-        .btn::after {
+        .btn::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 50%;
-            height: 200%;
-            background: rgba(255,255,255,0.2);
-            transform: rotate(30deg);
-            transition: all 0.5s;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
 
-        .btn:hover::after {
-            left: 110%;
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover {
@@ -315,15 +317,20 @@
         }
         
         .btn-discord {
-            background: linear-gradient(135deg, #5865F2, #4752C4);
+            background: #5865F2;
             color: white;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+        }
+
+        .btn-discord:hover {
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.5);
         }
         
         .note {
             color: var(--gold);
             font-style: italic;
             margin: 20px 0;
-            padding-left: 15px;
+            padding-left: 20px;
             border-left: 3px solid var(--gold);
             font-size: clamp(0.85rem, 3vw, 1rem);
             animation: borderPulse 4s infinite;
@@ -334,13 +341,52 @@
             50% { border-left-color: var(--dark-gold); }
             100% { border-left-color: var(--gold); }
         }
+
+        /* List items styling */
+        .step-box ul, .step-box ol {
+            padding-left: 20px;
+            margin-left: 0;
+        }
+
+        .step-box li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .step-box ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--gold);
+            border-radius: 50%;
+        }
+
+        .step-box ol {
+            counter-reset: step-counter;
+        }
+
+        .step-box ol li {
+            counter-increment: step-counter;
+        }
+
+        .step-box ol li::before {
+            content: counter(step-counter) ".";
+            color: var(--gold);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
         
         /* Return Home Button */
         .return-home {
             display: block;
             width: max-content;
             margin: 20px auto 40px;
-            padding: 10px 25px;
+            padding: 12px 25px;
             background: var(--gold);
             color: var(--black);
             text-decoration: none;
@@ -349,6 +395,7 @@
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
             animation: pulse 2s infinite;
+            border: none;
         }
         
         .return-home:hover {
@@ -374,6 +421,11 @@
                 padding: 15px;
                 margin: 20px 15px;
             }
+
+            .btn, .return-home {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -396,6 +448,11 @@
             
             .ip-box {
                 padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+
+            .btn, .return-home {
+                padding: 8px 15px;
                 font-size: 0.8rem;
             }
         }
