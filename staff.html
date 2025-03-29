@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
         
-        /* Header - Completely Different Animation from Gangs */
+        /* Header - New Animation */
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/staff-banner.jpg') center/cover;
             text-align: center;
@@ -54,21 +54,23 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 48%, var(--gold) 49%, var(--gold) 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, var(--gold) 49%, var(--gold) 51%, transparent 52%);
-            background-size: 1em 1em;
-            opacity: 0.1;
-            animation: gridAnimation 8s linear infinite;
+            background: linear-gradient(
+                135deg,
+                rgba(255,215,0,0.05) 0%,
+                rgba(255,215,0,0) 50%,
+                rgba(255,215,0,0.05) 100%
+            );
+            animation: diagonalFlow 15s linear infinite;
             z-index: 0;
+            background-size: 200% 200%;
         }
         
-        @keyframes gridAnimation {
+        @keyframes diagonalFlow {
             0% {
-                background-position: 0 0;
+                background-position: 0% 0%;
             }
             100% {
-                background-position: 1em 1em;
+                background-position: 100% 100%;
             }
         }
         
@@ -185,7 +187,7 @@
             transform: rotate(10deg);
         }
         
-        /* Staff Container */
+        /* Staff Container - New Layout */
         .staff-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -246,14 +248,15 @@
             }
         }
         
+        /* New Card Design */
         .staff-card {
             background: var(--glass);
-            border-radius: 8px;
+            border-radius: 12px;
             width: clamp(160px, 30vw, 240px);
             padding: 20px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-top: 3px solid var(--gold);
+            border: 1px solid rgba(255,215,0,0.2);
             backdrop-filter: blur(5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             position: relative;
@@ -267,32 +270,32 @@
         .staff-card:nth-child(2) { animation-delay: 0.2s; }
         .staff-card:nth-child(3) { animation-delay: 0.3s; }
         .staff-card:nth-child(4) { animation-delay: 0.4s; }
-        .staff-card:nth-child(5) { animation-delay: 0.5s; }
         
         .staff-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 70%);
-            animation: cardGlow 6s infinite linear;
-            z-index: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            animation: progressBar 3s linear infinite;
+            background-size: 200% 100%;
         }
         
-        @keyframes cardGlow {
+        @keyframes progressBar {
             0% {
-                transform: rotate(0deg) translate(-30%, -30%);
+                background-position: 0% 0;
             }
             100% {
-                transform: rotate(360deg) translate(-30%, -30%);
+                background-position: 200% 0;
             }
         }
         
         .staff-card:hover {
             transform: translateY(-10px) scale(1.03);
             box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+            border-color: rgba(255,215,0,0.5);
         }
         
         .staff-card img {
@@ -306,6 +309,7 @@
             position: relative;
             z-index: 1;
             transition: all 0.3s ease;
+            background: var(--black);
         }
         
         .staff-card:hover img {
@@ -339,53 +343,57 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Owner Card - Completely Different Style */
+        /* Completely New Owner Card Design */
         .owner-card {
-            width: clamp(220px, 60vw, 320px);
-            border-top: 4px solid var(--dark-gold);
+            width: clamp(240px, 65vw, 340px);
+            border: 2px solid transparent;
+            border-radius: 16px;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
             position: relative;
-            overflow: visible;
-            animation: ownerFloat 4s ease-in-out infinite;
+            overflow: hidden;
             background: linear-gradient(135deg, rgba(18, 18, 18, 0.9), rgba(36, 36, 36, 0.9));
             z-index: 2;
+            animation: ownerCardGlow 4s infinite alternate;
+            padding: 25px;
+        }
+        
+        @keyframes ownerCardGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+                border-color: rgba(255, 215, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
         }
         
         .owner-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--gold), var(--dark-gold), var(--gold));
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                var(--gold),
+                transparent
+            );
+            animation: rotateBorder 4s linear infinite;
             z-index: -1;
-            border-radius: 10px;
-            animation: ownerBorder 3s linear infinite;
-            background-size: 200% 200%;
         }
         
-        @keyframes ownerFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        @keyframes ownerBorder {
+        @keyframes rotateBorder {
             0% {
-                background-position: 0% 50%;
-                opacity: 0.8;
-            }
-            50% {
-                background-position: 100% 50%;
-                opacity: 1;
+                transform: rotate(0deg);
             }
             100% {
-                background-position: 0% 50%;
-                opacity: 0.8;
+                transform: rotate(360deg);
             }
         }
         
@@ -393,8 +401,9 @@
             width: clamp(100px, 25vw, 150px);
             height: clamp(100px, 25vw, 150px);
             border: 4px solid var(--dark-gold);
-            animation: ownerPulse 3s ease-in-out infinite;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: ownerPulse 3s ease-in-out infinite;
+            background: var(--black);
         }
         
         @keyframes ownerPulse {
@@ -406,6 +415,16 @@
                 transform: scale(1.05);
                 box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
             }
+        }
+        
+        .owner-card .staff-role {
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            margin-top: 10px;
+        }
+        
+        .owner-card .staff-name {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: 600;
         }
         
         /* Buttons */
@@ -511,17 +530,6 @@
         .social-links a:hover {
             color: var(--gold);
             transform: translateY(-3px) scale(1.2);
-        }
-        
-        /* Gold Particles - Different from Gangs */
-        .gold-particle {
-            position: absolute;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 10;
-            filter: blur(1px);
         }
         
         /* Responsive */
@@ -751,34 +759,6 @@
     </footer>
 
     <script>
-        // Create gold particles on header hover - Different pattern from Gangs
-        document.querySelector('header').addEventListener('mousemove', function(e) {
-            for (let i = 0; i < 3; i++) {
-                const particles = document.createElement('div');
-                particles.className = 'gold-particle';
-                
-                const size = Math.random() * 4 + 1;
-                particles.style.width = `${size}px`;
-                particles.style.height = `${size}px`;
-                
-                particles.style.left = `${e.clientX + (Math.random() * 20 - 10)}px`;
-                particles.style.top = `${e.clientY + (Math.random() * 20 - 10)}px`;
-                
-                document.body.appendChild(particles);
-                
-                // Animate particle
-                const animation = particles.animate([
-                    { opacity: 0.8, transform: 'translate(0, 0) scale(1)' },
-                    { opacity: 0, transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0.5)` }
-                ], {
-                    duration: 800 + Math.random() * 800,
-                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-                });
-                
-                animation.onfinish = () => particles.remove();
-            }
-        });
-        
         // Stagger animations for staff cards
         document.addEventListener('DOMContentLoaded', () => {
             const tiers = document.querySelectorAll('.staff-tier');
