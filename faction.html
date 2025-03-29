@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factions of Paradise - Paradise Roleplay Pakistan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -24,14 +24,17 @@
             --lime: #85BB49;
             --dark-green: #5CAE3C;
             --black: #121212;
+            --darker-black: #0a0a0a;
             --glass: rgba(18, 18, 18, 0.9);
+            --gold: #FFD700;
         }
         
         body {
-            background: var(--black);
+            background: var(--darker-black);
             color: white;
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
         
         .container {
@@ -42,17 +45,104 @@
         
         header {
             text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/factions-banner.jpg') center/cover;
+            padding: 80px 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/factions-banner.jpg') center/cover;
             border-bottom: 4px solid var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,102,204,0.1) 0%, rgba(0,0,0,0) 70%);
+            animation: pulse 8s infinite alternate;
+            z-index: 0;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
         }
         
         h1 {
-            font-size: 2.5rem;
-            color: white;
-            text-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(90deg, #FFFFFF, #AAAAAA, #FFFFFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            position: relative;
+            display: inline-block;
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                             0 0 20px rgba(255, 255, 255, 0.2),
+                             0 0 30px rgba(0, 102, 204, 0.3);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
+                             0 0 25px rgba(255, 255, 255, 0.4),
+                             0 0 35px rgba(0, 102, 204, 0.5),
+                             0 0 45px rgba(0, 102, 204, 0.4);
+            }
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+        
+        header p::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--blue);
+            margin: 20px auto;
+            animation: lineGrow 1.5s ease-out;
+        }
+        
+        @keyframes lineGrow {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+        
+        /* Rest of your existing CSS remains the same */
         .factions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -114,6 +204,7 @@
             font-size: 1.5rem;
             margin-bottom: 10px;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .lspd .faction-name {
@@ -137,6 +228,7 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            font-family: 'Poppins', sans-serif;
         }
         
         .lspd .faction-leaders {
@@ -162,6 +254,8 @@
         .faction-description {
             margin-bottom: 15px;
             min-height: 80px;
+            font-weight: 300;
+            line-height: 1.7;
         }
         
         .faction-units {
@@ -175,6 +269,7 @@
         .unit-name {
             font-weight: 600;
             margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .lspd .unit-name {
@@ -196,6 +291,7 @@
         .unit-description {
             font-size: 0.9rem;
             margin-bottom: 10px;
+            font-weight: 300;
         }
         
         .faction-strengths {
@@ -211,6 +307,7 @@
             margin-right: 8px;
             margin-bottom: 8px;
             font-size: 0.8rem;
+            font-family: 'Poppins', sans-serif;
         }
         
         .lspd .strength-tag {
@@ -240,27 +337,90 @@
         .join-section {
             text-align: center;
             margin: 50px 0;
-            padding: 30px;
+            padding: 40px;
             background: var(--glass);
             border-radius: 10px;
             border-top: 4px solid var(--blue);
             border-bottom: 4px solid var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .join-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                          rgba(0,102,204,0.1) 0%, 
+                          rgba(0,102,204,0.05) 50%, 
+                          rgba(0,102,204,0.1) 100%);
+            z-index: 0;
+            animation: gradientFlow 6s ease infinite;
+            background-size: 200% 100%;
+        }
+        
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         .join-section h2 {
             font-size: 2rem;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+        }
+        
+        .join-section p {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            font-weight: 300;
         }
         
         .join-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 15px 40px;
             background: var(--blue);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
             transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow: hidden;
+        }
+        
+        .join-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                          transparent, 
+                          rgba(255,255,255,0.2), 
+                          transparent);
+            transition: 0.5s;
         }
         
         .join-btn:hover {
@@ -269,30 +429,39 @@
             box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
         }
         
+        .join-btn:hover::before {
+            left: 100%;
+        }
+        
         @media (max-width: 768px) {
             .factions-grid {
                 grid-template-columns: 1fr;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            header {
+                padding: 60px 0;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
+        <div class="header-content">
             <h1>Factions of Paradise</h1>
-            <p>The law enforcement and essential services that keep the city running</p>
+            <p>The pillars of order and service in a city of chaos and opportunity</p>
         </div>
     </header>
     
     <div class="container">
+        <!-- Rest of your existing HTML content remains the same -->
         <div class="factions-grid">
             <!-- LSPD -->
             <div class="faction-card lspd">
-                <div class="faction-image" style="background-image: url('img/faction/lspd.png');"></div>
+                <div class="faction-image" style="background-image: url('img/lspd.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Los Santos Police Department</h3>
                     <p class="faction-leaders"><i class="fas fa-user-shield"></i> Chiefs: Janjua & Zigana</p>
@@ -309,8 +478,8 @@
                             <p class="unit-description">Quick Response Force specialists excel in negotiations and RP-based policing, providing rapid deployment to critical incidents.</p>
                         </div>
                         <div class="unit">
-                            <h4 class="unit-name">Piffers Unit</h4>
-                            <p class="unit-description">Piffers Unit handle joint operations and public affairs, ensuring smooth coordination between departments.</p>
+                            <h4 class="unit-name">PIO Unit</h4>
+                            <p class="unit-description">Public Information Officers handle joint operations and public affairs, ensuring smooth coordination between departments.</p>
                         </div>
                     </div>
                     <div class="faction-strengths">
@@ -324,7 +493,7 @@
             
             <!-- FIB -->
             <div class="faction-card fib">
-                <div class="faction-image" style="background-image: url('img/faction/fib1.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/fib.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Federal Investigation Bureau</h3>
                     <p class="faction-leaders"><i class="fas fa-user-secret"></i> Director: Jani</p>
@@ -356,10 +525,10 @@
             
             <!-- EMS -->
             <div class="faction-card ems">
-                <div class="faction-image" style="background-image: url('img/faction/ems.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/ems.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Emergency Medical Services</h3>
-                    <p class="faction-leaders"><i class="fas fa-ambulance"></i> EMS Chief: Bulla </p>
+                    <p class="faction-leaders"><i class="fas fa-ambulance"></i> Medical Director: Dr. LifeSaver</p>
                     <div class="faction-description">
                         <p>The city's frontline medical responders, always ready to provide expert care in any situation. EMS operates around the clock with teams of expert surgeons, paramedics, and medical supervisors who handle everything from routine checkups to mass casualty incidents. Their rapid response has saved countless lives in Paradise.</p>
                     </div>
@@ -388,10 +557,10 @@
             
             <!-- Weazel News -->
             <div class="faction-card weazel">
-                <div class="faction-image" style="background-image: url('img/faction/weazel.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/weazel.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Weazel News</h3>
-                    <p class="faction-leaders"><i class="fas fa-newspaper"></i> Chairman: - </p>
+                    <p class="faction-leaders"><i class="fas fa-newspaper"></i> Chairman: MediaMogul</p>
                     <div class="faction-description">
                         <p>The eyes and ears of Paradise, bringing the truth to the public no matter how dangerous the story. Weazel News reporters risk their lives daily to cover breaking news, gang activities, and police operations. With camera crews embedded with law enforcement and contacts throughout the underworld, they're often the first on scene when news breaks.</p>
                     </div>
@@ -420,10 +589,10 @@
         </div>
         
         <div class="join-section">
-            <h2>Want to Join These Elite Factions?</h2>
-            <p>Each faction offers unique opportunities to serve Paradise in different capacities. Whether you're drawn to law enforcement, medical service, or journalism, there's a place for you.</p>
-            <p>Join our Discord server and visit the faction VC channels for more information about recruitment and requirements.</p>
-            <a href="#" class="join-btn">Join Discord Now</a>
+            <h2>Ready to Serve Paradise?</h2>
+            <p>Each faction offers unique opportunities to shape the future of our city. Whether your calling is justice, healing, or truth, we have a place for you.</p>
+            <p>Join our Discord community today to begin your journey with one of Paradise's elite factions.</p>
+            <a href="#" class="join-btn">Begin Your Legacy</a>
         </div>
     </div>
 </body>
