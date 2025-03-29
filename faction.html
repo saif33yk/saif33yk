@@ -28,6 +28,8 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.7;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
         
         /* Animated Background Elements */
@@ -44,8 +46,8 @@
         .bg-element {
             position: absolute;
             border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.15;
+            filter: blur(60px);
+            opacity: 0.1;
             animation: float 25s infinite linear;
         }
         
@@ -68,11 +70,40 @@
         
         header {
             text-align: center;
-            padding: 100px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/factions-banner.jpg') center/cover;
+            padding: 120px 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/factions-banner.jpg') center/cover no-repeat;
             border-bottom: 4px solid var(--blue);
             position: relative;
             overflow: hidden;
+        }
+        
+        /* Animated Banner Background */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                          rgba(0,102,204,0.1) 0%, 
+                          rgba(204,0,0,0.1) 50%, 
+                          rgba(250,2,113,0.1) 100%);
+            animation: gradientShift 15s ease infinite;
+            background-size: 200% 200%;
+            z-index: -1;
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         /* Header Glow Effect */
@@ -183,9 +214,33 @@
             transition: opacity 0.3s ease;
         }
         
+        .fib.faction-card::before {
+            background: var(--red);
+        }
+        
+        .ems.faction-card::before {
+            background: var(--pink);
+        }
+        
+        .weazel.faction-card::before {
+            background: var(--lime);
+        }
+        
         .faction-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 102, 204, 0.3);
+        }
+        
+        .fib.faction-card:hover {
+            box-shadow: 0 15px 40px rgba(204, 0, 0, 0.3);
+        }
+        
+        .ems.faction-card:hover {
+            box-shadow: 0 15px 40px rgba(250, 2, 113, 0.3);
+        }
+        
+        .weazel.faction-card:hover {
+            box-shadow: 0 15px 40px rgba(133, 187, 73, 0.3);
         }
         
         .faction-card:hover::before {
@@ -199,6 +254,45 @@
             }
             100% {
                 box-shadow: 0 0 15px 2px var(--blue);
+            }
+        }
+        
+        .fib.faction-card:hover::before {
+            animation: cardGlowRed 1.5s infinite alternate;
+        }
+        
+        @keyframes cardGlowRed {
+            0% {
+                box-shadow: 0 0 5px 0px var(--red);
+            }
+            100% {
+                box-shadow: 0 0 15px 2px var(--red);
+            }
+        }
+        
+        .ems.faction-card:hover::before {
+            animation: cardGlowPink 1.5s infinite alternate;
+        }
+        
+        @keyframes cardGlowPink {
+            0% {
+                box-shadow: 0 0 5px 0px var(--pink);
+            }
+            100% {
+                box-shadow: 0 0 15px 2px var(--pink);
+            }
+        }
+        
+        .weazel.faction-card:hover::before {
+            animation: cardGlowLime 1.5s infinite alternate;
+        }
+        
+        @keyframes cardGlowLime {
+            0% {
+                box-shadow: 0 0 5px 0px var(--lime);
+            }
+            100% {
+                box-shadow: 0 0 15px 2px var(--lime);
             }
         }
         
@@ -250,8 +344,6 @@
         .faction-card:nth-child(2) { animation-delay: 0.3s; }
         .faction-card:nth-child(3) { animation-delay: 0.5s; }
         .faction-card:nth-child(4) { animation-delay: 0.7s; }
-        .faction-card:nth-child(5) { animation-delay: 0.9s; }
-        .faction-card:nth-child(6) { animation-delay: 1.1s; }
         
         /* Original Card Content Styles */
         .faction-name {
@@ -407,11 +499,11 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
-        /* Join Section Enhancements */
+        /* Smaller Join Section */
         .join-section {
             text-align: center;
-            margin: 60px 0;
-            padding: 40px;
+            margin: 40px 0;
+            padding: 30px;
             background: var(--glass);
             border-radius: 10px;
             border-top: 4px solid var(--blue);
@@ -440,8 +532,8 @@
         }
         
         .join-section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             font-family: 'Orbitron', sans-serif;
             color: white;
             text-transform: uppercase;
@@ -449,15 +541,15 @@
         }
         
         .join-section p {
-            max-width: 700px;
-            margin: 0 auto 25px;
+            max-width: 600px;
+            margin: 0 auto 20px;
             font-weight: 300;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         
         .join-btn {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 12px 30px;
             background: var(--blue);
             color: white;
             text-decoration: none;
@@ -489,6 +581,10 @@
                 font-size: 2.5rem;
             }
             
+            header {
+                padding: 80px 0;
+            }
+            
             header p {
                 font-size: 1.1rem;
             }
@@ -499,6 +595,14 @@
             
             .faction-card {
                 max-width: 100%;
+            }
+            
+            .join-section {
+                padding: 20px;
+            }
+            
+            .join-section h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -513,11 +617,11 @@
     </header>
     
     <div class="container">
-        <!-- All Original Faction Cards Preserved -->
+        <!-- All Original Faction Cards with Images -->
         <div class="factions-grid">
             <!-- LSPD -->
             <div class="faction-card lspd">
-                <div class="faction-image" style="background-image: url('img/lspd.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/factions/lspd.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Los Santos Police Department</h3>
                     <p class="faction-leaders"><i class="fas fa-user-shield"></i> Chiefs: Janjua & Zigana</p>
@@ -549,7 +653,7 @@
             
             <!-- FIB -->
             <div class="faction-card fib">
-                <div class="faction-image" style="background-image: url('img/fib.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/factions/fib.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Federal Investigation Bureau</h3>
                     <p class="faction-leaders"><i class="fas fa-user-secret"></i> Director: Jani</p>
@@ -581,7 +685,7 @@
             
             <!-- EMS -->
             <div class="faction-card ems">
-                <div class="faction-image" style="background-image: url('img/ems.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/factions/ems.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Emergency Medical Services</h3>
                     <p class="faction-leaders"><i class="fas fa-ambulance"></i> Medical Director: Dr. LifeSaver</p>
@@ -613,7 +717,7 @@
             
             <!-- Weazel News -->
             <div class="faction-card weazel">
-                <div class="faction-image" style="background-image: url('img/weazel.jpg');"></div>
+                <div class="faction-image" style="background-image: url('img/factions/weazel.jpg');"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Weazel News</h3>
                     <p class="faction-leaders"><i class="fas fa-newspaper"></i> Chairman: MediaMogul</p>
@@ -644,10 +748,11 @@
             </div>
         </div>
         
+        <!-- Smaller Join Section -->
         <div class="join-section">
-            <h2>Ready to Join the Elite?</h2>
-            <p>Each faction offers unique opportunities to shape Paradise's future. Whether your path is justice, healing, or truth, your legacy begins here.</p>
-            <a href="#" class="join-btn">Begin Your Journey</a>
+            <h2>Join the Elite</h2>
+            <p>Choose your path and become part of Paradise's most powerful organizations</p>
+            <a href="#" class="join-btn">Apply Now</a>
         </div>
     </div>
 
@@ -657,7 +762,7 @@
             const bgContainer = document.getElementById('bgElements');
             const colors = ['rgba(0,102,204,0.15)', 'rgba(204,0,0,0.1)', 'rgba(250,2,113,0.1)', 'rgba(133,187,73,0.1)'];
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 const element = document.createElement('div');
                 element.classList.add('bg-element');
                 
@@ -680,9 +785,39 @@
                 bgContainer.appendChild(element);
             }
             
-            // Add 3D tilt effect to cards
+            // Add dynamic background color change on card hover
             const cards = document.querySelectorAll('.faction-card');
+            const bgElements = document.querySelectorAll('.bg-element');
+            
             cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    let color;
+                    if (this.classList.contains('lspd')) {
+                        color = 'rgba(0,102,204,0.2)';
+                    } else if (this.classList.contains('fib')) {
+                        color = 'rgba(204,0,0,0.2)';
+                    } else if (this.classList.contains('ems')) {
+                        color = 'rgba(250,2,113,0.2)';
+                    } else if (this.classList.contains('weazel')) {
+                        color = 'rgba(133,187,73,0.2)';
+                    }
+                    
+                    bgElements.forEach(el => {
+                        el.style.background = color;
+                        el.style.filter = 'blur(60px)';
+                    });
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const colors = ['rgba(0,102,204,0.15)', 'rgba(204,0,0,0.1)', 'rgba(250,2,113,0.1)', 'rgba(133,187,73,0.1)'];
+                    bgElements.forEach(el => {
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        el.style.background = randomColor;
+                        el.style.filter = 'blur(60px)';
+                    });
+                });
+                
+                // 3D tilt effect
                 card.addEventListener('mousemove', (e) => {
                     const x = e.clientX - card.getBoundingClientRect().left;
                     const y = e.clientY - card.getBoundingClientRect().top;
