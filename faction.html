@@ -20,6 +20,7 @@
             --darker-black: #0a0a0a;
             --glass: rgba(18, 18, 18, 0.93);
             --gold: #FFD700;
+            --discord: #5865F2;
         }
         
         body {
@@ -71,7 +72,7 @@
         header {
             text-align: center;
             padding: 120px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://i.imgur.com/JqYeYnW.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
             border-bottom: 4px solid var(--blue);
             position: relative;
             overflow: hidden;
@@ -183,7 +184,7 @@
             }
         }
         
-        /* Original Card Styles with Enhancements */
+        /* Faction Card Styles */
         .factions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -257,47 +258,9 @@
             }
         }
         
-        .fib.faction-card:hover::before {
-            animation: cardGlowRed 1.5s infinite alternate;
-        }
-        
-        @keyframes cardGlowRed {
-            0% {
-                box-shadow: 0 0 5px 0px var(--red);
-            }
-            100% {
-                box-shadow: 0 0 15px 2px var(--red);
-            }
-        }
-        
-        .ems.faction-card:hover::before {
-            animation: cardGlowPink 1.5s infinite alternate;
-        }
-        
-        @keyframes cardGlowPink {
-            0% {
-                box-shadow: 0 0 5px 0px var(--pink);
-            }
-            100% {
-                box-shadow: 0 0 15px 2px var(--pink);
-            }
-        }
-        
-        .weazel.faction-card:hover::before {
-            animation: cardGlowLime 1.5s infinite alternate;
-        }
-        
-        @keyframes cardGlowLime {
-            0% {
-                box-shadow: 0 0 5px 0px var(--lime);
-            }
-            100% {
-                box-shadow: 0 0 15px 2px var(--lime);
-            }
-        }
-        
         .faction-image {
             height: 200px;
+            background-color: rgba(50, 50, 50, 0.5);
             background-size: cover;
             background-position: center;
             position: relative;
@@ -345,13 +308,12 @@
         .faction-card:nth-child(3) { animation-delay: 0.5s; }
         .faction-card:nth-child(4) { animation-delay: 0.7s; }
         
-        /* Original Card Content Styles */
+        /* Faction Content Styles */
         .faction-name {
             font-size: 1.6rem;
             margin-bottom: 12px;
             font-weight: 700;
             color: var(--blue);
-            transition: color 0.3s ease;
         }
         
         .fib .faction-name {
@@ -388,11 +350,6 @@
         
         .faction-leaders i {
             margin-right: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        .faction-card:hover .faction-leaders i {
-            transform: scale(1.2);
         }
         
         .faction-description {
@@ -467,7 +424,6 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
-            transition: all 0.3s ease;
         }
         
         .lspd .strength-tag {
@@ -494,112 +450,7 @@
             border: 1px solid rgba(133, 187, 73, 0.3);
         }
         
-        .faction-card:hover .strength-tag {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* News Section */
-        .news-section {
-            margin: 60px 0;
-            padding: 40px;
-            background: var(--glass);
-            border-radius: 10px;
-            border-top: 4px solid var(--gold);
-            border-bottom: 4px solid var(--gold);
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1s ease-out;
-        }
-        
-        .news-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                          transparent, 
-                          rgba(255, 215, 0, 0.1), 
-                          transparent);
-            transition: 0.5s;
-        }
-        
-        .news-section:hover::before {
-            left: 100%;
-        }
-        
-        .news-section h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .news-card {
-            background: rgba(30, 30, 30, 0.7);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
-        }
-        
-        .news-image {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .news-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        }
-        
-        .news-content {
-            padding: 20px;
-        }
-        
-        .news-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--gold);
-        }
-        
-        .news-date {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .news-excerpt {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        
-        /* Smaller Join Section */
+        /* Join Section */
         .join-section {
             text-align: center;
             margin: 40px 0;
@@ -610,70 +461,37 @@
             border-bottom: 4px solid var(--blue);
             position: relative;
             overflow: hidden;
-            animation: fadeIn 1s ease-out;
-        }
-        
-        .join-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                          transparent, 
-                          rgba(0, 102, 204, 0.1), 
-                          transparent);
-            transition: 0.5s;
-        }
-        
-        .join-section:hover::before {
-            left: 100%;
         }
         
         .join-section h2 {
             font-size: 1.8rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-family: 'Orbitron', sans-serif;
             color: white;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
         
-        .join-section p {
-            max-width: 600px;
-            margin: 0 auto 20px;
-            font-weight: 300;
-            font-size: 1rem;
-        }
-        
-        .join-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--blue);
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: var(--discord);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+            margin: 10px;
         }
         
-        .join-btn:hover {
-            background: var(--dark-blue);
+        .discord-btn:hover {
+            background: #4752C4;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
         }
         
-        .join-btn:active {
-            transform: translateY(1px);
+        .discord-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
         
         @media (max-width: 768px) {
@@ -689,20 +507,12 @@
                 font-size: 1.1rem;
             }
             
-            .factions-grid, .news-grid {
+            .factions-grid {
                 grid-template-columns: 1fr;
             }
             
-            .faction-card, .news-card {
-                max-width: 100%;
-            }
-            
-            .join-section, .news-section {
+            .join-section {
                 padding: 20px;
-            }
-            
-            .join-section h2, .news-section h2 {
-                font-size: 1.5rem;
             }
         }
     </style>
@@ -717,173 +527,120 @@
     </header>
     
     <div class="container">
-        <!-- All Original Faction Cards with Images -->
+        <!-- Faction Cards -->
         <div class="factions-grid">
             <!-- LSPD -->
             <div class="faction-card lspd">
-                <div class="faction-image" style="background-image: url('https://i.imgur.com/9QZqL3a.jpg');"></div>
+                <div class="faction-image"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Los Santos Police Department</h3>
                     <p class="faction-leaders"><i class="fas fa-user-shield"></i> Chiefs: Janjua & Zigana</p>
                     <div class="faction-description">
-                        <p>The backbone of law enforcement in Paradise. LSPD operates under the motto "There is no faction above LSPD." Their minds are sharp and their tactics for controlling and eliminating crime are unmatched. With weekly strategy meetings and specialized units, they maintain order in a city full of chaos.</p>
+                        <p>The backbone of law enforcement in Paradise. LSPD operates under the motto "There is no faction above LSPD." Their minds are sharp and their tactics for controlling and eliminating crime are unmatched.</p>
                     </div>
                     <div class="faction-units">
                         <div class="unit">
                             <h4 class="unit-name">SWAT Team</h4>
-                            <p class="unit-description">Special Weapons and Tactics force with the best sharpshooters in the city. They're the elite Code Red response team that handles the most dangerous situations.</p>
+                            <p class="unit-description">Special Weapons and Tactics force with the best sharpshooters in the city.</p>
                         </div>
                         <div class="unit">
                             <h4 class="unit-name">QRF</h4>
-                            <p class="unit-description">Quick Response Force specialists excel in negotiations and RP-based policing, providing rapid deployment to critical incidents.</p>
-                        </div>
-                        <div class="unit">
-                            <h4 class="unit-name">PIO Unit</h4>
-                            <p class="unit-description">Public Information Officers handle joint operations and public affairs, ensuring smooth coordination between departments.</p>
+                            <p class="unit-description">Quick Response Force specialists excel in negotiations and RP-based policing.</p>
                         </div>
                     </div>
                     <div class="faction-strengths">
                         <span class="strength-tag">Elite Training</span>
-                        <span class="strength-tag">Code Red Experts</span>
                         <span class="strength-tag">Strategic Operations</span>
-                        <span class="strength-tag">City-Wide Presence</span>
                     </div>
                 </div>
             </div>
             
             <!-- FIB -->
             <div class="faction-card fib">
-                <div class="faction-image" style="background-image: url('https://i.imgur.com/mX8JQyT.jpg');"></div>
+                <div class="faction-image"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Federal Investigation Bureau</h3>
                     <p class="faction-leaders"><i class="fas fa-user-secret"></i> Director: Jani</p>
                     <div class="faction-description">
-                        <p>The premier federal law enforcement agency with unparalleled crime control capabilities and undercover operations. Under Jani's professional and high-level strategic leadership, the FIB has become unbeatable in the city. Their operations are so covert that sometimes even other agencies don't know they're happening until it's over.</p>
+                        <p>The premier federal law enforcement agency with unparalleled crime control capabilities and undercover operations. Under Jani's professional leadership, the FIB has become unbeatable in the city.</p>
                     </div>
                     <div class="faction-units">
                         <div class="unit">
                             <h4 class="unit-name">Undercover Division</h4>
-                            <p class="unit-description">Special agents who infiltrate criminal organizations, gathering intelligence and evidence without detection.</p>
+                            <p class="unit-description">Special agents who infiltrate criminal organizations.</p>
                         </div>
                         <div class="unit">
                             <h4 class="unit-name">Tactical Operations</h4>
-                            <p class="unit-description">Highly trained teams that execute precision raids and high-risk arrests based on gathered intelligence.</p>
-                        </div>
-                        <div class="unit">
-                            <h4 class="unit-name">Cyber Crimes</h4>
-                            <p class="unit-description">Experts in tracking digital footprints and uncovering criminal activities in the dark web and financial systems.</p>
+                            <p class="unit-description">Highly trained teams that execute precision raids.</p>
                         </div>
                     </div>
                     <div class="faction-strengths">
                         <span class="strength-tag">Strategic Genius</span>
                         <span class="strength-tag">Undercover Ops</span>
-                        <span class="strength-tag">Federal Authority</span>
-                        <span class="strength-tag">Unbeatable Record</span>
                     </div>
                 </div>
             </div>
             
             <!-- EMS -->
             <div class="faction-card ems">
-                <div class="faction-image" style="background-image: url('https://i.imgur.com/vVwH5hG.jpg');"></div>
+                <div class="faction-image"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Emergency Medical Services</h3>
                     <p class="faction-leaders"><i class="fas fa-ambulance"></i> Medical Director: Dr. LifeSaver</p>
                     <div class="faction-description">
-                        <p>The city's frontline medical responders, always ready to provide expert care in any situation. EMS operates around the clock with teams of expert surgeons, paramedics, and medical supervisors who handle everything from routine checkups to mass casualty incidents. Their rapid response has saved countless lives in Paradise.</p>
+                        <p>The city's frontline medical responders, always ready to provide expert care in any situation. EMS operates around the clock with teams of expert surgeons and paramedics.</p>
                     </div>
                     <div class="faction-units">
                         <div class="unit">
                             <h4 class="unit-name">Trauma Team</h4>
-                            <p class="unit-description">Specialized in emergency battlefield medicine and critical care, often working alongside LSPD in dangerous situations.</p>
-                        </div>
-                        <div class="unit">
-                            <h4 class="unit-name">Surgical Unit</h4>
-                            <p class="unit-description">Expert surgeons who perform life-saving operations in the field and at the hospital with equal skill.</p>
+                            <p class="unit-description">Specialized in emergency battlefield medicine.</p>
                         </div>
                         <div class="unit">
                             <h4 class="unit-name">Medical Air Wing</h4>
-                            <p class="unit-description">Helicopter teams that provide rapid medical evacuation from inaccessible areas and major incident sites.</p>
+                            <p class="unit-description">Helicopter teams for rapid medical evacuation.</p>
                         </div>
                     </div>
                     <div class="faction-strengths">
                         <span class="strength-tag">24/7 Availability</span>
                         <span class="strength-tag">Expert Surgeons</span>
-                        <span class="strength-tag">Rapid Response</span>
-                        <span class="strength-tag">Life-Saving Skills</span>
                     </div>
                 </div>
             </div>
             
             <!-- Weazel News -->
             <div class="faction-card weazel">
-                <div class="faction-image" style="background-image: url('https://i.imgur.com/7pKtF9b.jpg');"></div>
+                <div class="faction-image"></div>
                 <div class="faction-content">
                     <h3 class="faction-name">Weazel News</h3>
                     <p class="faction-leaders"><i class="fas fa-newspaper"></i> Chairman: MediaMogul</p>
                     <div class="faction-description">
-                        <p>The eyes and ears of Paradise, bringing the truth to the public no matter how dangerous the story. Weazel News reporters risk their lives daily to cover breaking news, gang activities, and police operations. With camera crews embedded with law enforcement and contacts throughout the underworld, they're often the first on scene when news breaks.</p>
+                        <p>The eyes and ears of Paradise, bringing the truth to the public no matter how dangerous the story. Weazel News reporters risk their lives daily to cover breaking news.</p>
                     </div>
                     <div class="faction-units">
                         <div class="unit">
                             <h4 class="unit-name">Investigative Journalists</h4>
-                            <p class="unit-description">Dig deep into corruption stories and expose criminal activities through months of undercover work.</p>
+                            <p class="unit-description">Dig deep into corruption stories.</p>
                         </div>
                         <div class="unit">
                             <h4 class="unit-name">Field Reporters</h4>
-                            <p class="unit-description">Brave correspondents who report live from active crime scenes, gang territories, and disaster zones.</p>
-                        </div>
-                        <div class="unit">
-                            <h4 class="unit-name">Production Team</h4>
-                            <p class="unit-description">Editors, camera operators, and technical staff who ensure the news reaches the public quickly and professionally.</p>
+                            <p class="unit-description">Report live from active crime scenes.</p>
                         </div>
                     </div>
                     <div class="faction-strengths">
                         <span class="strength-tag">Breaking News</span>
                         <span class="strength-tag">City-Wide Coverage</span>
-                        <span class="strength-tag">Investigative Reports</span>
-                        <span class="strength-tag">Media Influence</span>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- News Section -->
-        <div class="news-section">
-            <h2>Latest News</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="news-image" style="background-image: url('https://i.imgur.com/JqYeYnW.jpg');"></div>
-                    <div class="news-content">
-                        <h3 class="news-title">LSPD Announces New Recruitment Drive</h3>
-                        <span class="news-date">June 15, 2023</span>
-                        <p class="news-excerpt">The Los Santos Police Department is looking for new recruits to join their ranks. Applicants must pass rigorous physical and mental tests.</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image" style="background-image: url('https://i.imgur.com/mX8JQyT.jpg');"></div>
-                    <div class="news-content">
-                        <h3 class="news-title">FIB Busts Major Crime Syndicate</h3>
-                        <span class="news-date">June 10, 2023</span>
-                        <p class="news-excerpt">Federal agents conducted a successful raid on a powerful criminal organization operating in the city's underground.</p>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-image" style="background-image: url('https://i.imgur.com/vVwH5hG.jpg');"></div>
-                    <div class="news-content">
-                        <h3 class="news-title">EMS Introduces New Medical Helicopter</h3>
-                        <span class="news-date">June 5, 2023</span>
-                        <p class="news-excerpt">The Emergency Medical Services has unveiled its new state-of-the-art medical helicopter for faster emergency response.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Smaller Join Section -->
+        <!-- Join Section -->
         <div class="join-section">
-            <h2>Join the Elite</h2>
-            <p>Choose your path and become part of Paradise's most powerful organizations</p>
-            <a href="#" class="join-btn">Apply Now</a>
+            <h2>Ready to Join?</h2>
+            <p>Connect with us on Discord to apply for your favorite faction</p>
+            <a href="https://discord.gg/yourdiscordlink" class="discord-btn" target="_blank">
+                <i class="fab fa-discord"></i> Join Discord
+            </a>
         </div>
     </div>
 
@@ -916,39 +673,9 @@
                 bgContainer.appendChild(element);
             }
             
-            // Add dynamic background color change on card hover
+            // Add 3D tilt effect to cards
             const cards = document.querySelectorAll('.faction-card');
-            const bgElements = document.querySelectorAll('.bg-element');
-            
             cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    let color;
-                    if (this.classList.contains('lspd')) {
-                        color = 'rgba(0,102,204,0.2)';
-                    } else if (this.classList.contains('fib')) {
-                        color = 'rgba(204,0,0,0.2)';
-                    } else if (this.classList.contains('ems')) {
-                        color = 'rgba(250,2,113,0.2)';
-                    } else if (this.classList.contains('weazel')) {
-                        color = 'rgba(133,187,73,0.2)';
-                    }
-                    
-                    bgElements.forEach(el => {
-                        el.style.background = color;
-                        el.style.filter = 'blur(60px)';
-                    });
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    const colors = ['rgba(0,102,204,0.15)', 'rgba(204,0,0,0.1)', 'rgba(250,2,113,0.1)', 'rgba(133,187,73,0.1)'];
-                    bgElements.forEach(el => {
-                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                        el.style.background = randomColor;
-                        el.style.filter = 'blur(60px)';
-                    });
-                });
-                
-                // 3D tilt effect
                 card.addEventListener('mousemove', (e) => {
                     const x = e.clientX - card.getBoundingClientRect().left;
                     const y = e.clientY - card.getBoundingClientRect().top;
