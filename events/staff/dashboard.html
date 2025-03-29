@@ -434,6 +434,43 @@
             cursor: pointer;
         }
         
+        /* Sync Status */
+        .sync-status {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--glass);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .sync-status i {
+            margin-right: 8px;
+        }
+        
+        .synced {
+            color: var(--success);
+        }
+        
+        .syncing {
+            color: var(--gold);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .error {
+            color: var(--danger);
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
         /* Responsive */
         @media (max-width: 1024px) {
             .dashboard-main {
@@ -473,14 +510,6 @@
     </style>
 </head>
 <body>
-    <!-- Immediate Authentication Check -->
-    <script>
-        const isAuthenticated = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
-        if (!isAuthenticated) {
-            window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
-        }
-    </script>
-
     <!-- Dashboard Header -->
     <header class="dashboard-header">
         <div class="logo-container">
@@ -535,15 +564,15 @@
                         <p class="profile-role" id="staffRole">Staff Member</p>
                         <div class="profile-stats">
                             <div class="profile-stat">
-                                <div class="stat-number">12</div>
+                                <div class="stat-number" id="eventsCount">0</div>
                                 <div class="stat-label">Events</div>
                             </div>
                             <div class="profile-stat">
-                                <div class="stat-number">85%</div>
+                                <div class="stat-number" id="participationRate">0%</div>
                                 <div class="stat-label">Participation</div>
                             </div>
                             <div class="profile-stat">
-                                <div class="stat-number">4.8</div>
+                                <div class="stat-number" id="staffRating">0.0</div>
                                 <div class="stat-label">Rating</div>
                             </div>
                         </div>
@@ -556,15 +585,15 @@
                     <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
                         <div class="stat-card" style="margin: 0;">
                             <h4 class="stat-title">Active Events</h4>
-                            <p class="stat-value">3</p>
+                            <p class="stat-value" id="activeEventsCount">0</p>
                         </div>
                         <div class="stat-card" style="margin: 0;">
                             <h4 class="stat-title">Upcoming Events</h4>
-                            <p class="stat-value">2</p>
+                            <p class="stat-value" id="upcomingEventsCount">0</p>
                         </div>
                         <div class="stat-card" style="margin: 0;">
                             <h4 class="stat-title">Total Participants</h4>
-                            <p class="stat-value">87</p>
+                            <p class="stat-value" id="totalParticipants">0</p>
                         </div>
                     </div>
                 </div>
@@ -595,31 +624,8 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Business War</td>
-                                <td>June 15, 2023</td>
-                                <td>12 Teams</td>
-                                <td><span style="color: var(--success)">Active</span></td>
-                                <td>
-                                    <div class="table-actions">
-                                        <button class="action-btn edit-event" data-event="business-war"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn delete-event" data-event="business-war"><i class="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Street Race</td>
-                                <td>July 1, 2023</td>
-                                <td>8 Teams</td>
-                                <td><span style="color: var(--gold)">Upcoming</span></td>
-                                <td>
-                                    <div class="table-actions">
-                                        <button class="action-btn edit-event" data-event="street-race"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn delete-event" data-event="street-race"><i class="fas fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody id="eventsTableBody">
+                            <!-- Events will be loaded here dynamically -->
                         </tbody>
                     </table>
                 </div>
@@ -639,7 +645,7 @@
                     
                     <div class="form-group">
                         <label for="eventDate" class="form-label">Event Date</label>
-                        <input type="date" id="eventDate" class="form-control" required>
+                        <input type="datetime-local" id="eventDate" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
@@ -678,7 +684,7 @@
                     
                     <div class="form-group">
                         <label for="editEventDate" class="form-label">Event Date</label>
-                        <input type="date" id="editEventDate" class="form-control" required>
+                        <input type="datetime-local" id="editEventDate" class="form-control" required>
                     </div>
                     
                     <div class="form-group">
@@ -727,15 +733,15 @@
                         <p class="profile-role" id="profileRole">Staff Member</p>
                         <div class="profile-stats">
                             <div class="profile-stat">
-                                <div class="stat-number">12</div>
+                                <div class="stat-number" id="profileEventsCount">0</div>
                                 <div class="stat-label">Events</div>
                             </div>
                             <div class="profile-stat">
-                                <div class="stat-number">85%</div>
+                                <div class="stat-number" id="profileParticipation">0%</div>
                                 <div class="stat-label">Participation</div>
                             </div>
                             <div class="profile-stat">
-                                <div class="stat-number">4.8</div>
+                                <div class="stat-number" id="profileRating">0.0</div>
                                 <div class="stat-label">Rating</div>
                             </div>
                         </div>
@@ -829,79 +835,246 @@
         </div>
     </div>
 
-    <!-- Main Dashboard Script -->
+    <!-- Sync Status Indicator -->
+    <div class="sync-status" id="syncStatus">
+        <i class="fas fa-circle"></i>
+        <span>Connecting to server...</span>
+    </div>
+
+    <!-- Firebase and Application Script -->
     <script>
-        // Staff data (in a real app, this would come from server)
-        const staffData = {
-            username: localStorage.getItem('prpUsername') || 'admin',
-            email: 'admin@paradiserp.com',
-            discord: 'Admin#1234',
-            role: 'Senior Admin',
-            eventsManaged: 12,
-            participation: 85,
-            rating: 4.8
+        // Firebase configuration (replace with your actual config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyABC123XYZ456DEF789GHI",
+            authDomain: "paradise-rp-pk.firebaseapp.com",
+            projectId: "paradise-rp-pk",
+            storageBucket: "paradise-rp-pk.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abc123def456ghi789jkl"
         };
 
-        // Sample events data
-        let events = [
-            {
-                id: 'business-war',
-                name: 'Business War',
-                date: '2023-06-15',
-                description: 'Battle for control of the city\'s underground businesses',
-                type: 'war',
-                status: 'active',
-                participants: 12
-            },
-            {
-                id: 'street-race',
-                name: 'Street Race',
-                date: '2023-07-01',
-                description: 'High-speed races through the city streets',
-                type: 'race',
-                status: 'upcoming',
-                participants: 8
-            }
-        ];
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Application state
+        let currentUser = null;
+        let staffData = {};
+        let events = [];
+        let unsubscribeEvents = null;
 
         // DOM Ready
         document.addEventListener('DOMContentLoaded', function() {
-            // Check authentication
-            const isAuthenticated = localStorage.getItem('prpAuth') || sessionStorage.getItem('prpAuth');
-            if (!isAuthenticated) {
-                window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
-                return;
-            }
-
-            // Initialize UI
-            initDashboard();
-            
-            // Navigation handling
+            // Initialize UI components
             setupNavigation();
-            
-            // Form handling
             setupForms();
-            
-            // Event handlers
             setupEventHandlers();
+            
+            // Check authentication state
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    currentUser = user;
+                    initDashboard();
+                    loadStaffData();
+                    setupRealTimeUpdates();
+                } else {
+                    // Redirect to login if not authenticated
+                    window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
+                }
+            });
         });
 
+        // Initialize dashboard
         function initDashboard() {
-            // Set staff profile data
-            document.getElementById('welcomeMessage').textContent = `Welcome back, ${staffData.username.toUpperCase()}!`;
-            document.getElementById('staffName').textContent = staffData.username.toUpperCase();
-            document.getElementById('staffRole').textContent = staffData.role.toUpperCase();
-            document.getElementById('profileName').textContent = staffData.username.toUpperCase();
-            document.getElementById('profileRole').textContent = staffData.role.toUpperCase();
+            updateSyncStatus('Loading dashboard...', 'syncing');
             
-            // Set profile form values
-            document.getElementById('profileEmail').value = staffData.email;
-            document.getElementById('profileDiscord').value = staffData.discord;
+            // Set welcome message
+            const displayName = currentUser.displayName || staffData.username || 'Staff';
+            document.getElementById('welcomeMessage').textContent = `Welcome back, ${displayName.toUpperCase()}!`;
             
-            // Show dashboard by default
-            showSection('dashboard');
+            updateSyncStatus('Dashboard ready', 'synced');
         }
 
+        // Load staff data from Firestore
+        async function loadStaffData() {
+            try {
+                updateSyncStatus('Loading profile...', 'syncing');
+                
+                const doc = await db.collection('staff').doc(currentUser.uid).get();
+                if (doc.exists) {
+                    staffData = doc.data();
+                    
+                    // Update UI with staff data
+                    document.getElementById('staffName').textContent = staffData.username.toUpperCase();
+                    document.getElementById('staffRole').textContent = staffData.role.toUpperCase();
+                    document.getElementById('profileName').textContent = staffData.username.toUpperCase();
+                    document.getElementById('profileRole').textContent = staffData.role.toUpperCase();
+                    document.getElementById('profileEmail').value = staffData.email;
+                    document.getElementById('profileDiscord').value = staffData.discord || '';
+                    document.getElementById('profileTimezone').value = staffData.timezone || 'PKT';
+                    
+                    // Update stats
+                    document.getElementById('eventsCount').textContent = staffData.eventsManaged || 0;
+                    document.getElementById('participationRate').textContent = `${staffData.participation || 0}%`;
+                    document.getElementById('staffRating').textContent = staffData.rating?.toFixed(1) || '0.0';
+                    document.getElementById('profileEventsCount').textContent = staffData.eventsManaged || 0;
+                    document.getElementById('profileParticipation').textContent = `${staffData.participation || 0}%`;
+                    document.getElementById('profileRating').textContent = staffData.rating?.toFixed(1) || '0.0';
+                    
+                    updateSyncStatus('Profile loaded', 'synced');
+                } else {
+                    console.error('No staff record found');
+                    updateSyncStatus('Profile missing', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading staff data:', error);
+                updateSyncStatus('Sync error', 'error');
+            }
+        }
+
+        // Set up real-time event updates
+        function setupRealTimeUpdates() {
+            updateSyncStatus('Connecting to events...', 'syncing');
+            
+            // Unsubscribe from previous listener if exists
+            if (unsubscribeEvents) {
+                unsubscribeEvents();
+            }
+            
+            unsubscribeEvents = db.collection('events')
+                .orderBy('date', 'asc')
+                .onSnapshot(snapshot => {
+                    events = [];
+                    let activeCount = 0;
+                    let upcomingCount = 0;
+                    let totalParticipants = 0;
+                    
+                    snapshot.forEach(doc => {
+                        const event = { id: doc.id, ...doc.data() };
+                        events.push(event);
+                        
+                        // Count event statuses
+                        if (event.status === 'active') activeCount++;
+                        if (event.status === 'upcoming') upcomingCount++;
+                        
+                        // Sum participants
+                        totalParticipants += event.participants || 0;
+                    });
+                    
+                    // Update UI counters
+                    document.getElementById('activeEventsCount').textContent = activeCount;
+                    document.getElementById('upcomingEventsCount').textContent = upcomingCount;
+                    document.getElementById('totalParticipants').textContent = totalParticipants;
+                    
+                    // Render events table
+                    renderEvents();
+                    updateSyncStatus('Events updated', 'synced');
+                }, error => {
+                    console.error('Error loading events:', error);
+                    updateSyncStatus('Event sync error', 'error');
+                });
+        }
+
+        // Render events to the table
+        function renderEvents() {
+            const tableBody = document.querySelector('.staff-table tbody');
+            tableBody.innerHTML = '';
+            
+            if (events.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 20px;">
+                            No events found. Create your first event!
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            events.forEach(event => {
+                const row = document.createElement('tr');
+                
+                // Status color and text
+                let statusColor = '';
+                let statusText = '';
+                switch(event.status) {
+                    case 'active':
+                        statusColor = 'var(--success)';
+                        statusText = 'Active';
+                        break;
+                    case 'upcoming':
+                        statusColor = 'var(--gold)';
+                        statusText = 'Upcoming';
+                        break;
+                    case 'completed':
+                        statusColor = 'var(--glass-light)';
+                        statusText = 'Completed';
+                        break;
+                    case 'cancelled':
+                        statusColor = 'var(--danger)';
+                        statusText = 'Cancelled';
+                        break;
+                }
+                
+                // Format date
+                const eventDate = event.date.toDate ? event.date.toDate() : new Date(event.date);
+                const formattedDate = eventDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                row.innerHTML = `
+                    <td>${event.name}</td>
+                    <td>${formattedDate}</td>
+                    <td>${event.participants || 0} ${event.participants === 1 ? 'Participant' : 'Participants'}</td>
+                    <td><span style="color: ${statusColor}">${statusText}</span></td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="action-btn edit-event" data-event="${event.id}"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-event" data-event="${event.id}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Update sync status UI
+        function updateSyncStatus(message, status) {
+            const syncElement = document.getElementById('syncStatus');
+            syncElement.querySelector('span').textContent = message;
+            
+            // Remove all status classes
+            syncElement.classList.remove('synced', 'syncing', 'error');
+            
+            // Add current status class
+            if (status) {
+                syncElement.classList.add(status);
+            }
+            
+            // Update icon based on status
+            const icon = syncElement.querySelector('i');
+            switch(status) {
+                case 'synced':
+                    icon.className = 'fas fa-check-circle';
+                    break;
+                case 'syncing':
+                    icon.className = 'fas fa-sync-alt fa-spin';
+                    break;
+                case 'error':
+                    icon.className = 'fas fa-exclamation-circle';
+                    break;
+                default:
+                    icon.className = 'fas fa-circle';
+            }
+        }
+
+        // Setup navigation
         function setupNavigation() {
             // Main nav buttons
             document.querySelectorAll('[data-section]').forEach(btn => {
@@ -911,20 +1084,27 @@
                     showSection(section);
                     
                     // Update active states
-                    document.querySelectorAll('.staff-nav-btn').forEach(navBtn => {
-                        navBtn.classList.remove('active');
-                    });
-                    document.querySelectorAll('.sidebar-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    
                     if (section !== 'change-password' && section !== 'create-event') {
-                        this.classList.add('active');
+                        document.querySelectorAll('.staff-nav-btn').forEach(navBtn => {
+                            navBtn.classList.remove('active');
+                        });
+                        document.querySelectorAll('.sidebar-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        
+                        // Activate corresponding nav button
+                        const navBtn = document.querySelector(`.staff-nav-btn[data-section="${section}"]`);
+                        if (navBtn) navBtn.classList.add('active');
+                        
+                        // Activate corresponding sidebar link
+                        const sidebarLink = document.querySelector(`.sidebar-link[data-section="${section}"]`);
+                        if (sidebarLink) sidebarLink.classList.add('active');
                     }
                 });
             });
         }
 
+        // Show specific section
         function showSection(section) {
             // Hide all sections
             document.querySelectorAll('.form-container').forEach(div => {
@@ -958,48 +1138,62 @@
             }
         }
 
+        // Setup form handlers
         function setupForms() {
             // Create event form
-            document.getElementById('createEventForm').addEventListener('submit', function(e) {
+            document.getElementById('createEventForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
+                updateSyncStatus('Creating event...', 'syncing');
                 
                 const newEvent = {
-                    id: document.getElementById('eventName').value.toLowerCase().replace(/\s+/g, '-'),
                     name: document.getElementById('eventName').value,
                     date: document.getElementById('eventDate').value,
                     description: document.getElementById('eventDescription').value,
                     type: document.getElementById('eventType').value,
                     status: 'upcoming',
-                    participants: 0
+                    participants: 0,
+                    createdBy: currentUser.uid,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                 };
                 
-                events.push(newEvent);
-                alert('Event created successfully!');
-                this.reset();
-                showSection('events');
-                renderEvents();
+                try {
+                    await db.collection('events').add(newEvent);
+                    alert('Event created successfully!');
+                    this.reset();
+                    showSection('events');
+                    updateSyncStatus('Event created', 'synced');
+                } catch (error) {
+                    console.error('Error creating event:', error);
+                    alert('Failed to create event');
+                    updateSyncStatus('Create error', 'error');
+                }
             });
             
             // Edit event form
-            document.getElementById('editEventForm').addEventListener('submit', function(e) {
+            document.getElementById('editEventForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
+                updateSyncStatus('Updating event...', 'syncing');
                 
                 const eventId = document.getElementById('editEventId').value;
-                const eventIndex = events.findIndex(e => e.id === eventId);
+                const updatedData = {
+                    name: document.getElementById('editEventName').value,
+                    date: document.getElementById('editEventDate').value,
+                    description: document.getElementById('editEventDescription').value,
+                    type: document.getElementById('editEventType').value,
+                    status: document.getElementById('editEventStatus').value,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
                 
-                if (eventIndex !== -1) {
-                    events[eventIndex] = {
-                        ...events[eventIndex],
-                        name: document.getElementById('editEventName').value,
-                        date: document.getElementById('editEventDate').value,
-                        description: document.getElementById('editEventDescription').value,
-                        type: document.getElementById('editEventType').value,
-                        status: document.getElementById('editEventStatus').value
-                    };
-                    
+                try {
+                    await db.collection('events').doc(eventId).update(updatedData);
                     alert('Event updated successfully!');
                     document.getElementById('edit-event-section').style.display = 'none';
-                    renderEvents();
+                    updateSyncStatus('Event updated', 'synced');
+                } catch (error) {
+                    console.error('Error updating event:', error);
+                    alert('Failed to update event');
+                    updateSyncStatus('Update error', 'error');
                 }
             });
             
@@ -1009,18 +1203,36 @@
             });
             
             // Profile form
-            document.getElementById('profileForm').addEventListener('submit', function(e) {
+            document.getElementById('profileForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
+                updateSyncStatus('Updating profile...', 'syncing');
                 
-                staffData.email = document.getElementById('profileEmail').value;
-                staffData.discord = document.getElementById('profileDiscord').value;
+                const updatedData = {
+                    email: document.getElementById('profileEmail').value,
+                    discord: document.getElementById('profileDiscord').value,
+                    timezone: document.getElementById('profileTimezone').value,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
                 
-                alert('Profile updated successfully!');
+                try {
+                    await db.collection('staff').doc(currentUser.uid).update(updatedData);
+                    
+                    // Update local staff data
+                    staffData = { ...staffData, ...updatedData };
+                    
+                    alert('Profile updated successfully!');
+                    updateSyncStatus('Profile updated', 'synced');
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                    alert('Failed to update profile');
+                    updateSyncStatus('Update error', 'error');
+                }
             });
             
             // Password form
-            document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            document.getElementById('passwordForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
+                updateSyncStatus('Updating password...', 'syncing');
                 
                 const currentPass = document.getElementById('currentPassword').value;
                 const newPass = document.getElementById('newPassword').value;
@@ -1028,23 +1240,45 @@
                 
                 if (newPass !== confirmPass) {
                     alert('New passwords do not match!');
+                    updateSyncStatus('Password mismatch', 'error');
                     return;
                 }
                 
-                // In a real app, you would verify current password with server
-                alert('Password changed successfully!');
-                this.reset();
+                try {
+                    // Reauthenticate user
+                    const credential = firebase.auth.EmailAuthProvider.credential(
+                        currentUser.email, 
+                        currentPass
+                    );
+                    
+                    await currentUser.reauthenticateWithCredential(credential);
+                    
+                    // Update password
+                    await currentUser.updatePassword(newPass);
+                    
+                    alert('Password changed successfully!');
+                    this.reset();
+                    updateSyncStatus('Password updated', 'synced');
+                } catch (error) {
+                    console.error('Error changing password:', error);
+                    alert('Failed to change password. Make sure current password is correct.');
+                    updateSyncStatus('Password error', 'error');
+                }
             });
         }
 
+        // Setup event handlers
         function setupEventHandlers() {
             // Logout
             document.getElementById('logoutBtn').addEventListener('click', function(e) {
                 e.preventDefault();
-                localStorage.removeItem('prpAuth');
-                localStorage.removeItem('prpUsername');
-                sessionStorage.removeItem('prpAuth');
-                window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
+                auth.signOut().then(() => {
+                    localStorage.removeItem('prpAuth');
+                    localStorage.removeItem('prpEmail');
+                    localStorage.removeItem('prpPassword');
+                    sessionStorage.removeItem('prpAuth');
+                    window.location.href = 'https://saif33yk.github.io/saif33yk/events/staff/login.html';
+                });
             });
             
             // Edit event buttons
@@ -1057,7 +1291,12 @@
                     if (event) {
                         document.getElementById('editEventId').value = event.id;
                         document.getElementById('editEventName').value = event.name;
-                        document.getElementById('editEventDate').value = event.date;
+                        
+                        // Format date for datetime-local input
+                        const eventDate = event.date.toDate ? event.date.toDate() : new Date(event.date);
+                        const formattedDate = eventDate.toISOString().slice(0, 16);
+                        document.getElementById('editEventDate').value = formattedDate;
+                        
                         document.getElementById('editEventDescription').value = event.description;
                         document.getElementById('editEventType').value = event.type;
                         document.getElementById('editEventStatus').value = event.status;
@@ -1070,19 +1309,29 @@
                 if (e.target.classList.contains('delete-event') || e.target.parentElement.classList.contains('delete-event')) {
                     const btn = e.target.classList.contains('delete-event') ? e.target : e.target.parentElement;
                     const eventId = btn.getAttribute('data-event');
+                    const event = events.find(e => e.id === eventId);
                     
-                    document.getElementById('modalMessage').textContent = `Are you sure you want to delete "${events.find(e => e.id === eventId).name}" event?`;
+                    document.getElementById('modalMessage').textContent = `Are you sure you want to delete "${event.name}" event?`;
                     document.getElementById('confirmModal').style.display = 'flex';
                     
-                    document.getElementById('confirmAction').onclick = function() {
-                        events = events.filter(e => e.id !== eventId);
-                        renderEvents();
-                        document.getElementById('confirmModal').style.display = 'none';
+                    document.getElementById('confirmAction').onclick = async function() {
+                        updateSyncStatus('Deleting event...', 'syncing');
+                        
+                        try {
+                            await db.collection('events').doc(eventId).delete();
+                            document.getElementById('confirmModal').style.display = 'none';
+                            updateSyncStatus('Event deleted', 'synced');
+                        } catch (error) {
+                            console.error('Error deleting event:', error);
+                            alert('Failed to delete event');
+                            document.getElementById('confirmModal').style.display = 'none';
+                            updateSyncStatus('Delete error', 'error');
+                        }
                     };
                 }
             });
             
-            // Modal close
+            // Modal close handlers
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('confirmModal').style.display = 'none';
             });
@@ -1090,11 +1339,6 @@
             document.getElementById('cancelAction').addEventListener('click', function() {
                 document.getElementById('confirmModal').style.display = 'none';
             });
-        }
-
-        function renderEvents() {
-            // In a real app, you would update the DOM with current events
-            console.log('Events updated:', events);
         }
     </script>
 </body>
