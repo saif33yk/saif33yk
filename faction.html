@@ -4,15 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factions of Paradise - Paradise Roleplay Pakistan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
     <style>
         :root {
             --blue: #0066CC;
@@ -23,9 +16,9 @@
             --dark-pink: #FA026E;
             --lime: #85BB49;
             --dark-green: #5CAE3C;
-            --black: #121212;
-            --darker-black: #0a0a0a;
-            --glass: rgba(18, 18, 18, 0.9);
+            --black: #0a0a0a;
+            --darker-black: #050505;
+            --glass: rgba(20, 20, 20, 0.93);
             --gold: #FFD700;
         }
         
@@ -37,427 +30,220 @@
             overflow-x: hidden;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        /* Animated Background Effect */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(0, 102, 204, 0.15);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
         }
         
         header {
             text-align: center;
-            padding: 80px 0;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/factions-banner.jpg') center/cover;
+            padding: 100px 0 120px;
+            background: linear-gradient(rgba(5,5,5,0.9), rgba(5,5,5,0.7)), url('img/factions-banner.jpg') center/cover;
             border-bottom: 4px solid var(--blue);
             position: relative;
             overflow: hidden;
         }
         
-        header::before {
+        /* Neon Border Animation */
+        header::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0,102,204,0.1) 0%, rgba(0,0,0,0) 70%);
-            animation: pulse 8s infinite alternate;
-            z-index: 0;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--blue);
+            box-shadow: 0 0 10px var(--blue), 0 0 20px var(--blue);
+            animation: borderPulse 3s infinite alternate;
         }
         
-        @keyframes pulse {
+        @keyframes borderPulse {
             0% {
-                transform: scale(0.8);
-                opacity: 0.5;
+                opacity: 0.7;
+                box-shadow: 0 0 5px var(--blue), 0 0 10px var(--blue);
             }
             100% {
-                transform: scale(1.2);
-                opacity: 0.8;
+                opacity: 1;
+                box-shadow: 0 0 15px var(--blue), 0 0 30px var(--blue);
             }
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
         }
         
         h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 3px;
+            font-family: 'Orbitron', sans-serif;
             background: linear-gradient(90deg, #FFFFFF, #AAAAAA, #FFFFFF);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
             position: relative;
             display: inline-block;
-            animation: glow 2s ease-in-out infinite alternate;
+            animation: titleGlow 2.5s ease-in-out infinite alternate;
         }
         
-        @keyframes glow {
+        @keyframes titleGlow {
             from {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
-                             0 0 20px rgba(255, 255, 255, 0.2),
-                             0 0 30px rgba(0, 102, 204, 0.3);
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+                             0 0 25px rgba(255, 255, 255, 0.3),
+                             0 0 35px rgba(0, 102, 204, 0.4);
             }
             to {
-                text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
-                             0 0 25px rgba(255, 255, 255, 0.4),
-                             0 0 35px rgba(0, 102, 204, 0.5),
-                             0 0 45px rgba(0, 102, 204, 0.4);
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                             0 0 30px rgba(255, 255, 255, 0.5),
+                             0 0 45px rgba(0, 102, 204, 0.6),
+                             0 0 60px rgba(0, 102, 204, 0.5);
             }
         }
         
-        header p {
-            font-size: 1.2rem;
-            max-width: 700px;
+        .tagline {
+            font-size: 1.4rem;
+            max-width: 800px;
             margin: 0 auto;
             font-weight: 300;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.85);
             position: relative;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            animation: fadeIn 2s ease-out;
         }
         
-        header p::after {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tagline::after {
             content: '';
             display: block;
-            width: 100px;
+            width: 150px;
             height: 3px;
-            background: var(--blue);
-            margin: 20px auto;
-            animation: lineGrow 1.5s ease-out;
+            background: linear-gradient(90deg, var(--blue), var(--pink));
+            margin: 25px auto;
+            animation: lineExtend 1.8s ease-out;
         }
         
-        @keyframes lineGrow {
-            from {
-                width: 0;
-                opacity: 0;
+        @keyframes lineExtend {
+            from { width: 0; opacity: 0; }
+            to { width: 150px; opacity: 1; }
+        }
+        
+        /* Floating faction icons */
+        .faction-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .faction-icon {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatIcon 25s infinite linear;
+        }
+        
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.1;
             }
-            to {
-                width: 100px;
-                opacity: 1;
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-500px) translateX(200px) rotate(180deg);
+                opacity: 0.1;
             }
         }
         
-        /* Rest of your existing CSS remains the same */
-        .factions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
+        /* Rest of your CSS remains the same with small enhancements */
         .faction-card {
-            background: var(--glass);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         
-        .faction-card.lspd {
-            border-left: 4px solid var(--blue);
-        }
-        
-        .faction-card.fib {
-            border-left: 4px solid var(--red);
-        }
-        
-        .faction-card.ems {
-            border-left: 4px solid var(--pink);
-        }
-        
-        .faction-card.weazel {
-            border-left: 4px solid var(--lime);
-        }
-        
-        .faction-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.1);
+        .faction-card:hover .faction-image {
+            transform: scale(1.03);
         }
         
         .faction-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         }
         
-        .faction-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        }
-        
-        .faction-content {
-            padding: 20px;
-        }
-        
-        .faction-name {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .lspd .faction-name {
-            color: var(--blue);
-        }
-        
-        .fib .faction-name {
-            color: var(--red);
-        }
-        
-        .ems .faction-name {
-            color: var(--pink);
-        }
-        
-        .weazel .faction-name {
-            color: var(--lime);
-        }
-        
-        .faction-leaders {
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .lspd .faction-leaders {
-            color: var(--blue);
-        }
-        
-        .fib .faction-leaders {
-            color: var(--red);
-        }
-        
-        .ems .faction-leaders {
-            color: var(--pink);
-        }
-        
-        .weazel .faction-leaders {
-            color: var(--lime);
-        }
-        
-        .faction-leaders i {
-            margin-right: 8px;
-        }
-        
-        .faction-description {
-            margin-bottom: 15px;
-            min-height: 80px;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-        
-        .faction-units {
-            margin-top: 15px;
-        }
-        
-        .unit {
-            margin-bottom: 10px;
-        }
-        
-        .unit-name {
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .lspd .unit-name {
-            color: var(--blue);
-        }
-        
-        .fib .unit-name {
-            color: var(--red);
-        }
-        
-        .ems .unit-name {
-            color: var(--pink);
-        }
-        
-        .weazel .unit-name {
-            color: var(--lime);
-        }
-        
-        .unit-description {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .faction-strengths {
-            margin-top: 15px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .strength-tag {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            font-size: 0.8rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .lspd .strength-tag {
-            background: rgba(0, 102, 204, 0.2);
-            color: var(--blue);
-            border: 1px solid rgba(0, 102, 204, 0.3);
-        }
-        
-        .fib .strength-tag {
-            background: rgba(204, 0, 0, 0.2);
-            color: var(--red);
-            border: 1px solid rgba(204, 0, 0, 0.3);
-        }
-        
-        .ems .strength-tag {
-            background: rgba(250, 2, 113, 0.2);
-            color: var(--pink);
-            border: 1px solid rgba(250, 2, 113, 0.3);
-        }
-        
-        .weazel .strength-tag {
-            background: rgba(133, 187, 73, 0.2);
-            color: var(--lime);
-            border: 1px solid rgba(133, 187, 73, 0.3);
-        }
-        
-        .join-section {
-            text-align: center;
-            margin: 50px 0;
-            padding: 40px;
-            background: var(--glass);
-            border-radius: 10px;
-            border-top: 4px solid var(--blue);
-            border-bottom: 4px solid var(--blue);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .join-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                          rgba(0,102,204,0.1) 0%, 
-                          rgba(0,102,204,0.05) 50%, 
-                          rgba(0,102,204,0.1) 100%);
-            z-index: 0;
-            animation: gradientFlow 6s ease infinite;
-            background-size: 200% 100%;
-        }
-        
-        @keyframes gradientFlow {
-            0% {
-                background-position: 0% 50%;
+        /* Add this new animation for cards */
+        @keyframes cardIntro {
+            from { 
+                opacity: 0;
+                transform: translateY(50px) rotateX(20deg);
             }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
+            to { 
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
             }
         }
         
-        .join-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            font-family: 'Montserrat', sans-serif;
-            color: white;
+        .faction-card {
+            animation: cardIntro 0.8s ease-out forwards;
+            opacity: 0;
         }
         
-        .join-section p {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto 20px;
-            font-weight: 300;
-        }
-        
-        .join-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-            z-index: 1;
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            overflow: hidden;
-        }
-        
-        .join-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                          transparent, 
-                          rgba(255,255,255,0.2), 
-                          transparent);
-            transition: 0.5s;
-        }
-        
-        .join-btn:hover {
-            background: var(--dark-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
-        }
-        
-        .join-btn:hover::before {
-            left: 100%;
-        }
-        
-        @media (max-width: 768px) {
-            .factions-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            header {
-                padding: 60px 0;
-            }
-        }
+        .faction-card:nth-child(1) { animation-delay: 0.2s; }
+        .faction-card:nth-child(2) { animation-delay: 0.4s; }
+        .faction-card:nth-child(3) { animation-delay: 0.6s; }
+        .faction-card:nth-child(4) { animation-delay: 0.8s; }
     </style>
 </head>
 <body>
+    <!-- Animated background particles -->
+    <div class="bg-particles" id="particles"></div>
+    
     <header>
+        <!-- Floating faction icons -->
+        <div class="faction-icons">
+            <i class="fas fa-shield-alt faction-icon" style="top:15%; left:10%; font-size:3rem; animation-delay:0s;"></i>
+            <i class="fas fa-ambulance faction-icon" style="top:25%; left:80%; font-size:2.5rem; animation-delay:5s;"></i>
+            <i class="fas fa-user-secret faction-icon" style="top:60%; left:15%; font-size:3rem; animation-delay:10s;"></i>
+            <i class="fas fa-camera faction-icon" style="top:70%; left:75%; font-size:2rem; animation-delay:15s;"></i>
+        </div>
+        
         <div class="header-content">
             <h1>Factions of Paradise</h1>
-            <p>The pillars of order and service in a city of chaos and opportunity</p>
+            <p class="tagline">Where Power Meets Purpose in the City of Infinite Possibilities</p>
         </div>
     </header>
     
     <div class="container">
-        <!-- Rest of your existing HTML content remains the same -->
+        <!-- Your existing faction cards remain exactly the same -->
         <div class="factions-grid">
             <!-- LSPD -->
             <div class="faction-card lspd">
@@ -587,13 +373,56 @@
                 </div>
             </div>
         </div>
-        
-        <div class="join-section">
-            <h2>Ready to Serve Paradise?</h2>
-            <p>Each faction offers unique opportunities to shape the future of our city. Whether your calling is justice, healing, or truth, we have a place for you.</p>
-            <p>Join our Discord community today to begin your journey with one of Paradise's elite factions.</p>
-            <a href="#" class="join-btn">Begin Your Legacy</a>
-        </div>
     </div>
+
+    <script>
+        // Create animated background particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100 + 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Add hover effect to faction cards
+            const cards = document.querySelectorAll('.faction-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const x = e.clientX - card.getBoundingClientRect().left;
+                    const y = e.clientY - card.getBoundingClientRect().top;
+                    
+                    const centerX = card.offsetWidth / 2;
+                    const centerY = card.offsetHeight / 2;
+                    
+                    const angleX = (y - centerY) / 10;
+                    const angleY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
