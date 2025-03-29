@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
         
-        /* Header */
+        /* Header - Completely Different Animation from Gangs */
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/staff-banner.jpg') center/cover;
             text-align: center;
@@ -54,25 +54,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-                45deg,
-                rgba(212, 175, 55, 0.1) 0%,
-                rgba(255, 215, 0, 0.05) 50%,
-                rgba(212, 175, 55, 0.1) 100%
-            );
-            animation: gradientFlow 12s infinite alternate;
+            background: 
+                linear-gradient(45deg, transparent 48%, var(--gold) 49%, var(--gold) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--gold) 49%, var(--gold) 51%, transparent 52%);
+            background-size: 1em 1em;
+            opacity: 0.1;
+            animation: gridAnimation 8s linear infinite;
             z-index: 0;
         }
         
-        @keyframes gradientFlow {
+        @keyframes gridAnimation {
             0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
+                background-position: 0 0;
             }
             100% {
-                background-position: 0% 50%;
+                background-position: 1em 1em;
             }
         }
         
@@ -343,70 +339,72 @@
             color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Owner Card - Special Styling */
+        /* Owner Card - Completely Different Style */
         .owner-card {
             width: clamp(220px, 60vw, 320px);
-            border-top-width: 4px;
-            border-top-color: var(--dark-gold);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            border-top: 4px solid var(--dark-gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
             position: relative;
             overflow: visible;
-            animation: ownerGlow 3s infinite alternate;
+            animation: ownerFloat 4s ease-in-out infinite;
+            background: linear-gradient(135deg, rgba(18, 18, 18, 0.9), rgba(36, 36, 36, 0.9));
+            z-index: 2;
         }
         
-        .owner-card::after {
+        .owner-card::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 12px;
-            border: 2px solid var(--gold);
-            animation: borderPulse 3s infinite;
-            pointer-events: none;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gold), var(--dark-gold), var(--gold));
             z-index: -1;
+            border-radius: 10px;
+            animation: ownerBorder 3s linear infinite;
+            background-size: 200% 200%;
         }
         
-        @keyframes ownerGlow {
-            0% {
-                box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        @keyframes ownerFloat {
+            0%, 100% {
+                transform: translateY(0);
             }
             50% {
-                box-shadow: 0 0 35px rgba(255, 215, 0, 0.7);
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes ownerBorder {
+            0% {
+                background-position: 0% 50%;
+                opacity: 0.8;
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 1;
             }
             100% {
-                box-shadow: 0 0 45px rgba(255, 215, 0, 0.9);
-            }
-        }
-        
-        @keyframes borderPulse {
-            0%, 100% {
-                opacity: 0.7;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.02);
+                background-position: 0% 50%;
+                opacity: 0.8;
             }
         }
         
         .owner-card img {
             width: clamp(100px, 25vw, 150px);
             height: clamp(100px, 25vw, 150px);
-            border-width: 4px;
-            animation: pulse 2s infinite;
-            border-color: var(--dark-gold);
+            border: 4px solid var(--dark-gold);
+            animation: ownerPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        @keyframes pulse {
+        @keyframes ownerPulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             }
             50% {
-                transform: scale(1.03);
-                box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
             }
         }
         
@@ -515,7 +513,7 @@
             transform: translateY(-3px) scale(1.2);
         }
         
-        /* Gold Particles */
+        /* Gold Particles - Different from Gangs */
         .gold-particle {
             position: absolute;
             background: var(--gold);
@@ -523,6 +521,7 @@
             pointer-events: none;
             opacity: 0;
             z-index: 10;
+            filter: blur(1px);
         }
         
         /* Responsive */
@@ -752,30 +751,32 @@
     </footer>
 
     <script>
-        // Create gold particles on header hover
+        // Create gold particles on header hover - Different pattern from Gangs
         document.querySelector('header').addEventListener('mousemove', function(e) {
-            const particles = document.createElement('div');
-            particles.className = 'gold-particle';
-            
-            const size = Math.random() * 5 + 2;
-            particles.style.width = `${size}px`;
-            particles.style.height = `${size}px`;
-            
-            particles.style.left = `${e.clientX}px`;
-            particles.style.top = `${e.clientY}px`;
-            
-            document.body.appendChild(particles);
-            
-            // Animate particle
-            const animation = particles.animate([
-                { opacity: 0.8, transform: 'translate(0, 0)' },
-                { opacity: 0, transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)` }
-            ], {
-                duration: 1000 + Math.random() * 1000,
-                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-            });
-            
-            animation.onfinish = () => particles.remove();
+            for (let i = 0; i < 3; i++) {
+                const particles = document.createElement('div');
+                particles.className = 'gold-particle';
+                
+                const size = Math.random() * 4 + 1;
+                particles.style.width = `${size}px`;
+                particles.style.height = `${size}px`;
+                
+                particles.style.left = `${e.clientX + (Math.random() * 20 - 10)}px`;
+                particles.style.top = `${e.clientY + (Math.random() * 20 - 10)}px`;
+                
+                document.body.appendChild(particles);
+                
+                // Animate particle
+                const animation = particles.animate([
+                    { opacity: 0.8, transform: 'translate(0, 0) scale(1)' },
+                    { opacity: 0, transform: `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0.5)` }
+                ], {
+                    duration: 800 + Math.random() * 800,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                });
+                
+                animation.onfinish = () => particles.remove();
+            }
         });
         
         // Stagger animations for staff cards
