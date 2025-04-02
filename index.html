@@ -223,20 +223,45 @@
             text-align: center;
         }
         
-        /* Stats Section */
+        /* Updated Stats Section */
         .stats-container {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             margin: 60px 0;
+            gap: 20px;
         }
         
         .stat-item {
             text-align: center;
-            padding: 20px;
-            min-width: 200px;
-            transform: scale(0);
-            animation: scaleUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            padding: 25px;
+            min-width: 220px;
+            background: var(--glass);
+            border-radius: 10px;
+            border: 1px solid rgba(255,215,0,0.2);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--dark-gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .stat-item:hover::before {
+            transform: scaleX(1);
         }
         
         .stat-item:nth-child(1) { animation-delay: 0.1s; }
@@ -245,21 +270,29 @@
         .stat-item:nth-child(4) { animation-delay: 0.7s; }
         
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 10px;
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
+            display: inline-block;
         }
         
         .stat-number::after {
             content: '+';
             position: absolute;
+            right: -20px;
+            top: 10px;
+            font-size: 2rem;
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-item:nth-child(4) .stat-number::after {
+            content: '%';
         }
         
         .stat-label {
@@ -270,9 +303,14 @@
             transition: all 0.3s;
         }
         
+        .stat-item:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 30px rgba(255,215,0,0.2);
+        }
+        
         .stat-item:hover .stat-label {
             color: var(--gold);
-            transform: translateY(-3px);
+            letter-spacing: 1.5px;
         }
         
         /* Slideshow Styles */
@@ -744,6 +782,10 @@
             .slick-next {
                 right: -30px;
             }
+            
+            .stat-item {
+                min-width: 180px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -788,6 +830,7 @@
             
             .stat-item {
                 min-width: 120px;
+                padding: 15px 10px;
             }
             
             .stat-number {
@@ -840,21 +883,22 @@
                 realistic economy, and authentic roleplay scenarios for all player types.
             </p>
             
+            <!-- Updated Stats Section -->
             <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-number">27,000</div>
                     <div class="stat-label">Discord Members</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">500</div>
-                    <div class="stat-label">Daily Players</div>
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">Active Players</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">50</div>
                     <div class="stat-label">Active Factions</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">24/7</div>
+                    <div class="stat-number">99.9</div>
                     <div class="stat-label">Uptime</div>
                 </div>
             </div>
@@ -1085,8 +1129,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
     <script>
         // Initialize slideshows
         $(document).ready(function(){
@@ -1114,37 +1156,52 @@
                 cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
             });
             
-            // Counter animation for stats
-            $('.stat-number').counterUp({
-                delay: 10,
-                time: 1000,
-                formatter: function (n) {
-                    if(n > 1000) return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    return n;
-                }
-            });
-            
             // Animate elements when they come into view
-            $('.section-title, .section-description').waypoint(function() {
-                $(this.element).addClass('animate__animated animate__fadeInUp');
-            }, { offset: '80%' });
-            
-            $('.service-card').waypoint(function() {
-                $(this.element).addClass('animate__animated animate__fadeInUp');
-            }, { offset: '80%' });
-            
-            $('.legal-link').hover(function() {
-                $(this).addClass('animate__animated animate__pulse');
-            }, function() {
-                $(this).removeClass('animate__animated animate__pulse');
-            });
-        });
-        
-        // Add animation to stats on hover
-        $('.stat-item').hover(function() {
-            $(this).addClass('animate__animated animate__pulse');
-        }, function() {
-            $(this).removeClass('animate__animated animate__pulse');
+            $(window).scroll(function() {
+                $('.stat-item').each(function() {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    
+                    if (scroll + windowHeight - 100 > position) {
+                        $(this).addClass('visible');
+                        
+                        // Animate numbers
+                        if (!$(this).hasClass('animated')) {
+                            $(this).addClass('animated');
+                            var $number = $(this).find('.stat-number');
+                            var target = parseInt($number.text().replace(/,/g, ''));
+                            var duration = 1000; // 1 second
+                            var start = 0;
+                            var increment = target / (duration / 16);
+                            var current = start;
+                            
+                            var animate = function() {
+                                current += increment;
+                                if (current >= target) {
+                                    current = target;
+                                    if ($(this).find('.stat-number').text().indexOf('%') > -1) {
+                                        $number.text(current.toFixed(1));
+                                    } else {
+                                        $number.text(Math.floor(current).toLocaleString());
+                                    }
+                                    return;
+                                }
+                                
+                                if ($(this).find('.stat-number').text().indexOf('%') > -1) {
+                                    $number.text(current.toFixed(1));
+                                } else {
+                                    $number.text(Math.floor(current).toLocaleString());
+                                }
+                                
+                                requestAnimationFrame(animate);
+                            }.bind(this);
+                            
+                            animate();
+                        }
+                    }
+                });
+            }).scroll(); // Trigger on load
         });
     </script>
 </body>
