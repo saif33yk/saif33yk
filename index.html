@@ -6,6 +6,8 @@
     <title>Paradise Roleplay | FiveM Server</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         :root {
             --gold: #FFD700;
@@ -193,159 +195,86 @@
             text-align: center;
         }
         
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+        /* Slideshow Styles */
+        .slideshow-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            position: relative;
         }
         
-        .feature-card {
+        .slideshow {
             background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255,215,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(255,215,0,0.2);
-            border-color: rgba(255,215,0,0.3);
+        .slide {
+            padding: 30px;
+            text-align: center;
         }
         
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(212,175,55,0.1));
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-        }
-        
-        .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--gold);
-        }
-        
-        .feature-description {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Gallery Section */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 50px 0;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 200px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
-        }
-        
-        .gallery-item img {
+        .slide-image {
+            height: 400px;
             width: 100%;
-            height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 15px;
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        
-        /* Custom Cars Section */
-        .cars-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 50px 0;
-        }
-        
-        .car-card {
-            background: var(--glass);
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,215,0,0.1);
+            border: 2px solid var(--gold);
         }
         
-        .car-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
-            border-color: var(--gold);
-        }
-        
-        .car-image {
-            height: 180px;
-            overflow: hidden;
-        }
-        
-        .car-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .car-card:hover .car-image img {
-            transform: scale(1.1);
-        }
-        
-        .car-info {
+        .slide-content {
             padding: 20px;
         }
         
-        .car-name {
-            font-size: 1.2rem;
+        .slide-title {
+            font-size: 1.5rem;
             color: var(--gold);
             margin-bottom: 10px;
         }
         
+        .slide-description {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+        }
+        
+        .slick-prev, .slick-next {
+            width: 40px;
+            height: 40px;
+            z-index: 1;
+        }
+        
+        .slick-prev:before, .slick-next:before {
+            font-size: 40px;
+            color: var(--gold);
+        }
+        
+        .slick-prev {
+            left: -50px;
+        }
+        
+        .slick-next {
+            right: -50px;
+        }
+        
+        .slick-dots li button:before {
+            color: white;
+            font-size: 10px;
+        }
+        
+        .slick-dots li.slick-active button:before {
+            color: var(--gold);
+        }
+        
+        /* Custom Cars Slideshow */
+        .cars-slideshow .slide-image {
+            height: 300px;
+        }
+        
         .car-stats {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
         }
         
         .car-stat {
@@ -362,474 +291,120 @@
             color: rgba(255,255,255,0.7);
         }
         
-        /* Gangs Section */
-        .gangs-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .gang-card {
-            background: var(--glass);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,0,0,0.2);
-        }
-        
-        .gang-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255,0,0,0.3);
-            border-color: #ff0000;
-        }
-        
-        .gang-banner {
-            height: 150px;
-            background: linear-gradient(135deg, #ff0000, #800000);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .gang-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('img/gang-pattern.png') center/cover;
-            opacity: 0.2;
-        }
-        
-        .gang-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--black);
-            border: 3px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            z-index: 1;
-        }
-        
-        .gang-info {
-            padding: 20px;
-        }
-        
-        .gang-name {
-            font-size: 1.3rem;
-            color: white;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .gang-territory {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .gang-members {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-        
-        .gang-member-count {
-            text-align: center;
-        }
-        
-        .gang-member-number {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--gold);
-        }
-        
-        .gang-member-label {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
-        }
-        
-        /* Factions Section */
-        .factions-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .faction-card {
-            background: var(--glass);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0,100,255,0.2);
-        }
-        
-        .faction-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,100,255,0.3);
-        }
-        
-        .faction-header {
-            height: 120px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .faction-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        .faction-icon {
-            width: 70px;
-            height: 70px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--black);
-            z-index: 1;
-            border: 3px solid var(--gold);
-        }
-        
-        .faction-info {
-            padding: 20px;
-        }
-        
-        .faction-name {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .faction-description {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .faction-leader {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Learn More Button */
+        .learn-more {
+            display: inline-block;
             margin-top: 15px;
-        }
-        
-        .faction-leader-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--gold);
-            margin-right: 10px;
-            overflow: hidden;
-        }
-        
-        .faction-leader-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .faction-leader-name {
-            font-size: 0.9rem;
             color: var(--gold);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid var(--gold);
+            padding: 8px 20px;
+            border-radius: 30px;
         }
         
-        /* Staff Section */
-        .staff-container {
+        .learn-more:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: rgba(0,0,0,0.7);
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin: 50px 0;
+            margin-top: 40px;
         }
         
-        .staff-card {
+        .service-card {
             background: var(--glass);
+            padding: 30px;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--gold);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,215,0,0.2);
-            text-align: center;
         }
         
-        .staff-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
-            border-color: var(--gold);
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.2);
         }
         
-        .staff-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            margin: 30px auto 20px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .staff-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .staff-online {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: var(--success);
-            border: 2px solid var(--black);
-        }
-        
-        .staff-name {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 5px;
-        }
-        
-        .staff-role {
-            font-size: 0.9rem;
+        .service-icon {
+            font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 15px;
         }
         
-        .staff-contact {
-            padding: 15px;
-            background: rgba(255,215,0,0.1);
-            margin-top: 20px;
+        .service-title {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
         }
         
-        .staff-contact a {
+        .service-description {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Legal Section */
+        .legal {
+            background: var(--black);
+            padding: 60px 0;
+            border-top: 1px solid rgba(255,215,0,0.2);
+        }
+        
+        .legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .legal-link {
             color: var(--gold);
-            margin: 0 10px;
-            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s;
         }
         
-        .staff-contact a:hover {
+        .legal-link:hover {
             color: white;
-            transform: translateY(-3px);
-        }
-        
-        /* Wall of Fame Section */
-        .wall-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .wall-card {
-            background: var(--glass);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,215,0,0.2);
-        }
-        
-        .wall-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
-            border-color: var(--gold);
-        }
-        
-        .wall-banner {
-            height: 150px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .wall-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('img/trophy-pattern.png') center/cover;
-            opacity: 0.2;
-        }
-        
-        .wall-trophy {
-            font-size: 3rem;
-            color: white;
-            z-index: 1;
-        }
-        
-        .wall-info {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .wall-title {
-            font-size: 1.3rem;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-        
-        .wall-player {
-            font-size: 1.1rem;
-            color: white;
-            margin-bottom: 15px;
-        }
-        
-        .wall-description {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .wall-date {
-            font-size: 0.8rem;
-            color: var(--gold);
-        }
-        
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 40px 0;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            color: var(--black);
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            margin: 12px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            min-width: 180px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn i {
-            margin-right: 10px;
-            font-size: 1.1em;
-        }
-        
-        .btn-discord {
-            background: linear-gradient(135deg, #5865F2, #4752C4);
-            color: white;
-            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
-        }
-        
-        .btn-discord:hover {
-            box-shadow: 0 12px 30px rgba(88, 101, 242, 0.6);
-        }
-        
-        /* Stats Section */
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 60px 0;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            min-width: 200px;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stat-label {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-decoration: underline;
         }
         
         /* Footer */
         .footer {
             background: var(--glass);
             backdrop-filter: blur(10px);
-            padding: 20px;
+            padding: 30px;
             text-align: center;
-            margin-top: 60px;
             border-top: 1px solid rgba(255,215,0,0.1);
         }
         
         .footer p {
             font-size: 0.9rem;
             color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
         }
         
         .social-links {
@@ -848,83 +423,6 @@
             transform: translateY(-3px);
         }
         
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .header {
-                padding: 60px 15px;
-                min-height: 300px;
-            }
-            
-            .nav-btn {
-                padding: 8px 12px;
-                font-size: 0.7rem;
-                margin: 4px;
-            }
-            
-            .btn {
-                padding: 12px 24px;
-                font-size: 0.9rem;
-                min-width: 160px;
-            }
-            
-            .main-content {
-                padding: 0 20px;
-                margin: 30px auto;
-            }
-            
-            .features-grid, .gangs-container, .factions-container, .staff-container, .wall-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .stat-item {
-                min-width: 150px;
-                padding: 15px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header {
-                padding: 50px 15px;
-                min-height: 250px;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .nav {
-                padding: 10px 2px;
-            }
-            
-            .nav-btn {
-                padding: 6px 10px;
-                font-size: 0.6rem;
-                margin: 3px;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                min-width: 140px;
-                margin: 8px;
-            }
-            
-            .main-content {
-                padding: 0 15px;
-            }
-            
-            .stat-item {
-                min-width: 120px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
-        
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -936,35 +434,47 @@
             animation: float 4s ease-in-out infinite;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .slide-image {
+                height: 350px;
+            }
+            
+            .cars-slideshow .slide-image {
+                height: 250px;
+            }
         }
         
-        .pulse {
-            animation: pulse 2s infinite;
+        @media (max-width: 768px) {
+            .slide-image {
+                height: 300px;
+            }
+            
+            .cars-slideshow .slide-image {
+                height: 200px;
+            }
+            
+            .slick-prev {
+                left: -20px;
+            }
+            
+            .slick-next {
+                right: -20px;
+            }
         }
         
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .rotate {
-            animation: rotate 10s linear infinite;
-        }
-        
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width: 576px) {
+            .slide-image {
+                height: 250px;
+            }
+            
+            .cars-slideshow .slide-image {
+                height: 180px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1000,7 +510,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Welcome Section -->
-        <section class="reveal">
+        <section>
             <h2 class="section-title">Welcome to Paradise</h2>
             <p class="section-description">
                 Experience the most realistic and immersive FiveM roleplay server in Pakistan with custom scripts, 
@@ -1027,410 +537,215 @@
             </div>
         </section>
         
-        <!-- Custom Cars Section -->
-        <section class="reveal">
+        <!-- Custom Cars Slideshow -->
+        <section>
             <h2 class="section-title">Custom Vehicles</h2>
             <p class="section-description">
                 Drive exclusive custom vehicles available only on our server with unique handling and modifications
             </p>
             
-            <div class="cars-container">
-                <div class="car-card">
-                    <div class="car-image">
-                        <img src="img/cars/car1.jpg" alt="Custom Car">
-                    </div>
-                    <div class="car-info">
-                        <h3 class="car-name">Elegy Retro Custom</h3>
-                        <div class="car-stats">
-                            <div class="car-stat">
-                                <div class="car-stat-value">240mph</div>
-                                <div class="car-stat-label">Top Speed</div>
+            <div class="slideshow-container">
+                <div class="slideshow cars-slideshow">
+                    <!-- Car 1 -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/car1.jpg" alt="Custom Car" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Elegy Retro Custom</h3>
+                            <div class="car-stats">
+                                <div class="car-stat">
+                                    <div class="car-stat-value">240mph</div>
+                                    <div class="car-stat-label">Top Speed</div>
+                                </div>
+                                <div class="car-stat">
+                                    <div class="car-stat-value">AWD</div>
+                                    <div class="car-stat-label">Drive</div>
+                                </div>
+                                <div class="car-stat">
+                                    <div class="car-stat-value">S+</div>
+                                    <div class="car-stat-label">Class</div>
+                                </div>
                             </div>
-                            <div class="car-stat">
-                                <div class="car-stat-value">AWD</div>
-                                <div class="car-stat-label">Drive</div>
-                            </div>
-                            <div class="car-stat">
-                                <div class="car-stat-value">S+</div>
-                                <div class="car-stat-label">Class</div>
-                            </div>
+                            <a href="custom-cars.html#elegy-retro" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="car-card">
-                    <div class="car-image">
-                        <img src="img/cars/car2.jpg" alt="Custom Car">
-                    </div>
-                    <div class="car-info">
-                        <h3 class="car-name">Sentinel Classic</h3>
-                        <div class="car-stats">
-                            <div class="car-stat">
-                                <div class="car-stat-value">210mph</div>
-                                <div class="car-stat-label">Top Speed</div>
+                    
+                    <!-- Car 2 -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/car2.jpg" alt="Custom Car" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Sentinel Classic</h3>
+                            <div class="car-stats">
+                                <div class="car-stat">
+                                    <div class="car-stat-value">210mph</div>
+                                    <div class="car-stat-label">Top Speed</div>
+                                </div>
+                                <div class="car-stat">
+                                    <div class="car-stat-value">RWD</div>
+                                    <div class="car-stat-label">Drive</div>
+                                </div>
+                                <div class="car-stat">
+                                    <div class="car-stat-value">A</div>
+                                    <div class="car-stat-label">Class</div>
+                                </div>
                             </div>
-                            <div class="car-stat">
-                                <div class="car-stat-value">RWD</div>
-                                <div class="car-stat-label">Drive</div>
-                            </div>
-                            <div class="car-stat">
-                                <div class="car-stat-value">A</div>
-                                <div class="car-stat-label">Class</div>
-                            </div>
+                            <a href="custom-cars.html#sentinel-classic" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="car-card">
-                    <div class="car-image">
-                        <img src="img/cars/car3.jpg" alt="Custom Car">
-                    </div>
-                    <div class="car-info">
-                        <h3 class="car-name">Comet Safari</h3>
-                        <div class="car-stats">
-                            <div class="car-stat">
-                                <div class="car-stat-value">190mph</div>
-                                <div class="car-stat-label">Top Speed</div>
+                    
+                    <!-- Car 3 -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/car3.jpg" alt="Custom Car" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Comet Safari</h3>
+                            <div class="car-stats">
+                                <div class="car-stat">
+                                    <div class="car-stat-value">190mph</div>
+                                    <div class="car-stat-label">Top Speed</div>
+                                </div>
+                                <div class="car-stat">
+                                    <div class="car-stat-value">AWD</div>
+                                    <div class="car-stat-label">Drive</div>
+                                </div>
+                                <div class="car-stat">
+                                    <div class="car-stat-value">B</div>
+                                    <div class="car-stat-label">Class</div>
+                                </div>
                             </div>
-                            <div class="car-stat">
-                                <div class="car-stat-value">AWD</div>
-                                <div class="car-stat-label">Drive</div>
-                            </div>
-                            <div class="car-stat">
-                                <div class="car-stat-value">B</div>
-                                <div class="car-stat-label">Class</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Gangs Section -->
-        <section class="reveal">
-            <h2 class="section-title">Criminal Organizations</h2>
-            <p class="section-description">
-                Join or compete against the most powerful gangs in our criminal underworld
-            </p>
-            
-            <div class="gangs-container">
-                <div class="gang-card">
-                    <div class="gang-banner">
-                        <div class="gang-logo">LB</div>
-                    </div>
-                    <div class="gang-info">
-                        <h3 class="gang-name">Los Banditos</h3>
-                        <p class="gang-territory">Territory: Rancho, El Burro Heights</p>
-                        <div class="gang-members">
-                            <div class="gang-member-count">
-                                <div class="gang-member-number">15</div>
-                                <div class="gang-member-label">Members</div>
-                            </div>
-                            <div class="gang-member-count">
-                                <div class="gang-member-number">5</div>
-                                <div class="gang-member-label">Turfs</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gang-card">
-                    <div class="gang-banner">
-                        <div class="gang-logo">VF</div>
-                    </div>
-                    <div class="gang-info">
-                        <h3 class="gang-name">Vinewood Family</h3>
-                        <p class="gang-territory">Territory: Vinewood, Rockford Hills</p>
-                        <div class="gang-members">
-                            <div class="gang-member-count">
-                                <div class="gang-member-number">12</div>
-                                <div class="gang-member-label">Members</div>
-                            </div>
-                            <div class="gang-member-count">
-                                <div class="gang-member-number">4</div>
-                                <div class="gang-member-label">Turfs</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gang-card">
-                    <div class="gang-banner">
-                        <div class="gang-logo">BB</div>
-                    </div>
-                    <div class="gang-info">
-                        <h3 class="gang-name">Ballas Brotherhood</h3>
-                        <p class="gang-territory">Territory: Davis, Strawberry</p>
-                        <div class="gang-members">
-                            <div class="gang-member-count">
-                                <div class="gang-member-number">18</div>
-                                <div class="gang-member-label">Members</div>
-                            </div>
-                            <div class="gang-member-count">
-                                <div class="gang-member-number">6</div>
-                                <div class="gang-member-label">Turfs</div>
-                            </div>
+                            <a href="custom-cars.html#comet-safari" class="learn-more">Learn More</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Factions Section -->
-        <section class="reveal">
-            <h2 class="section-title">Official Factions</h2>
-            <p class="section-description">
-                Join one of our official factions and serve the community in various roles
-            </p>
+        <!-- Community Highlights Slideshow -->
+        <section>
+            <h2 class="section-title">Community Highlights</h2>
+            <p class="section-description">Featured gangs, factions, staff members, and achievements</p>
             
-            <div class="factions-container">
-                <div class="faction-card">
-                    <div class="faction-header" style="background-image: url('img/factions/police.jpg')">
-                        <div class="faction-icon"><i class="fas fa-shield-alt"></i></div>
-                    </div>
-                    <div class="faction-info">
-                        <h3 class="faction-name">Los Santos Police Department</h3>
-                        <p class="faction-description">
-                            Maintain law and order in the city as part of our police force
-                        </p>
-                        <div class="faction-leader">
-                            <div class="faction-leader-avatar">
-                                <img src="img/staff/chief.jpg" alt="Chief of Police">
-                            </div>
-                            <div class="faction-leader-name">Commissioner A. Rodriguez</div>
+            <div class="slideshow-container">
+                <div class="slideshow community-slideshow">
+                    <!-- Gang Slide -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/gang1.jpg" alt="Featured Gang" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Los Banditos</h3>
+                            <p class="slide-description">Currently the most active gang in Rancho district with 15 members</p>
+                            <a href="gangs.html#los-banditos" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faction-card">
-                    <div class="faction-header" style="background-image: url('img/factions/ems.jpg')">
-                        <div class="faction-icon"><i class="fas fa-ambulance"></i></div>
-                    </div>
-                    <div class="faction-info">
-                        <h3 class="faction-name">Emergency Medical Services</h3>
-                        <p class="faction-description">
-                            Save lives and provide medical care to citizens in need
-                        </p>
-                        <div class="faction-leader">
-                            <div class="faction-leader-avatar">
-                                <img src="img/staff/doctor.jpg" alt="Chief Doctor">
-                            </div>
-                            <div class="faction-leader-name">Dr. E. Williams</div>
+                    
+                    <!-- Faction Slide -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/faction1.jpg" alt="Featured Faction" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Los Santos Police Department</h3>
+                            <p class="slide-description">Our most active official faction with 25 dedicated officers</p>
+                            <a href="faction.html#lspd" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faction-card">
-                    <div class="faction-header" style="background-image: url('img/factions/fib.jpg')">
-                        <div class="faction-icon"><i class="fas fa-user-secret"></i></div>
-                    </div>
-                    <div class="faction-info">
-                        <h3 class="faction-name">Federal Investigation Bureau</h3>
-                        <p class="faction-description">
-                            Handle high-profile cases and national security matters
-                        </p>
-                        <div class="faction-leader">
-                            <div class="faction-leader-avatar">
-                                <img src="img/staff/fib.jpg" alt="FIB Director">
-                            </div>
-                            <div class="faction-leader-name">Director J. Callahan</div>
+                    
+                    <!-- Staff Slide 1 -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/staff1.jpg" alt="Staff Member" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Alex Carter</h3>
+                            <p class="slide-description">Head Administrator ensuring quality roleplay standards</p>
+                            <a href="staff.html#alex-carter" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faction-card">
-                    <div class="faction-header" style="background-image: url('img/factions/court.jpg')">
-                        <div class="faction-icon"><i class="fas fa-gavel"></i></div>
-                    </div>
-                    <div class="faction-info">
-                        <h3 class="faction-name">San Andreas Justice System</h3>
-                        <p class="faction-description">
-                            Uphold justice through the court system and legal proceedings
-                        </p>
-                        <div class="faction-leader">
-                            <div class="faction-leader-avatar">
-                                <img src="img/staff/judge.jpg" alt="Chief Justice">
-                            </div>
-                            <div class="faction-leader-name">Chief Justice M. Thompson</div>
+                    
+                    <!-- Staff Slide 2 -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/staff2.jpg" alt="Staff Member" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Sarah Johnson</h3>
+                            <p class="slide-description">Senior Admin handling player reports and faction management</p>
+                            <a href="staff.html#sarah-johnson" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faction-card">
-                    <div class="faction-header" style="background-image: url('img/factions/news.jpg')">
-                        <div class="faction-icon"><i class="fas fa-newspaper"></i></div>
-                    </div>
-                    <div class="faction-info">
-                        <h3 class="faction-name">Weazel News Network</h3>
-                        <p class="faction-description">
-                            Report on city events and keep the public informed
-                        </p>
-                        <div class="faction-leader">
-                            <div class="faction-leader-avatar">
-                                <img src="img/staff/reporter.jpg" alt="Lead Reporter">
-                            </div>
-                            <div class="faction-leader-name">L. Parker</div>
+                    
+                    <!-- Staff Slide 3 -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/staff3.jpg" alt="Staff Member" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Mike Rodriguez</h3>
+                            <p class="slide-description">Lead Moderator ensuring server rules are followed</p>
+                            <a href="staff.html#mike-rodriguez" class="learn-more">Learn More</a>
                         </div>
                     </div>
-                </div>
-                
-                <div class="faction-card">
-                    <div class="faction-header" style="background-image: url('img/factions/gov.jpg')">
-                        <div class="faction-icon"><i class="fas fa-landmark"></i></div>
-                    </div>
-                    <div class="faction-info">
-                        <h3 class="faction-name">San Andreas Government</h3>
-                        <p class="faction-description">
-                            Oversee city operations and public services
-                        </p>
-                        <div class="faction-leader">
-                            <div class="faction-leader-avatar">
-                                <img src="img/staff/mayor.jpg" alt="Prime Minister">
-                            </div>
-                            <div class="faction-leader-name">Prime Minister R. Hernandez</div>
+                    
+                    <!-- Wall of Fame Slide -->
+                    <div class="slide">
+                        <img src="img/homepage/slideshow/wof1.jpg" alt="Wall of Fame" class="slide-image">
+                        <div class="slide-content">
+                            <h3 class="slide-title">Roleplayer of the Month</h3>
+                            <p class="slide-description">James Wilson - For exceptional detective roleplay</p>
+                            <a href="wall-of-fame.html#james-wilson" class="learn-more">Learn More</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Staff Section -->
-        <section class="reveal">
-            <h2 class="section-title">24/7 Support Team</h2>
-            <p class="section-description">
-                Our dedicated staff team is available around the clock to ensure the best roleplay experience
-            </p>
-            
-            <div class="staff-container">
-                <div class="staff-card">
-                    <div class="staff-avatar">
-                        <img src="img/staff/admin1.jpg" alt="Admin">
-                        <div class="staff-online"></div>
-                    </div>
-                    <h3 class="staff-name">Alex Carter</h3>
-                    <p class="staff-role">Head Administrator</p>
-                    <p class="feature-description">
-                        Oversees server operations and ensures quality roleplay standards
-                    </p>
-                    <div class="staff-contact">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
+        <!-- Services Section -->
+        <section class="services">
+            <div class="services-container">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-description">We provide the best FiveM roleplay experience with these premium services</p>
                 
-                <div class="staff-card">
-                    <div class="staff-avatar">
-                        <img src="img/staff/admin2.jpg" alt="Admin">
-                        <div class="staff-online"></div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-theater-masks"></i></div>
+                        <h3 class="service-title">Premium Roleplay</h3>
+                        <p class="service-description">
+                            Experience the most immersive roleplay with our custom scripts, realistic economy, and dedicated community.
+                        </p>
+                        <a href="services.html#premium-rp" class="learn-more">Learn More</a>
                     </div>
-                    <h3 class="staff-name">Sarah Johnson</h3>
-                    <p class="staff-role">Senior Admin</p>
-                    <p class="feature-description">
-                        Handles player reports and oversees faction management
-                    </p>
-                    <div class="staff-contact">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-car"></i></div>
+                        <h3 class="service-title">Custom Vehicles</h3>
+                        <p class="service-description">
+                            Exclusive custom vehicles with unique handling and modifications available only on our server.
+                        </p>
+                        <a href="services.html#custom-vehicles" class="learn-more">Learn More</a>
                     </div>
-                </div>
-                
-                <div class="staff-card">
-                    <div class="staff-avatar">
-                        <img src="img/staff/mod1.jpg" alt="Moderator">
-                        <div class="staff-online"></div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-headset"></i></div>
+                        <h3 class="service-title">24/7 Support</h3>
+                        <p class="service-description">
+                            Our dedicated staff team is available around the clock to ensure the best roleplay experience.
+                        </p>
+                        <a href="services.html#support" class="learn-more">Learn More</a>
                     </div>
-                    <h3 class="staff-name">Mike Rodriguez</h3>
-                    <p class="staff-role">Lead Moderator</p>
-                    <p class="feature-description">
-                        Ensures server rules are followed and handles minor disputes
-                    </p>
-                    <div class="staff-contact">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                
-                <div class="staff-card">
-                    <div class="staff-avatar">
-                        <img src="img/staff/mod2.jpg" alt="Moderator">
-                        <div class="staff-online"></div>
-                    </div>
-                    <h3 class="staff-name">Emma Wilson</h3>
-                    <p class="staff-role">Support Moderator</p>
-                    <p class="feature-description">
-                        Helps new players and answers general server questions
-                    </p>
-                    <div class="staff-contact">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-calendar-star"></i></div>
+                        <h3 class="service-title">Regular Events</h3>
+                        <p class="service-description">
+                            Participate in weekly events with amazing prizes and unique roleplay scenarios.
+                        </p>
+                        <a href="services.html#events" class="learn-more">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Wall of Fame Section -->
-        <section class="reveal">
-            <h2 class="section-title">Wall of Fame</h2>
-            <p class="section-description">
-                Recognizing outstanding members of our community for their achievements
-            </p>
-            
-            <div class="wall-container">
-                <div class="wall-card">
-                    <div class="wall-banner">
-                        <i class="fas fa-trophy wall-trophy"></i>
-                    </div>
-                    <div class="wall-info">
-                        <h3 class="wall-title">Roleplayer of the Month</h3>
-                        <p class="wall-player">James Wilson</p>
-                        <p class="wall-description">
-                            For exceptional roleplay as a detective solving multiple high-profile cases
-                        </p>
-                        <p class="wall-date">June 2023</p>
-                    </div>
-                </div>
+        <!-- Legal Section -->
+        <section class="legal">
+            <div class="legal-container">
+                <h2 class="section-title">Legal Information</h2>
+                <p class="section-description">Please review our terms and conditions</p>
                 
-                <div class="wall-card">
-                    <div class="wall-banner">
-                        <i class="fas fa-star wall-trophy"></i>
-                    </div>
-                    <div class="wall-info">
-                        <h3 class="wall-title">Best Newcomer</h3>
-                        <p class="wall-player">Sophia Chen</p>
-                        <p class="wall-description">
-                            For quickly adapting to server rules and creating amazing RP scenarios
-                        </p>
-                        <p class="wall-date">May 2023</p>
-                    </div>
+                <div class="legal-links">
+                    <a href="terms.html" class="legal-link">Terms & Conditions</a>
+                    <a href="privacy.html" class="legal-link">Privacy Policy</a>
+                    <a href="rules/index.html" class="legal-link">Server Rules</a>
+                    <a href="disclaimer.html" class="legal-link">Disclaimer</a>
                 </div>
-                
-                <div class="wall-card">
-                    <div class="wall-banner">
-                        <i class="fas fa-medal wall-trophy"></i>
-                    </div>
-                    <div class="wall-info">
-                        <h3 class="wall-title">Community Contributor</h3>
-                        <p class="wall-player">David Miller</p>
-                        <p class="wall-description">
-                            For creating helpful guides and assisting new players in the community
-                        </p>
-                        <p class="wall-date">April 2023</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Join Section -->
-        <section class="reveal">
-            <h2 class="section-title">Ready to Join?</h2>
-            <p class="section-description">
-                Start your roleplay journey today in Pakistan's most immersive FiveM server
-            </p>
-            
-            <div class="btn-container">
-                <a href="join.html" class="btn"><i class="fas fa-gamepad"></i> Join Server</a>
-                <a href="rules/index.html" class="btn"><i class="fas fa-book"></i> Read Rules</a>
-                <a href="https://discord.gg/prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
             </div>
         </section>
     </main>
@@ -1445,52 +760,33 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
-        // Scroll Reveal Animation
-        window.addEventListener('scroll', reveal);
-        
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
+        // Initialize slideshows
+        $(document).ready(function(){
+            $('.cars-slideshow').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                adaptiveHeight: true,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                arrows: true
+            });
             
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveals[i].getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if (revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('active');
-                } else {
-                    reveals[i].classList.remove('active');
-                }
-            }
-        }
-        
-        // Mobile Menu Toggle (for future implementation)
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const overlay = document.querySelector('.overlay');
-        const closeMenu = document.querySelector('.close-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            $('.community-slideshow').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                adaptiveHeight: true,
+                autoplay: true,
+                autoplaySpeed: 6000,
+                arrows: true
+            });
         });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        // Initialize reveal on load
-        window.addEventListener('load', reveal);
     </script>
 </body>
 </html>
