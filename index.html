@@ -6,6 +6,7 @@
     <title>Paradise Roleplay | FiveM Server</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
@@ -17,6 +18,8 @@
             --glass-light: rgba(255, 255, 255, 0.1);
             --success: #4CAF50;
             --danger: #F44336;
+            --primary: #0066FF;
+            --secondary: #00D1FF;
         }
         
         * {
@@ -33,6 +36,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            overflow-x: hidden;
         }
         
         body::before {
@@ -53,6 +57,7 @@
             height: 300px;
             z-index: -1;
             opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
         }
         
         /* Header with Banner */
@@ -80,6 +85,7 @@
             bottom: 0;
             background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0) 100%);
             z-index: 0;
+            animation: pulse 8s infinite alternate;
         }
         
         .header-content {
@@ -95,6 +101,7 @@
             margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 1px;
+            animation: fadeInDown 1s ease;
         }
         
         .header p {
@@ -103,6 +110,7 @@
             text-shadow: 0 0 10px rgba(0,0,0,0.5);
             max-width: 600px;
             margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s both;
         }
         
         /* Navigation */
@@ -118,6 +126,7 @@
             z-index: 100;
             box-shadow: 0 5px 25px rgba(0,0,0,0.5);
             border-bottom: 1px solid rgba(255,215,0,0.2);
+            animation: fadeIn 0.8s ease;
         }
         
         .nav-btn {
@@ -127,13 +136,26 @@
             font-weight: 600;
             padding: 10px 18px;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-transform: uppercase;
             font-size: 0.8rem;
             letter-spacing: 0.8px;
             white-space: nowrap;
             background: var(--glass-light);
             border: 1px solid rgba(255,215,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+            transition: 0.5s;
         }
         
         .nav-btn:hover {
@@ -144,10 +166,15 @@
             border-color: rgba(255,215,0,0.3);
         }
         
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+        
         .nav-btn.active {
             background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             color: var(--black);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            animation: pulse 2s infinite;
         }
         
         .nav-btn i {
@@ -184,6 +211,7 @@
             height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--dark-gold));
             border-radius: 3px;
+            animation: widthGrow 1s ease;
         }
         
         .section-description {
@@ -193,6 +221,58 @@
             margin: 0 auto 40px;
             color: rgba(255,255,255,0.9);
             text-align: center;
+        }
+        
+        /* Stats Section */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 200px;
+            transform: scale(0);
+            animation: scaleUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.3s; }
+        .stat-item:nth-child(3) { animation-delay: 0.5s; }
+        .stat-item:nth-child(4) { animation-delay: 0.7s; }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .stat-number::after {
+            content: '+';
+            position: absolute;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .stat-item:hover .stat-label {
+            color: var(--gold);
+            transform: translateY(-3px);
         }
         
         /* Slideshow Styles */
@@ -207,6 +287,9 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
         }
         
         .slide {
@@ -220,10 +303,26 @@
             object-fit: cover;
             border-radius: 10px;
             border: 2px solid var(--gold);
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .slick-current .slide-image {
+            transform: scale(1);
+            box-shadow: 0 15px 35px rgba(255,215,0,0.2);
         }
         
         .slide-content {
             padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease 0.3s;
+        }
+        
+        .slick-current .slide-content {
+            transform: translateY(0);
+            opacity: 1;
         }
         
         .slide-title {
@@ -238,31 +337,46 @@
         }
         
         .slick-prev, .slick-next {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             z-index: 1;
+            transition: all 0.3s;
+        }
+        
+        .slick-prev:hover, .slick-next:hover {
+            transform: scale(1.2);
         }
         
         .slick-prev:before, .slick-next:before {
             font-size: 40px;
             color: var(--gold);
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         
         .slick-prev {
-            left: -50px;
+            left: -60px;
         }
         
         .slick-next {
-            right: -50px;
+            right: -60px;
+        }
+        
+        .slick-dots {
+            bottom: -40px;
         }
         
         .slick-dots li button:before {
             color: white;
-            font-size: 10px;
+            font-size: 12px;
+            opacity: 0.5;
+            transition: all 0.3s;
         }
         
         .slick-dots li.slick-active button:before {
             color: var(--gold);
+            opacity: 1;
+            transform: scale(1.3);
         }
         
         /* Custom Cars Slideshow */
@@ -279,11 +393,21 @@
         
         .car-stat {
             text-align: center;
+            background: rgba(255,215,0,0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .slick-current .car-stat {
+            background: rgba(255,215,0,0.2);
+            transform: translateY(-5px);
         }
         
         .car-stat-value {
             font-weight: 700;
             color: var(--gold);
+            font-size: 1.2rem;
         }
         
         .car-stat-label {
@@ -298,21 +422,43 @@
             color: var(--gold);
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid var(--gold);
-            padding: 8px 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid var(--gold);
+            padding: 8px 25px;
             border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .learn-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+            transition: 0.5s;
         }
         
         .learn-more:hover {
             background: var(--gold);
             color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.3);
+        }
+        
+        .learn-more:hover::before {
+            left: 100%;
         }
         
         /* Services Section */
         .services {
             padding: 80px 0;
             background: rgba(0,0,0,0.7);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
         }
         
         .services-container {
@@ -333,30 +479,53 @@
             padding: 30px;
             border-radius: 10px;
             border-left: 4px solid var(--gold);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(30px);
+            opacity: 0;
         }
         
+        .service-card:nth-child(1) { animation: fadeInUp 0.6s ease 0.3s forwards; }
+        .service-card:nth-child(2) { animation: fadeInUp 0.6s ease 0.5s forwards; }
+        .service-card:nth-child(3) { animation: fadeInUp 0.6s ease 0.7s forwards; }
+        .service-card:nth-child(4) { animation: fadeInUp 0.6s ease 0.9s forwards; }
+        
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255,215,0,0.2);
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(255,215,0,0.2);
+            border-color: var(--dark-gold);
         }
         
         .service-icon {
             font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: rotate(15deg) scale(1.1);
         }
         
         .service-title {
             font-size: 1.2rem;
             color: var(--gold);
             margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover .service-title {
+            letter-spacing: 1px;
         }
         
         .service-description {
             color: rgba(255,255,255,0.8);
             font-size: 0.95rem;
             line-height: 1.6;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover .service-description {
+            color: white;
         }
         
         /* Legal Section */
@@ -364,6 +533,9 @@
             background: var(--black);
             padding: 60px 0;
             border-top: 1px solid rgba(255,215,0,0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
         }
         
         .legal-container {
@@ -384,12 +556,17 @@
             color: var(--gold);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255,215,0,0.1);
         }
         
         .legal-link:hover {
-            color: white;
-            text-decoration: underline;
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.3);
         }
         
         /* Footer */
@@ -399,6 +576,9 @@
             padding: 30px;
             text-align: center;
             border-top: 1px solid rgba(255,215,0,0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
         }
         
         .footer p {
@@ -415,23 +595,136 @@
             color: white;
             margin: 0 10px;
             font-size: 1.2rem;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
         }
         
         .social-links a:hover {
             color: var(--gold);
-            transform: translateY(-3px);
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: var(--black);
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-width: 180px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover i {
+            transform: rotate(15deg);
+        }
+        
+        .btn-discord {
+            background: linear-gradient(135deg, #5865F2, #4752C4);
+            color: white;
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
+        }
+        
+        .btn-discord:hover {
+            box-shadow: 0 12px 30px rgba(88, 101, 242, 0.6);
         }
         
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
         
-        .floating {
-            animation: float 4s ease-in-out infinite;
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+        
+        @keyframes pulseBadge {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes widthGrow {
+            0% { width: 0; }
+            100% { width: 80px; }
+        }
+        
+        @keyframes scaleUp {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         /* Responsive Adjustments */
@@ -442,6 +735,14 @@
             
             .cars-slideshow .slide-image {
                 height: 250px;
+            }
+            
+            .slick-prev {
+                left: -30px;
+            }
+            
+            .slick-next {
+                right: -30px;
             }
         }
         
@@ -455,11 +756,20 @@
             }
             
             .slick-prev {
-                left: -20px;
+                left: -15px;
             }
             
             .slick-next {
-                right: -20px;
+                right: -15px;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
         
@@ -475,12 +785,25 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                min-width: 160px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Palm Tree Decoration -->
-    <img src="img/palm-tree.png" alt="Palm Tree" class="palm-tree floating">
+    <img src="img/palm-tree.png" alt="Palm Tree" class="palm-tree">
     
     <!-- Header with Banner -->
     <header class="header">
@@ -519,15 +842,15 @@
             
             <div class="stats-container">
                 <div class="stat-item">
-                    <div class="stat-number">27,000+</div>
+                    <div class="stat-number">27,000</div>
                     <div class="stat-label">Discord Members</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">500+</div>
+                    <div class="stat-number">500</div>
                     <div class="stat-label">Daily Players</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">50+</div>
+                    <div class="stat-number">50</div>
                     <div class="stat-label">Active Factions</div>
                 </div>
                 <div class="stat-item">
@@ -762,30 +1085,66 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
     <script>
         // Initialize slideshows
         $(document).ready(function(){
             $('.cars-slideshow').slick({
                 dots: true,
                 infinite: true,
-                speed: 500,
+                speed: 800,
                 slidesToShow: 1,
                 adaptiveHeight: true,
                 autoplay: true,
                 autoplaySpeed: 5000,
-                arrows: true
+                arrows: true,
+                cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
             });
             
             $('.community-slideshow').slick({
                 dots: true,
                 infinite: true,
-                speed: 500,
+                speed: 800,
                 slidesToShow: 1,
                 adaptiveHeight: true,
                 autoplay: true,
                 autoplaySpeed: 6000,
-                arrows: true
+                arrows: true,
+                cssEase: 'cubic-bezier(0.645, 0.045, 0.355, 1)'
             });
+            
+            // Counter animation for stats
+            $('.stat-number').counterUp({
+                delay: 10,
+                time: 1000,
+                formatter: function (n) {
+                    if(n > 1000) return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    return n;
+                }
+            });
+            
+            // Animate elements when they come into view
+            $('.section-title, .section-description').waypoint(function() {
+                $(this.element).addClass('animate__animated animate__fadeInUp');
+            }, { offset: '80%' });
+            
+            $('.service-card').waypoint(function() {
+                $(this.element).addClass('animate__animated animate__fadeInUp');
+            }, { offset: '80%' });
+            
+            $('.legal-link').hover(function() {
+                $(this).addClass('animate__animated animate__pulse');
+            }, function() {
+                $(this).removeClass('animate__animated animate__pulse');
+            });
+        });
+        
+        // Add animation to stats on hover
+        $('.stat-item').hover(function() {
+            $(this).addClass('animate__animated animate__pulse');
+        }, function() {
+            $(this).removeClass('animate__animated animate__pulse');
         });
     </script>
 </body>
