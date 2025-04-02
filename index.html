@@ -145,19 +145,20 @@
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 30px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            color: var(--gold);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
             text-align: center;
             width: 100%;
         }
         
-        .main-content h2 {
-            font-size: clamp(1.5rem, 5vw, 2.2rem);
-            color: var(--gold);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .main-content h2::after {
+        .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -169,12 +170,113 @@
             border-radius: 3px;
         }
         
-        .main-content p {
+        .section-description {
             font-size: 1.1rem;
             line-height: 1.6;
             max-width: 700px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px;
             color: rgba(255,255,255,0.9);
+            text-align: center;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,215,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,215,0,0.2);
+            border-color: rgba(255,215,0,0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(212,175,55,0.1));
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .feature-description {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 15px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
         }
         
         /* Buttons */
@@ -182,7 +284,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin: 40px 0;
         }
         
         .btn {
@@ -243,6 +345,37 @@
             box-shadow: 0 12px 30px rgba(88, 101, 242, 0.6);
         }
         
+        /* Stats Section */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
         /* Footer */
         .footer {
             background: var(--glass);
@@ -297,6 +430,19 @@
                 padding: 0 20px;
                 margin: 30px auto;
             }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-item {
+                min-width: 150px;
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -328,6 +474,14 @@
             .main-content {
                 padding: 0 15px;
             }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -336,7 +490,7 @@
     <header class="header">
         <div class="header-content">
             <h1>PARADISE ROLEPLAY PAKISTAN</h1>
-            <p>Pakistan Biggest Roleplay Server With Over 27000+ Discord Members</p>
+            <p>Pakistan's Biggest Roleplay Server With Over 27000+ Discord Members</p>
         </div>
     </header>
     
@@ -354,13 +508,142 @@
     
     <!-- Main Content -->
     <main class="main-content">
-        <h2>Welcome to Paradise Roleplay</h2>
-        <p>Immerse yourself in Pakistan's most advanced GTA RP server featuring custom scripts, realistic economy, and authentic roleplay scenarios for all player types.</p>
+        <!-- Welcome Section -->
+        <section>
+            <h2 class="section-title">Welcome to Paradise Roleplay</h2>
+            <p class="section-description">Immerse yourself in Pakistan's most advanced GTA RP server featuring custom scripts, realistic economy, and authentic roleplay scenarios for all player types.</p>
+            
+            <div class="btn-container">
+                <a href="join.html" class="btn"><i class="fas fa-gamepad"></i> Join Now</a>
+                <a href="https://discord.gg/prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
+            </div>
+        </section>
         
-        <div class="btn-container">
-            <a href="join.html" class="btn"><i class="fas fa-gamepad"></i> Join Now</a>
-            <a href="https://discord.gg/prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
-        </div>
+        <!-- Features Section -->
+        <section>
+            <h2 class="section-title">Server Features</h2>
+            <p class="section-description">Discover what makes our server unique and the best choice for roleplay enthusiasts</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="feature-title">Custom Vehicles</h3>
+                    <p class="feature-description">Over 500+ custom vehicles with unique handling and modifications tailored for our server's economy and gameplay.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3 class="feature-title">Custom Map</h3>
+                    <p class="feature-description">Exclusive custom locations and interiors designed specifically for our roleplay community's needs.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="feature-title">Realistic Economy</h3>
+                    <p class="feature-description">Balanced economic system with dynamic pricing, businesses, and jobs that reward roleplay and effort.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Active Community</h3>
+                    <p class="feature-description">Join thousands of active players daily with events, tournaments, and community activities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Faction System</h3>
+                    <p class="feature-description">Join or create factions with unique abilities, uniforms, and roleplay opportunities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Dedicated Support</h3>
+                    <p class="feature-description">24/7 admin support and active staff team ensuring fair play and quality roleplay for all.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section>
+            <h2 class="section-title">Our Community</h2>
+            <p class="section-description">Join one of the fastest growing roleplay communities in Pakistan</p>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">27,000+</div>
+                    <div class="stat-label">Discord Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Daily Players</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Active Factions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section>
+            <h2 class="section-title">Gallery</h2>
+            <p class="section-description">See what our community has been up to</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="img/gallery1.jpg" alt="Roleplay Scene">
+                    <div class="gallery-caption">Police Chase</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery2.jpg" alt="Custom Car Meet">
+                    <div class="gallery-caption">Car Meet Event</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery3.jpg" alt="Gang Roleplay">
+                    <div class="gallery-caption">Gang Roleplay</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery4.jpg" alt="Faction Activity">
+                    <div class="gallery-caption">EMS Rescue</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery5.jpg" alt="Server Event">
+                    <div class="gallery-caption">Community Event</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery6.jpg" alt="Custom Location">
+                    <div class="gallery-caption">Custom Casino</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join Section -->
+        <section>
+            <h2 class="section-title">Ready to Join?</h2>
+            <p class="section-description">Start your roleplay journey today in Pakistan's most immersive server</p>
+            
+            <div class="btn-container">
+                <a href="join.html" class="btn"><i class="fas fa-gamepad"></i> Join Server</a>
+                <a href="rules/index.html" class="btn"><i class="fas fa-book"></i> Read Rules</a>
+                <a href="https://discord.gg/prpk" class="btn btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
+            </div>
+        </section>
     </main>
     
     <!-- Footer -->
