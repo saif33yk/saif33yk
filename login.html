@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <!-- Same head as home -->
+    <title>Admin Login</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<body data-page="login">
-  <main class="auth-container">
-    <div class="auth-tabs">
-      <button class="tab-btn active" data-tab="user">User Login</button>
-      <button class="tab-btn" data-tab="staff">Staff Login</button>
-      <button class="tab-btn" data-tab="admin">Admin Login</button>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <div id="error-message" style="color: red;"></div>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
     </div>
-
-    <div class="auth-forms">
-      <!-- User Login Form -->
-      <form id="userLoginForm" class="auth-form active">
-        <input type="text" placeholder="Username" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-        <p>Don't have an account? <a href="/register.html">Register</a></p>
-      </form>
-
-      <!-- Staff/Admin forms would be similar -->
-    </div>
-  </main>
-
-  <script src="/assets/js/auth/login.js" type="module"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
