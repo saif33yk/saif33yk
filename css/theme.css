@@ -65,7 +65,8 @@ body.light-mode {
     margin: 0;
     padding: 0;
 }
-/* === Header Banner (Behind Title) === */
+
+/* ===== BANNER STYLES ===== */
 .title-banner {
     position: absolute;
     top: 50%;
@@ -74,12 +75,12 @@ body.light-mode {
     width: 100%;
     max-width: 800px;
     height: 120px;
-    background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,215,0,0) 100%);
+    background: url('../img/banner.jpg') center/cover no-repeat;
     border-radius: 10px;
     z-index: 0;
-    animation: pulse 8s infinite alternate;
+    opacity: 0.7;
     border: 1px solid rgba(255,215,0,0.2);
-    box-shadow: 0 0 30px rgba(255,215,0,0.1);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 body {
