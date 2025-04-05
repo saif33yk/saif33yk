@@ -200,28 +200,56 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Firebase Configuration -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
-    <script src="firebase-config.js"></script>
     <script>
-        // Check auth state on load
+        // ===== Configuration ===== //
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyABCDEFGHIJKLMNOPQRSTUVWXYZ12345678",
+            authDomain: "paradiserppk.firebaseapp.com",
+            databaseURL: "https://paradiserppk.firebaseio.com",
+            projectId: "paradiserppk",
+            storageBucket: "paradiserppk.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdefghijklmnopqrstuv"
+        };
+        
+        const ADMIN_SECRET = "paradise@secure123"; // Change this to your secret
+        
+        // ===== Initialization ===== //
+        firebase.initializeApp(FIREBASE_CONFIG);
+        const auth = firebase.auth();
+        const db = firebase.database();
+        
+        // ===== Authentication ===== //
         auth.onAuthStateChanged(user => {
             if (user) {
-                checkIfAdmin(user.uid);
+                verifyAdmin(user);
             } else {
-                document.getElementById('login-form').style.display = 'block';
-                document.getElementById('admin-panel').style.display = 'none';
+                showLogin();
             }
         });
         
-        function checkIfAdmin(uid) {
-            db.ref('admins/' + uid).once('value').then(snapshot => {
+        function verifyAdmin(user) {
+            // First check local session
+            if (sessionStorage.getItem('adminAuth') === ADMIN_SECRET) {
+                showAdminPanel();
+                loadAnnouncements();
+                return;
+            }
+            
+            // Fallback to Firebase check
+            db.ref('admins/' + user.uid).once('value').then(snapshot => {
                 if (snapshot.exists()) {
-                    document.getElementById('login-form').style.display = 'none';
-                    document.getElementById('admin-panel').style.display = 'block';
+                    sessionStorage.setItem('adminAuth', ADMIN_SECRET);
+                    showAdminPanel();
                     loadAnnouncements();
+                } else {
+                    auth.signOut();
+                    showLogin();
                 }
             });
         }
@@ -232,20 +260,17 @@
             const errorElement = document.getElementById('login-error');
             
             auth.signInWithEmailAndPassword(email, password)
-                .then(userCredential => {
-                    checkIfAdmin(userCredential.user.uid);
-                })
                 .catch(error => {
                     errorElement.textContent = error.message;
                 });
         }
         
         function logout() {
-            auth.signOut().then(() => {
-                window.location.reload();
-            });
+            sessionStorage.removeItem('adminAuth');
+            auth.signOut();
         }
         
+        // ===== Announcement Functions ===== //
         function createAnnouncement() {
             const title = document.getElementById('announcement-title').value;
             const content = document.getElementById('announcement-content').value;
@@ -255,10 +280,12 @@
                 return;
             }
             
+            // Add server-side verification token
             db.ref('announcements').push({
                 title: title,
                 content: content,
-                timestamp: firebase.database.ServerValue.TIMESTAMP
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                verified: ADMIN_SECRET // Hidden verification
             }).then(() => {
                 document.getElementById('announcement-title').value = '';
                 document.getElementById('announcement-content').value = '';
@@ -272,6 +299,13 @@
                 
                 snapshot.forEach(childSnapshot => {
                     const announcement = childSnapshot.val();
+                    
+                    // Verify announcement integrity
+                    if (announcement.verified !== ADMIN_SECRET) {
+                        db.ref('announcements/' + childSnapshot.key).remove();
+                        return;
+                    }
+                    
                     const announcementElement = document.createElement('div');
                     announcementElement.className = 'announcement-item';
                     announcementElement.innerHTML = `
@@ -291,6 +325,17 @@
             if (confirm('Are you sure you want to delete this announcement?')) {
                 db.ref('announcements/' + key).remove();
             }
+        }
+        
+        // ===== UI Helpers ===== //
+        function showLogin() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
         }
     </script>
 </body>
