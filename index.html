@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <!-- Firebase Integration -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <style>
         :root {
             --gold: #FFD700;
@@ -715,6 +719,45 @@
             box-shadow: 0 12px 30px rgba(88, 101, 242, 0.6);
         }
         
+        /* Announcements Section */
+        .announcements-container {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px auto;
+            max-width: 800px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .announcement {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .announcement:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .announcement-title {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .announcement-date {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .announcement-content {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
         /* Animations */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -872,6 +915,8 @@
         <a href="faction.html" class="nav-btn"><i class="fas fa-shield-alt"></i> Factions</a>
         <a href="wall-of-fame.html" class="nav-btn"><i class="fas fa-trophy"></i> Wall of Fame</a>
         <a href="events.html" class="nav-btn"><i class="fas fa-calendar-alt"></i> Events</a>
+        <!-- Admin Link (hidden by default) -->
+        <a href="admin.html" id="admin-link" class="nav-btn" style="display: none;"><i class="fas fa-lock"></i> Admin</a>
     </nav>
     
     <!-- Main Content -->
@@ -901,6 +946,16 @@
                 <div class="stat-item">
                     <div class="stat-number">99.9</div>
                     <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Server Announcements Section (Added) -->
+        <section>
+            <h2 class="section-title">Server Announcements</h2>
+            <div id="dynamic-content" class="announcements-container">
+                <div class="loading-announcements">
+                    <i class="fas fa-spinner fa-spin"></i> Loading announcements...
                 </div>
             </div>
         </section>
@@ -1118,6 +1173,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
+        // Firebase configuration (replace with your actual config)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const auth = firebase.auth();
+
         // Initialize slideshows
         $(document).ready(function(){
             $('.cars-slideshow').slick({
@@ -1190,6 +1261,41 @@
                     }
                 });
             }).scroll(); // Trigger on load
+        });
+
+        // Firebase realtime functionality
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // Check if user is admin to show admin link
+                db.ref('admins/' + user.uid).once('value').then((snapshot) => {
+                    if (snapshot.exists()) {
+                        document.getElementById('admin-link').style.display = 'block';
+                    }
+                });
+            }
+            
+            // Load announcements for all visitors
+            db.ref('announcements').orderByChild('timestamp').limitToLast(5).on('value', (snapshot) => {
+                const container = document.getElementById('dynamic-content');
+                container.innerHTML = '';
+                
+                if (!snapshot.exists()) {
+                    container.innerHTML = '<p>No announcements yet. Check back later!</p>';
+                    return;
+                }
+                
+                snapshot.forEach((childSnapshot) => {
+                    const announcement = childSnapshot.val();
+                    const announcementElement = document.createElement('div');
+                    announcementElement.className = 'announcement';
+                    announcementElement.innerHTML = `
+                        <h3 class="announcement-title">${announcement.title}</h3>
+                        <div class="announcement-date">${new Date(announcement.timestamp).toLocaleString()}</div>
+                        <div class="announcement-content">${announcement.content}</div>
+                    `;
+                    container.appendChild(announcementElement);
+                });
+            });
         });
     </script>
 </body>
