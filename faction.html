@@ -16,6 +16,8 @@
             --dark-pink: #FA026E;
             --lime: #85BB49;
             --dark-green: #5CAE3C;
+            --army-green: #4B5320;
+            --dark-army-green: #3A4410;
             --black: #121212;
             --darker-black: #0a0a0a;
             --glass: rgba(18, 18, 18, 0.93);
@@ -227,6 +229,10 @@
             background: var(--lime);
         }
         
+        .army.faction-card::before {
+            background: var(--army-green);
+        }
+        
         .faction-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 40px rgba(0, 102, 204, 0.3);
@@ -242,6 +248,10 @@
         
         .weazel.faction-card:hover {
             box-shadow: 0 15px 40px rgba(133, 187, 73, 0.3);
+        }
+        
+        .army.faction-card:hover {
+            box-shadow: 0 15px 40px rgba(75, 83, 32, 0.3);
         }
         
         .faction-card:hover::before {
@@ -307,6 +317,7 @@
         .faction-card:nth-child(2) { animation-delay: 0.3s; }
         .faction-card:nth-child(3) { animation-delay: 0.5s; }
         .faction-card:nth-child(4) { animation-delay: 0.7s; }
+        .faction-card:nth-child(5) { animation-delay: 0.9s; }
         
         /* Faction Content Styles */
         .faction-name {
@@ -328,6 +339,10 @@
             color: var(--lime);
         }
         
+        .army .faction-name {
+            color: var(--army-green);
+        }
+        
         .faction-leaders {
             font-weight: 600;
             margin-bottom: 15px;
@@ -346,6 +361,10 @@
         
         .weazel .faction-leaders {
             color: var(--lime);
+        }
+        
+        .army .faction-leaders {
+            color: var(--army-green);
         }
         
         .faction-leaders i {
@@ -387,6 +406,10 @@
             color: var(--lime);
         }
         
+        .army .unit::before {
+            color: var(--army-green);
+        }
+        
         .unit-name {
             font-weight: 600;
             margin-bottom: 5px;
@@ -403,6 +426,10 @@
         
         .weazel .unit-name {
             color: var(--lime);
+        }
+        
+        .army .unit-name {
+            color: var(--army-green);
         }
         
         .unit-description {
@@ -448,6 +475,12 @@
             background: rgba(133, 187, 73, 0.2);
             color: var(--lime);
             border: 1px solid rgba(133, 187, 73, 0.3);
+        }
+        
+        .army .strength-tag {
+            background: rgba(75, 83, 32, 0.2);
+            color: var(--army-green);
+            border: 1px solid rgba(75, 83, 32, 0.3);
         }
         
         /* Join Section */
@@ -555,6 +588,40 @@
                 </div>
             </div>
             
+            <!-- Army -->
+            <div class="faction-card army">
+                <div class="faction-image" style="background-image: url('img/faction/army.jpg');"></div>
+                <div class="faction-content">
+                    <h3 class="faction-name">Army</h3>
+                    <p class="faction-leaders"><i class="fas fa-helmet-battle"></i> Major General: Zigana</p>
+                    <div class="faction-description">
+                        <p>The core force responsible for maintaining peace, executing critical missions, and ensuring security across the city. The Army operates with precision and discipline to protect national interests.</p>
+                    </div>
+                    <div class="faction-units">
+                        <!-- Air Force -->
+                        <div class="unit">
+                            <h4 class="unit-name">Air Force</h4>
+                            <p class="unit-description">Elite aerial specialists providing air support and reconnaissance.</p>
+                        </div>
+                        <!-- Green Berets -->
+                        <div class="unit">
+                            <h4 class="unit-name">Green Berets</h4>
+                            <p class="unit-description">Specialized in unconventional warfare, sabotage, and stealth missions.</p>
+                        </div>
+                        <!-- Elite Force -->
+                        <div class="unit">
+                            <h4 class="unit-name">Elite Force</h4>
+                            <p class="unit-description">Precision tactical teams trained for high-risk operations and strategic strikes.</p>
+                        </div>
+                    </div>
+                    <div class="faction-strengths">
+                        <span class="strength-tag">Versatile Operations</span>
+                        <span class="strength-tag">Rapid Response</span>
+                        <span class="strength-tag">Elite Combat</span>
+                    </div>
+                </div>
+            </div>
+            
             <!-- FIB -->
             <div class="faction-card fib">
                 <div class="faction-image" style="background-image: url('img/faction/fib.jpg');"></div>
@@ -648,7 +715,7 @@
         // Create animated background elements
         document.addEventListener('DOMContentLoaded', function() {
             const bgContainer = document.getElementById('bgElements');
-            const colors = ['rgba(0,102,204,0.15)', 'rgba(204,0,0,0.1)', 'rgba(250,2,113,0.1)', 'rgba(133,187,73,0.1)'];
+            const colors = ['rgba(0,102,204,0.15)', 'rgba(204,0,0,0.1)', 'rgba(250,2,113,0.1)', 'rgba(133,187,73,0.1)', 'rgba(75,83,32,0.1)'];
             
             for (let i = 0; i < 15; i++) {
                 const element = document.createElement('div');
