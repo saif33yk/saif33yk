@@ -54,16 +54,6 @@
             z-index: -1;
         }
         
-        .palm-tree {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            height: 300px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-        
         /* Header with Banner */
         .header {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
@@ -98,6 +88,19 @@
             max-width: 800px;
         }
         
+        /* Banner background for the heading */
+        .title-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/banner.jpg') center/cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* Glitch effect for the heading */
         .header h1 {
             font-size: clamp(2rem, 8vw, 3.5rem);
             color: var(--gold);
@@ -105,7 +108,201 @@
             margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 1px;
-            animation: fadeInDown 1s ease;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text {
+            position: relative;
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: 'PARADISE ROLEPLAY';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-1 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim-2 1s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(31px, 9999px, 94px, 0);
+                transform: skew(0.85deg);
+            }
+            5% {
+                clip: rect(70px, 9999px, 71px, 0);
+                transform: skew(0.17deg);
+            }
+            10% {
+                clip: rect(75px, 9999px, 92px, 0);
+                transform: skew(0.4deg);
+            }
+            15% {
+                clip: rect(66px, 9999px, 91px, 0);
+                transform: skew(0.29deg);
+            }
+            20% {
+                clip: rect(41px, 9999px, 87px, 0);
+                transform: skew(0.72deg);
+            }
+            25% {
+                clip: rect(38px, 9999px, 53px, 0);
+                transform: skew(0.65deg);
+            }
+            30% {
+                clip: rect(51px, 9999px, 56px, 0);
+                transform: skew(0.06deg);
+            }
+            35% {
+                clip: rect(38px, 9999px, 86px, 0);
+                transform: skew(0.1deg);
+            }
+            40% {
+                clip: rect(57px, 9999px, 62px, 0);
+                transform: skew(0.98deg);
+            }
+            45% {
+                clip: rect(73px, 9999px, 30px, 0);
+                transform: skew(0.45deg);
+            }
+            50% {
+                clip: rect(31px, 9999px, 94px, 0);
+                transform: skew(0.85deg);
+            }
+            55% {
+                clip: rect(70px, 9999px, 71px, 0);
+                transform: skew(0.17deg);
+            }
+            60% {
+                clip: rect(75px, 9999px, 92px, 0);
+                transform: skew(0.4deg);
+            }
+            65% {
+                clip: rect(66px, 9999px, 91px, 0);
+                transform: skew(0.29deg);
+            }
+            70% {
+                clip: rect(41px, 9999px, 87px, 0);
+                transform: skew(0.72deg);
+            }
+            75% {
+                clip: rect(38px, 9999px, 53px, 0);
+                transform: skew(0.65deg);
+            }
+            80% {
+                clip: rect(51px, 9999px, 56px, 0);
+                transform: skew(0.06deg);
+            }
+            85% {
+                clip: rect(38px, 9999px, 86px, 0);
+                transform: skew(0.1deg);
+            }
+            90% {
+                clip: rect(57px, 9999px, 62px, 0);
+                transform: skew(0.98deg);
+            }
+            95% {
+                clip: rect(73px, 9999px, 30px, 0);
+                transform: skew(0.45deg);
+            }
+            100% {
+                clip: rect(31px, 9999px, 94px, 0);
+                transform: skew(0.85deg);
+            }
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% {
+                clip: rect(12px, 9999px, 52px, 0);
+            }
+            25% {
+                clip: rect(33px, 9999px, 97px, 0);
+            }
+            50% {
+                clip: rect(81px, 9999px, 43px, 0);
+            }
+            75% {
+                clip: rect(26px, 9999px, 67px, 0);
+            }
+            100% {
+                clip: rect(18px, 9999px, 82px, 0);
+            }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% {
+                clip: rect(54px, 9999px, 30px, 0);
+            }
+            25% {
+                clip: rect(24px, 9999px, 71px, 0);
+            }
+            50% {
+                clip: rect(90px, 9999px, 40px, 0);
+            }
+            75% {
+                clip: rect(67px, 9999px, 84px, 0);
+            }
+            100% {
+                clip: rect(23px, 9999px, 61px, 0);
+            }
+        }
+        
+        @keyframes glitch-skew {
+            0% {
+                transform: skew(-2deg);
+            }
+            10% {
+                transform: skew(1deg);
+            }
+            20% {
+                transform: skew(4deg);
+            }
+            30% {
+                transform: skew(-3deg);
+            }
+            40% {
+                transform: skew(2deg);
+            }
+            50% {
+                transform: skew(-1deg);
+            }
+            60% {
+                transform: skew(3deg);
+            }
+            70% {
+                transform: skew(-2deg);
+            }
+            80% {
+                transform: skew(1deg);
+            }
+            90% {
+                transform: skew(-4deg);
+            }
+            100% {
+                transform: skew(2deg);
+            }
         }
         
         .header p {
@@ -115,6 +312,66 @@
             max-width: 600px;
             margin: 0 auto;
             animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        /* Logo animation overlay */
+        .logo-animation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .logo-animation {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+        
+        .logo-animation img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: logoRotate 3s ease-in-out, logoGlow 3s ease-in-out;
+        }
+        
+        @keyframes logoRotate {
+            0% {
+                transform: scale(0.1) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes logoGlow {
+            0% {
+                filter: drop-shadow(0 0 0 var(--gold));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px var(--gold));
+            }
+            100% {
+                filter: drop-shadow(0 0 5px var(--gold));
+            }
         }
         
         /* Navigation */
@@ -494,6 +751,46 @@
             left: 100%;
         }
         
+        /* Community Highlights Section with Side Images */
+        .community-section {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .side-image-left {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 80%;
+            max-height: 500px;
+            z-index: -1;
+            opacity: 0.4;
+            animation: floatSideImage 6s ease-in-out infinite alternate;
+        }
+        
+        .side-image-right {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 80%;
+            max-height: 500px;
+            z-index: -1;
+            opacity: 0.4;
+            animation: floatSideImage 6s ease-in-out infinite alternate-reverse;
+        }
+        
+        @keyframes floatSideImage {
+            0% {
+                transform: translateY(-50%) translateX(0);
+            }
+            100% {
+                transform: translateY(-50%) translateX(-20px);
+            }
+        }
+        
         /* Services Section */
         .services {
             padding: 80px 0;
@@ -829,6 +1126,10 @@
             .stat-item {
                 min-width: 180px;
             }
+            
+            .side-image-left, .side-image-right {
+                height: 60%;
+            }
         }
         
         @media (max-width: 768px) {
@@ -855,6 +1156,11 @@
             
             .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .side-image-left, .side-image-right {
+                height: 40%;
+                opacity: 0.2;
             }
         }
         
@@ -884,18 +1190,28 @@
                 padding: 12px 25px;
                 min-width: 160px;
             }
+            
+            .side-image-left, .side-image-right {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Palm Tree Decoration -->
-    <img src="img/palm-tree.png" alt="Palm Tree" class="palm-tree">
+    <!-- Logo Animation Overlay -->
+    <div class="logo-animation-overlay" id="logo-animation">
+        <div class="logo-animation">
+            <img src="img/prplogo.png" alt="Paradise Roleplay Logo">
+        </div>
+    </div>
     
     <!-- Header with Banner -->
     <header class="header">
         <div class="header-content">
             <div class="title-banner"></div>
-            <h1>PARADISE ROLEPLAY</h1>
+            <div class="glitch-wrapper">
+                <h1 class="glitch-text">PARADISE ROLEPLAY</h1>
+            </div>
             <p>Pakistan's Most Immersive FiveM Roleplay Experience</p>
             
             <div class="btn-container">
@@ -1041,10 +1357,14 @@
             </div>
         </section>
         
-        <!-- Community Highlights Slideshow -->
-        <section>
+        <!-- Community Highlights Slideshow with Side Images -->
+        <section class="community-section">
             <h2 class="section-title">Community Highlights</h2>
             <p class="section-description">Featured gangs, factions, staff members, and achievements</p>
+            
+            <!-- Side Images -->
+            <img src="img/gta_v___gta_5___trevor_philips__4____png_by_baldknuckle_debif4i.png" alt="GTA Character" class="side-image-left">
+            <img src="img/grand_theft_auto_v_wallpaper_by_da_gamecovers_dggd2j6.png" alt="GTA Character" class="side-image-right">
             
             <div class="slideshow-container">
                 <div class="slideshow community-slideshow">
@@ -1188,6 +1508,19 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
         const auth = firebase.auth();
+
+        // Logo animation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoAnimation = document.getElementById('logo-animation');
+            
+            // Hide the animation after 3 seconds
+            setTimeout(function() {
+                logoAnimation.style.opacity = '0';
+                setTimeout(function() {
+                    logoAnimation.style.display = 'none';
+                }, 500);
+            }, 3000);
+        });
 
         // Initialize slideshows
         $(document).ready(function(){
