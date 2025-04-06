@@ -1,0 +1,48 @@
+// index.js
+
+const express = require("express");
+const admin = require("firebase-admin");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+
+// Initialize Firebase Admin
+const serviceAccount = {
+  "type": "service_account",
+  "project_id": "paradiserppk",
+  "private_key_id": "0b0aba782afa2e47019f0434cb71be8c474fd18e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCee4UwiOHrJ0QS\nnVvq/IOMLiURN7xLBMnKLMfL2RAEZrIYuSAZaa7K4Fv8yNsrZjr0LrWw7SA5hNvi\nsAp8jp9N6OONXhE1HwrUZ57tcAb8s3jBst0w/+Lhq5IXw3ss1ECn0vL/6DI7i1Vv\nodsEiSEStll+M9CrKLwK7xCKa18Isy50CW3AVAG7j70mkJt7Xr0BYK1EMZ8kr0Hd\nSGoDuitJJ1br4BGl9YumUvVPQ1CF3oaAhATq4wRtkmaCVtTRoSsXVx4VPMe15jIS\noCsEhi1vO6pPnLFhhygpThKO8ydcdjDlTk+svj6K72I3Va4nvuKIlNj8IV9hvYUy\n1Kcfe579AgMBAAECggEACPUco+UgtnH7itJ3vFzgXInL0ODQaixk8WHoOwZ+PW7G\ngyziJRLll77oRBiK1rWfqxHWysoO8mFRgksGlLVaSK+F6QVs6I6OxfmYsH05T+Ae\n+P0QkRvtaWmRR3mQ2omhS+Wu6WA+Mpe0plYaHclYZAkyyWDJWwXhjFFTIy0KwTWJ\n/RgQuUMOjbtApoB4uY3fzxjOvwnQS/hD7dmN3aJDEA/ukWSuPWTgmJrVQCy5YydD\n+jqDepTN+ZHI5FStE4FpqnzPcL28Fo/mrB6A8MO9fBL4IW3iPK1J4swM/HFKym2d\nt9j50/cgRxrNV4eQKiF7DKEVaEVMS7CTKSxurGwySwKBgQDQwK+HMogC5oH0aKfm\nf4GvqGOHWtWouFewVJH7Cf3ggALhJhp8ppA8ZTOfjbH711ZP5ZGuZhpEUr+D7WVc\naOhxA55UdIgjWBt1Rf0zrgbLmLzcWMHN1g1ZsWVinhzKkpAN4jzdiXRNHP++eqCE\nddDFcNj0rL4HSXQ8yFRBnkjFPwKBgQDCWiLdslB4vHyT7FT3PKAg36H9Ubx87ct8\nm74RIeFhPGuopo0ERfY8nlvIaU1+Yy252R/bQ3dDpNgg8mN8y+6EqS1Bum0N8rFw\nJFaYD5OsE4kNrjHpXniUyf6cTVXPi1wQsD9wWFLOnazNE85aIPKPEqIw/828iZ1j\n5MaxfbqgwwKBgH4UQm9nZ5pI2ihhpTajwBH1o9c2V2EFpYCMM3bpe/pBlnuhZdHv\nT6IKhXlSPTMbxbePscMhS7AEQkNN+DAt9GV9h/z+PNML/dmAogK6ksQYxchXmwXU\nyE9pwxAi6sS2bGbWQ2iSAjooz5WdvqEB/0ugcoikZElGZfvoCmtvTAhFAoGBALZd\ni6/JHPddrevDa6qeSYbvMPoZEyuKmlDvdrZuuyPZZQ/YUCP9XeNdmLQCE0QP3h0w\nXlMJCEUBzgeESdQVK1dxw1SUkLXwz4xxnIuMuj1SC1054f2ftreunmmdq3JWyumh\n57UMO49Cpp28AvnRRqj3jBc8QJmz62qLheGQH2mvAoGAUBsaF+a5wXuWqEMjO4nr\nc2uQsZSuAR0jdtIMySRFohWZQPrV+RsiSiYPgcwt7usODL8v/mZ+gJo7jDbJy52h\n9EA1njcdUeCklvBa/tDIf2VNgmA0Cwg1jurl+/8UbZOTikCCj7jPyZ+2ymCeiXpe\nZ6nzckdu8SMLAjYI49f52rs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@paradiserppk.iam.gserviceaccount.com",
+  "client_id": "107914991959324267328",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc@paradiserppk.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+};
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://paradiserppk.firebaseio.com"
+});
+
+const db = admin.firestore();
+
+// Example GET route
+app.get("/events", async (req, res) => {
+  const snapshot = await db.collection("events").get();
+  const events = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  res.json(events);
+});
+
+// Example POST route
+app.post("/events", async (req, res) => {
+  const data = req.body;
+  const ref = await db.collection("events").add(data);
+  res.json({ success: true, id: ref.id });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
